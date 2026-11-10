@@ -1,0 +1,96 @@
+:root {
+  /* ==========================================================================
+     TACTILE DAYLIGHT DESIGN SYSTEM: Architectural 3D & Swiss Precision
+     Warm Alabaster (#F7F6F2) • Carbon-Black (#141413) • International Orange (#FF4F00)
+     ========================================================================== */
+
+  /* Palette: Warm Alabaster Off-White Industrial Daylight Surfaces */
+  --bg-canvas: #F5F5F3;
+  --bg-surface: #FFFFFF;
+  --bg-surface-elevated: #FBFBFA;
+  --bg-surface-subtle: #EEEEEC;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FFFFFF;
+
+  /* Exposed Hairline Grid & Architectural Lines */
+  --grid-hairline: #E3E2DD;
+  --border-hairline: #E3E2DD;
+  --border-subtle: #D9D8D3;
+  --border-medium: #C6C5BF;
+  --border-dark: #121212;
+
+  /* Deep Carbon-Black Typography */
+  --text-primary: #121212;
+  --text-secondary: #504F4C;
+  --text-muted: #797772;
+  --text-faint: #A2A09B;
+
+  /* International Orange Accents */
+  --accent: #FF4F00;
+  --accent-hover: #E04500;
+  --accent-soft: rgba(255, 79, 0, 0.08);
+  --accent-subtle-border: rgba(255, 79, 0, 0.28);
+  --accent-contrast: #FFFFFF;
+
+  /* Clean Frosted-White Glass Blur */
+  --bg-glass-nav: rgba(245, 245, 243, 0.88);
+  --glass-blur-nav: blur(16px) saturate(140%);
+  --glass-blur-modal: blur(24px) saturate(150%);
+
+  /* Typography: Swiss + Crisp Monospace */
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, Menlo, monospace;
+  --font-serif: var(--font-display);
+
+  /* Fluid Typography Scale */
+  --text-2xs: 0.72rem;
+  --text-xs: 0.80rem;
+  --text-sm: 0.88rem;
+  --text-base: 1.00rem;
+  --text-lg: 1.18rem;
+  --text-xl: 1.50rem;
+  --text-2xl: clamp(1.85rem, 1.5rem + 1.2vw, 2.5rem);
+  --text-3xl: clamp(2.5rem, 2.0rem + 2.2vw, 3.6rem);
+  --text-4xl: clamp(3.2rem, 2.5rem + 3.4vw, 4.8rem);
+  --text-display: clamp(3.8rem, 2.9rem + 4.8vw, 6.8rem);
+
+  /* Spacing: Architectural Grid Rhythm */
+  --max-width: 1240px;
+  --content-padding: clamp(1.25rem, 4vw, 3.5rem);
+  --section-spacing: clamp(5rem, 8vw, 9rem);
+
+  /* Soft, Realistic Studio Lighting Shadows */
+  --shadow-studio-sm: 0 2px 8px -2px rgba(20, 20, 19, 0.04), 0 1px 3px -1px rgba(20, 20, 19, 0.03);
+  --shadow-studio-md: 0 12px 28px -8px rgba(20, 20, 19, 0.06), 0 4px 10px -2px rgba(20, 20, 19, 0.03);
+  --shadow-studio-lg: 0 24px 48px -12px rgba(20, 20, 19, 0.09), 0 6px 18px -3px rgba(20, 20, 19, 0.03);
+  --shadow-studio-elevated: 0 32px 64px -16px rgba(20, 20, 19, 0.12), 0 10px 24px -4px rgba(20, 20, 19, 0.05);
+
+  /* Easing & Tactile Transitions */
+  --ease-studio: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-tactile: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --transition-fast: 160ms var(--ease-studio);
+  --transition-normal: 320ms var(--ease-studio);
+  --transition-slow: 700ms var(--ease-studio);
+
+  /* Compatibility Aliases */
+  --color-ivory: var(--bg-canvas);
+  --color-cream: var(--bg-surface-subtle);
+  --color-charcoal: var(--text-primary);
+  --color-charcoal-light: var(--text-secondary);
+  --color-burnt-orange: var(--accent);
+  --color-copper: var(--text-muted);
+  --color-warm-gray: var(--text-muted);
+  --color-stone: var(--border-hairline);
+  --color-divider: var(--grid-hairline);
+  --color-divider-light: rgba(226, 225, 220, 0.6);
+  --color-paper: var(--bg-surface);
+  --neon-blue: var(--accent);
+  --neon-purple: var(--text-secondary);
+  --neon-blue-light: var(--accent);
+  --neon-purple-light: var(--text-muted);
+  --silver-bright: var(--text-primary);
+  --silver-medium: var(--text-secondary);
+  --silver-muted: var(--text-muted);
+  --silver-faint: var(--text-faint);
+}

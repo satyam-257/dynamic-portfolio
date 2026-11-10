@@ -1,0 +1,56 @@
+{
+  "watch_hero.jpg": {
+    "source": "Unsplash",
+    "url": "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop",
+    "size_bytes": 194362,
+    "license": "Unsplash License (free for commercial and personal use)"
+  },
+  "watch_movement_macro.jpg": {
+    "source": "Unsplash",
+    "url": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1600&auto=format&fit=crop",
+    "size_bytes": 601123,
+    "license": "Unsplash License (free for commercial and personal use)"
+  },
+  "foundation_workspace.jpg": {
+    "source": "Unsplash",
+    "url": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop",
+    "size_bytes": 125881,
+    "license": "Unsplash License (free for commercial and personal use)"
+  },
+  "experiment_ml.jpg": {
+    "source": "Unsplash",
+    "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
+    "size_bytes": 124385,
+    "license": "Unsplash License (free for commercial and personal use)"
+  },
+  "watch_evolve.jpg": {
+    "source": "Unsplash",
+    "url": "https://images.unsplash.com/photo-1524805444758-089113d48a6d?q=80&w=1200&auto=format&fit=crop",
+    "size_bytes": 140293,
+    "license": "Unsplash License (free for commercial and personal use)"
+  },
+  "project_trackx.jpg": {
+    "source": "Unsplash",
+    "url": "https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=1000&auto=format&fit=crop",
+    "size_bytes": 133979,
+    "license": "Unsplash License (free for commercial and personal use)"
+  },
+  "project_traillens.jpg": {
+    "source": "Unsplash",
+    "url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1000&auto=format&fit=crop",
+    "size_bytes": 180301,
+    "license": "Unsplash License (free for commercial and personal use)"
+  },
+  "project_traverly.jpg": {
+    "source": "Unsplash",
+    "url": "https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1000&auto=format&fit=crop",
+    "size_bytes": 287219,
+    "license": "Unsplash License (free for commercial and personal use)"
+  },
+  "project_farmbank.jpg": {
+    "source": "Unsplash",
+    "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1000&auto=format&fit=crop",
+    "size_bytes": 106816,
+    "license": "Unsplash License (free for commercial and personal use)"
+  }
+}
