@@ -476,17 +476,16 @@ export const LogicCubeCanvas: React.FC<LogicCubeCanvasProps> = ({ reducedMotion 
       // On tablet (768px) and mobile (375px) breakpoints: scale the 3D Logic Cube to 65% size
       const baseScale = screenWidth <= 375 ? 0.60 : isTabletOrMobile ? 0.65 : 0.95;
 
-      // Opacity choreography: crisp showcase in Hero (on desktop), restrained ambient backdrop
-      // across dense ML case studies and mobile viewports so technical diagrams stay 100% legible.
+      // Opacity choreography: vivid 3D centerpiece visible behind frosted-glass window tiles
       if (container) {
         if (isTabletOrMobile) {
-          container.style.opacity = currentScrollProgress < 0.14 ? '0.22' : '0.07';
+          container.style.opacity = currentScrollProgress < 0.14 ? '0.48' : '0.32';
         } else if (currentScrollProgress < 0.14) {
-          container.style.opacity = '0.92';
+          container.style.opacity = '0.96';
         } else if (currentScrollProgress >= 0.88) {
-          container.style.opacity = '0.28';
+          container.style.opacity = '0.88';
         } else {
-          container.style.opacity = '0.09';
+          container.style.opacity = '0.78';
         }
         container.style.transition = 'opacity 0.35s ease';
       }

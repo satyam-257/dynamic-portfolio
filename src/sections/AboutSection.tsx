@@ -39,9 +39,7 @@ export const AboutSection: React.FC = () => {
             <div
               className="reveal-on-scroll stagger-1 architectural-card"
               style={{
-                backgroundColor: '#FFFFFF',
-                border: '1px solid #E3E2DD',
-                borderRadius: '4px',
+                borderRadius: '6px',
                 padding: '2.25rem',
               }}
             >
@@ -107,9 +105,7 @@ export const AboutSection: React.FC = () => {
             <div
               className="reveal-on-scroll stagger-2 architectural-card-flat"
               style={{
-                backgroundColor: '#FFFFFF',
-                border: '1px solid #E3E2DD',
-                borderRadius: '4px',
+                borderRadius: '6px',
                 padding: '2rem 2.25rem',
               }}
             >
@@ -177,9 +173,7 @@ export const AboutSection: React.FC = () => {
           <div
             className="reveal-on-scroll stagger-2 architectural-card"
             style={{
-              backgroundColor: '#FFFFFF',
-              border: '1px solid #E3E2DD',
-              borderRadius: '4px',
+              borderRadius: '6px',
               padding: '2.25rem',
             }}
           >

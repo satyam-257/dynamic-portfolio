@@ -153,34 +153,40 @@ button {
 }
 
 /* ==========================================================================
-   TACTILE ARCHITECTURAL 3D CARDS (REALISTIC STUDIO SHADOWS)
+   TACTILE ARCHITECTURAL 3D CARDS (FROSTED GLASS WINDOW TILES)
    ========================================================================== */
 .architectural-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--grid-hairline);
-  border-radius: 4px;
-  box-shadow: var(--shadow-studio-md);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px) saturate(145%);
+  -webkit-backdrop-filter: blur(14px) saturate(145%);
+  border: 1px solid rgba(215, 214, 208, 0.85);
+  border-radius: 6px;
+  box-shadow: var(--shadow-studio-md), inset 0 1px 0 rgba(255, 255, 255, 0.9);
   position: relative;
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-fast);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-fast), background-color var(--transition-normal);
 }
 
 .architectural-card:hover {
-  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.84);
+  transform: translateY(-3px);
   border-color: var(--border-subtle);
-  box-shadow: var(--shadow-studio-elevated);
+  box-shadow: var(--shadow-studio-elevated), inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
 .architectural-card-flat {
-  background: var(--bg-surface);
-  border: 1px solid var(--grid-hairline);
-  border-radius: 4px;
-  box-shadow: var(--shadow-studio-sm);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid rgba(215, 214, 208, 0.85);
+  border-radius: 6px;
+  box-shadow: var(--shadow-studio-sm), inset 0 1px 0 rgba(255, 255, 255, 0.88);
   transition: all var(--transition-normal);
 }
 
 .architectural-card-flat:hover {
+  background: rgba(255, 255, 255, 0.84);
   border-color: var(--border-medium);
-  box-shadow: var(--shadow-studio-md);
+  box-shadow: var(--shadow-studio-md), inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
 /* ==========================================================================
@@ -491,13 +497,14 @@ button {
     --section-spacing: 4.5rem;
   }
 
-  /* Ensure cards have high-contrast background over the 3D cube */
+  /* Ensure cards have balanced frosted-glass clarity over the 3D cube */
   .architectural-card,
+  .architectural-card-flat,
   .blueprint-stat-card {
-    background-color: rgba(255, 255, 255, 0.96) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    padding: 1.75rem 1.4rem !important;
+    background-color: rgba(255, 255, 255, 0.84) !important;
+    backdrop-filter: blur(12px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(140%) !important;
+    padding: 1.35rem 1.15rem !important;
   }
 
   .mechanical-key-grid {

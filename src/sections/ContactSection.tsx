@@ -73,13 +73,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
           <div
             className="reveal-on-scroll architectural-card"
             style={{
-              backgroundColor: '#FFFFFF',
-              border: '1px solid #E3E2DD',
               borderRadius: '6px',
-              padding: 'clamp(2rem, 4.5vw, 3.25rem)',
+              padding: 'clamp(1.75rem, 4vw, 2.85rem)',
               display: 'flex',
               flexDirection: 'column',
-              gap: '1.5rem',
+              gap: '1.45rem',
             }}
           >
             <div>
@@ -186,7 +184,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  backgroundColor: '#FAF9F6',
+                  backgroundColor: 'rgba(250, 249, 246, 0.65)',
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
@@ -211,7 +209,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  backgroundColor: '#FAF9F6',
+                  backgroundColor: 'rgba(250, 249, 246, 0.65)',
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
@@ -251,8 +249,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
           <div
             className="reveal-on-scroll stagger-1 architectural-card-flat"
             style={{
-              backgroundColor: '#FFFFFF',
-              border: '1px solid #E3E2DD',
               borderRadius: '6px',
               padding: 'clamp(1.5rem, 3vw, 2.25rem)',
             }}

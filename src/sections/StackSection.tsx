@@ -138,7 +138,7 @@ export const StackSection: React.FC<StackSectionProps> = () => {
                 padding: '0.4rem 0.75rem',
                 borderRadius: '2px',
                 border: `1px solid ${activeCategory === 'all' ? 'var(--accent)' : '#E3E2DD'}`,
-                backgroundColor: activeCategory === 'all' ? 'var(--accent-soft)' : '#FFFFFF',
+                backgroundColor: activeCategory === 'all' ? 'var(--accent-soft)' : 'rgba(255, 255, 255, 0.74)',
                 color: activeCategory === 'all' ? 'var(--accent)' : 'var(--text-secondary)',
               }}
             >
@@ -155,7 +155,7 @@ export const StackSection: React.FC<StackSectionProps> = () => {
                   padding: '0.4rem 0.75rem',
                   borderRadius: '2px',
                   border: `1px solid ${activeCategory === cat.id ? 'var(--accent)' : '#E3E2DD'}`,
-                  backgroundColor: activeCategory === cat.id ? 'var(--accent-soft)' : '#FFFFFF',
+                  backgroundColor: activeCategory === cat.id ? 'var(--accent-soft)' : 'rgba(255, 255, 255, 0.74)',
                   color: activeCategory === cat.id ? 'var(--accent)' : 'var(--text-secondary)',
                 }}
               >
@@ -179,13 +179,11 @@ export const StackSection: React.FC<StackSectionProps> = () => {
               key={category.id}
               className={`reveal-on-scroll stagger-${(idx % 3) + 1} architectural-card-flat`}
               style={{
-                backgroundColor: '#FFFFFF',
-                border: '1px solid #E3E2DD',
-                borderRadius: '4px',
-                padding: '1.75rem',
+                borderRadius: '6px',
+                padding: '1.5rem 1.6rem',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '1.1rem',
+                gap: '0.95rem',
               }}
             >
               <div

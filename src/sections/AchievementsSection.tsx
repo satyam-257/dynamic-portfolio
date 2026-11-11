@@ -68,14 +68,12 @@ export const AchievementsSection: React.FC = () => {
               key={item.id}
               className={`reveal-on-scroll stagger-${(idx % 3) + 1} architectural-card`}
               style={{
-                backgroundColor: '#FFFFFF',
-                border: '1px solid #E3E2DD',
-                borderRadius: '4px',
-                padding: '1.75rem',
+                borderRadius: '6px',
+                padding: '1.55rem',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                gap: '1rem',
+                gap: '0.95rem',
               }}
             >
               <div>

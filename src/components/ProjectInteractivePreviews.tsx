@@ -44,13 +44,13 @@ export const TrackXInteractivePreview: React.FC = () => {
   return (
     <div
       style={{
-        backgroundColor: '#FAF9F6',
-        border: '1px solid #E3E2DD',
+        backgroundColor: 'rgba(250, 249, 246, 0.58)',
+        border: '1px solid rgba(227, 226, 221, 0.9)',
         borderRadius: '4px',
-        padding: '1.25rem',
+        padding: '0.85rem',
         display: 'flex',
         flexDirection: 'column',
-        gap: '1.1rem',
+        gap: '0.7rem',
       }}
     >
       {/* Prototype Disclaimer Header */}
@@ -60,17 +60,17 @@ export const TrackXInteractivePreview: React.FC = () => {
           alignItems: 'center',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
-          gap: '0.5rem',
-          paddingBottom: '0.75rem',
-          borderBottom: '1px solid #E3E2DD',
+          gap: '0.45rem',
+          paddingBottom: '0.55rem',
+          borderBottom: '1px solid rgba(227, 226, 221, 0.9)',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-          <Train size={14} style={{ color: 'var(--accent)' }} />
+          <Train size={13} style={{ color: 'var(--accent)' }} />
           <span
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.72rem',
+              fontSize: '0.69rem',
               fontWeight: 700,
               color: 'var(--text-primary)',
             }}
@@ -79,15 +79,15 @@ export const TrackXInteractivePreview: React.FC = () => {
           </span>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
           <span
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.66rem',
+              fontSize: '0.63rem',
               color: 'var(--text-muted)',
-              backgroundColor: '#FFFFFF',
+              backgroundColor: 'rgba(255, 255, 255, 0.72)',
               border: '1px solid #E3E2DD',
-              padding: '0.18rem 0.5rem',
+              padding: '0.14rem 0.45rem',
               borderRadius: '2px',
             }}
             title="Illustrative prototype corridor preview; metrics come from 515-snapshot held-out evaluation."
@@ -101,12 +101,12 @@ export const TrackXInteractivePreview: React.FC = () => {
               alignItems: 'center',
               gap: '0.3rem',
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.68rem',
+              fontSize: '0.65rem',
               fontWeight: 600,
               color: isAnimating ? 'var(--accent)' : 'var(--text-primary)',
-              backgroundColor: '#FFFFFF',
+              backgroundColor: 'rgba(255, 255, 255, 0.78)',
               border: '1px solid #E3E2DD',
-              padding: '0.2rem 0.55rem',
+              padding: '0.16rem 0.5rem',
               borderRadius: '2px',
             }}
             aria-label={isAnimating ? 'Pause simulated train movement' : 'Step simulated train along route'}
@@ -118,8 +118,8 @@ export const TrackXInteractivePreview: React.FC = () => {
       </div>
 
       {/* Railway Corridor Schematic */}
-      <div style={{ padding: '0.75rem 0.25rem 0.35rem' }}>
-        <div style={{ position: 'relative', padding: '0.9rem 0.5rem 0.25rem' }}>
+      <div style={{ padding: '0.4rem 0.2rem 0.2rem' }}>
+        <div style={{ position: 'relative', padding: '0.7rem 0.4rem 0.15rem' }}>
           {/* Track Baseline */}
           <div
             style={{
@@ -214,17 +214,17 @@ export const TrackXInteractivePreview: React.FC = () => {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
-          gap: '0.85rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(185px, 1fr))',
+          gap: '0.65rem',
         }}
       >
         {/* Left Box: Station ETA Deviation Output */}
         <div
           style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: 'rgba(255, 255, 255, 0.72)',
             border: '1px solid #E3E2DD',
             borderRadius: '3px',
-            padding: '0.9rem',
+            padding: '0.72rem',
           }}
         >
           <div
@@ -278,13 +278,13 @@ export const TrackXInteractivePreview: React.FC = () => {
         {/* Right Box: Held-Out Model Evaluation Comparison (515 Snapshots) */}
         <div
           style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: 'rgba(255, 255, 255, 0.72)',
             border: '1px solid #E3E2DD',
             borderRadius: '3px',
-            padding: '0.9rem',
+            padding: '0.72rem',
             display: 'flex',
             flexDirection: 'column',
-            gap: '0.5rem',
+            gap: '0.42rem',
           }}
         >
           <div
@@ -370,13 +370,13 @@ export const ExperimentPilotInteractivePreview: React.FC = () => {
   return (
     <div
       style={{
-        backgroundColor: '#FAF9F6',
-        border: '1px solid #E3E2DD',
+        backgroundColor: 'rgba(250, 249, 246, 0.58)',
+        border: '1px solid rgba(227, 226, 221, 0.9)',
         borderRadius: '4px',
-        padding: '1.25rem',
+        padding: '0.85rem',
         display: 'flex',
         flexDirection: 'column',
-        gap: '1rem',
+        gap: '0.7rem',
       }}
     >
       {/* Header + Tab Controls */}
@@ -386,17 +386,17 @@ export const ExperimentPilotInteractivePreview: React.FC = () => {
           alignItems: 'center',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
-          gap: '0.65rem',
-          paddingBottom: '0.75rem',
-          borderBottom: '1px solid #E3E2DD',
+          gap: '0.45rem',
+          paddingBottom: '0.55rem',
+          borderBottom: '1px solid rgba(227, 226, 221, 0.9)',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-          <ShieldCheck size={14} style={{ color: 'var(--accent)' }} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+          <ShieldCheck size={13} style={{ color: 'var(--accent)' }} />
           <span
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.72rem',
+              fontSize: '0.69rem',
               fontWeight: 700,
               color: 'var(--text-primary)',
             }}
@@ -405,23 +405,23 @@ export const ExperimentPilotInteractivePreview: React.FC = () => {
           </span>
         </div>
 
-        <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '0.3rem', flexWrap: 'wrap' }}>
           {[
-            { id: 'comparison', label: 'Run Comparison' },
-            { id: 'matrix', label: 'Confusion & Errors' },
-            { id: 'calibration', label: '10-Bin ECE & Insights' },
+            { id: 'comparison', label: 'Comparison' },
+            { id: 'matrix', label: 'Confusion' },
+            { id: 'calibration', label: '10-Bin ECE' },
           ].map((item) => (
             <button
               key={item.id}
               onClick={() => setTab(item.id as typeof tab)}
               style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.68rem',
+                fontSize: '0.65rem',
                 fontWeight: 600,
-                padding: '0.28rem 0.6rem',
+                padding: '0.22rem 0.5rem',
                 borderRadius: '2px',
                 border: `1px solid ${tab === item.id ? 'var(--accent)' : '#E3E2DD'}`,
-                backgroundColor: tab === item.id ? 'var(--accent-soft)' : '#FFFFFF',
+                backgroundColor: tab === item.id ? 'var(--accent-soft)' : 'rgba(255, 255, 255, 0.78)',
                 color: tab === item.id ? 'var(--accent)' : 'var(--text-secondary)',
               }}
             >
@@ -433,15 +433,15 @@ export const ExperimentPilotInteractivePreview: React.FC = () => {
 
       {/* Tab 1: Comparison + Compatibility Guardrail */}
       {tab === 'comparison' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
           <div style={{ overflowX: 'auto' }}>
             <table
               style={{
                 width: '100%',
                 borderCollapse: 'collapse',
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.73rem',
-                backgroundColor: '#FFFFFF',
+                fontSize: '0.7rem',
+                backgroundColor: 'rgba(255, 255, 255, 0.74)',
                 border: '1px solid #E3E2DD',
               }}
             >
@@ -482,13 +482,13 @@ export const ExperimentPilotInteractivePreview: React.FC = () => {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '0.55rem',
-              padding: '0.6rem 0.85rem',
-              backgroundColor: '#FFFFFF',
+              gap: '0.5rem',
+              padding: '0.5rem 0.7rem',
+              backgroundColor: 'rgba(255, 255, 255, 0.74)',
               border: '1px solid var(--accent-subtle-border)',
               borderRadius: '3px',
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.7rem',
+              fontSize: '0.67rem',
               color: 'var(--text-secondary)',
             }}
           >
@@ -505,16 +505,16 @@ export const ExperimentPilotInteractivePreview: React.FC = () => {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '0.9rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(185px, 1fr))',
+            gap: '0.65rem',
           }}
         >
           <div
             style={{
-              backgroundColor: '#FFFFFF',
+              backgroundColor: 'rgba(255, 255, 255, 0.72)',
               border: '1px solid #E3E2DD',
               borderRadius: '3px',
-              padding: '0.85rem',
+              padding: '0.72rem',
             }}
           >
             <div
@@ -557,13 +557,13 @@ export const ExperimentPilotInteractivePreview: React.FC = () => {
 
           <div
             style={{
-              backgroundColor: '#FFFFFF',
+              backgroundColor: 'rgba(255, 255, 255, 0.72)',
               border: '1px solid #E3E2DD',
               borderRadius: '3px',
-              padding: '0.85rem',
+              padding: '0.72rem',
               display: 'flex',
               flexDirection: 'column',
-              gap: '0.55rem',
+              gap: '0.45rem',
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -621,16 +621,16 @@ export const ExperimentPilotInteractivePreview: React.FC = () => {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '0.9rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(185px, 1fr))',
+            gap: '0.65rem',
           }}
         >
           <div
             style={{
-              backgroundColor: '#FFFFFF',
+              backgroundColor: 'rgba(255, 255, 255, 0.72)',
               border: '1px solid #E3E2DD',
               borderRadius: '3px',
-              padding: '0.85rem',
+              padding: '0.72rem',
             }}
           >
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: 'var(--text-muted)', marginBottom: '0.4rem' }}>
@@ -661,13 +661,13 @@ export const ExperimentPilotInteractivePreview: React.FC = () => {
 
           <div
             style={{
-              backgroundColor: '#FFFFFF',
+              backgroundColor: 'rgba(255, 255, 255, 0.72)',
               border: '1px solid #E3E2DD',
               borderRadius: '3px',
-              padding: '0.85rem',
+              padding: '0.72rem',
               display: 'flex',
               flexDirection: 'column',
-              gap: '0.5rem',
+              gap: '0.45rem',
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: 'var(--accent)', fontWeight: 700 }}>
@@ -707,13 +707,13 @@ export const TraverlyInteractivePreview: React.FC = () => {
   return (
     <div
       style={{
-        backgroundColor: '#FAF9F6',
-        border: '1px solid #E3E2DD',
+        backgroundColor: 'rgba(250, 249, 246, 0.58)',
+        border: '1px solid rgba(227, 226, 221, 0.9)',
         borderRadius: '4px',
-        padding: '1.25rem',
+        padding: '0.85rem',
         display: 'flex',
         flexDirection: 'column',
-        gap: '1rem',
+        gap: '0.7rem',
       }}
     >
       {/* Header with Amazon AI Summit 2026 Badge */}
@@ -723,15 +723,15 @@ export const TraverlyInteractivePreview: React.FC = () => {
           alignItems: 'center',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
-          gap: '0.5rem',
-          paddingBottom: '0.75rem',
-          borderBottom: '1px solid #E3E2DD',
+          gap: '0.45rem',
+          paddingBottom: '0.55rem',
+          borderBottom: '1px solid rgba(227, 226, 221, 0.9)',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-          <MapPin size={14} style={{ color: 'var(--accent)' }} />
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', fontWeight: 700 }}>
-            TRAVERLY BUDGET &amp; ITINERARY PREVIEW // KOLKATA → JAIPUR (4 DAYS)
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+          <MapPin size={13} style={{ color: 'var(--accent)' }} />
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', fontWeight: 700 }}>
+            TRAVERLY PREVIEW // KOLKATA → JAIPUR (4D)
           </span>
         </div>
 
@@ -739,19 +739,19 @@ export const TraverlyInteractivePreview: React.FC = () => {
           style={{
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '0.35rem',
+            gap: '0.3rem',
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.67rem',
+            fontSize: '0.63rem',
             fontWeight: 700,
             color: 'var(--accent)',
             backgroundColor: 'var(--accent-soft)',
             border: '1px solid var(--accent-subtle-border)',
-            padding: '0.18rem 0.55rem',
+            padding: '0.14rem 0.45rem',
             borderRadius: '2px',
           }}
         >
-          <CheckCircle2 size={11} />
-          <span>AMAZON AI SUMMIT 2026 SELECTION</span>
+          <CheckCircle2 size={10} />
+          <span>AMAZON AI SUMMIT 2026</span>
         </span>
       </div>
 
@@ -760,13 +760,13 @@ export const TraverlyInteractivePreview: React.FC = () => {
         style={{
           display: 'flex',
           flexWrap: 'wrap',
-          gap: '0.75rem',
+          gap: '0.5rem',
           alignItems: 'center',
           justifyContent: 'space-between',
         }}
       >
-        <div style={{ display: 'flex', gap: '0.35rem', alignItems: 'center', flexWrap: 'wrap' }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: 'var(--text-muted)' }}>
+        <div style={{ display: 'flex', gap: '0.3rem', alignItems: 'center', flexWrap: 'wrap' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: 'var(--text-muted)' }}>
             STYLE:
           </span>
           {(['budget', 'standard', 'comfort'] as const).map((s) => (
@@ -775,13 +775,13 @@ export const TraverlyInteractivePreview: React.FC = () => {
               onClick={() => setStyle(s)}
               style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.68rem',
+                fontSize: '0.65rem',
                 fontWeight: 600,
                 textTransform: 'uppercase',
-                padding: '0.24rem 0.55rem',
+                padding: '0.18rem 0.45rem',
                 borderRadius: '2px',
                 border: `1px solid ${style === s ? 'var(--accent)' : '#E3E2DD'}`,
-                backgroundColor: style === s ? 'var(--accent-soft)' : '#FFFFFF',
+                backgroundColor: style === s ? 'var(--accent-soft)' : 'rgba(255, 255, 255, 0.78)',
                 color: style === s ? 'var(--accent)' : 'var(--text-secondary)',
               }}
             >
@@ -790,24 +790,24 @@ export const TraverlyInteractivePreview: React.FC = () => {
           ))}
         </div>
 
-        <div style={{ display: 'flex', gap: '0.65rem', alignItems: 'center', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '0.45rem', alignItems: 'center', flexWrap: 'wrap' }}>
           <button
             onClick={() => setSeason((v) => (v === 'peak' ? 'offpeak' : 'peak'))}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.3rem',
+              gap: '0.28rem',
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.68rem',
+              fontSize: '0.65rem',
               fontWeight: 600,
-              padding: '0.24rem 0.55rem',
+              padding: '0.18rem 0.45rem',
               borderRadius: '2px',
               border: '1px solid #E3E2DD',
-              backgroundColor: '#FFFFFF',
+              backgroundColor: 'rgba(255, 255, 255, 0.78)',
             }}
           >
-            <Calendar size={11} style={{ color: 'var(--accent)' }} />
-            <span>{season === 'peak' ? 'PEAK SEASON' : 'OFF-PEAK'}</span>
+            <Calendar size={10} style={{ color: 'var(--accent)' }} />
+            <span>{season === 'peak' ? 'PEAK' : 'OFF-PEAK'}</span>
           </button>
 
           <button
@@ -815,18 +815,18 @@ export const TraverlyInteractivePreview: React.FC = () => {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.3rem',
+              gap: '0.28rem',
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.68rem',
+              fontSize: '0.65rem',
               fontWeight: 600,
-              padding: '0.24rem 0.55rem',
+              padding: '0.18rem 0.45rem',
               borderRadius: '2px',
               border: '1px solid #E3E2DD',
-              backgroundColor: '#FFFFFF',
+              backgroundColor: 'rgba(255, 255, 255, 0.78)',
             }}
           >
-            <Users size={11} style={{ color: 'var(--accent)' }} />
-            <span>{partySize} {partySize === 1 ? 'TRAVELER' : 'TRAVELERS'}</span>
+            <Users size={10} style={{ color: 'var(--accent)' }} />
+            <span>{partySize} {partySize === 1 ? 'PAX' : 'PAX'}</span>
           </button>
         </div>
       </div>
@@ -835,19 +835,19 @@ export const TraverlyInteractivePreview: React.FC = () => {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-          gap: '0.85rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(185px, 1fr))',
+          gap: '0.65rem',
         }}
       >
         <div
           style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: 'rgba(255, 255, 255, 0.72)',
             border: '1px solid #E3E2DD',
             borderRadius: '3px',
-            padding: '0.9rem',
+            padding: '0.72rem',
             display: 'flex',
             flexDirection: 'column',
-            gap: '0.4rem',
+            gap: '0.32rem',
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: 'var(--text-muted)' }}>
@@ -886,14 +886,14 @@ export const TraverlyInteractivePreview: React.FC = () => {
 
         <div
           style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: 'rgba(255, 255, 255, 0.72)',
             border: '1px solid #E3E2DD',
             borderRadius: '3px',
-            padding: '0.9rem',
+            padding: '0.72rem',
             display: 'flex',
             flexDirection: 'column',
-            gap: '0.35rem',
-            fontSize: '0.78rem',
+            gap: '0.3rem',
+            fontSize: '0.75rem',
             color: 'var(--text-secondary)',
           }}
         >

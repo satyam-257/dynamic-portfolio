@@ -367,9 +367,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate, reducedMot
               key={item.id}
               className={`reveal-on-scroll stagger-${idx + 1} architectural-card-flat`}
               style={{
-                backgroundColor: '#FFFFFF',
-                border: '1px solid #E3E2DD',
-                borderRadius: '4px',
+                borderRadius: '6px',
                 padding: '1.35rem 1.25rem',
                 display: 'flex',
                 flexDirection: 'column',

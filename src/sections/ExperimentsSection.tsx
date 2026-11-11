@@ -42,13 +42,11 @@ export const ExperimentsSection: React.FC = () => {
         <div
           className="reveal-on-scroll stagger-1 architectural-card"
           style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E3E2DD',
             borderRadius: '6px',
-            padding: 'clamp(1.5rem, 3.5vw, 2.75rem)',
+            padding: 'clamp(1.35rem, 3vw, 2.35rem)',
             display: 'flex',
             flexDirection: 'column',
-            gap: '2rem',
+            gap: '1.65rem',
           }}
         >
           {/* Case Study Title & CV Disclaimer */}
@@ -110,7 +108,7 @@ export const ExperimentsSection: React.FC = () => {
               alignItems: 'center',
               gap: '0.65rem',
               padding: '0.75rem 1rem',
-              backgroundColor: '#FAF9F6',
+              backgroundColor: 'rgba(250, 249, 246, 0.65)',
               border: '1px solid #E3E2DD',
               borderLeft: '3px solid var(--accent)',
               borderRadius: '2px',
@@ -139,7 +137,7 @@ export const ExperimentsSection: React.FC = () => {
                 key={stat.label}
                 style={{
                   padding: '1.1rem',
-                  backgroundColor: '#FAF9F6',
+                  backgroundColor: 'rgba(250, 249, 246, 0.66)',
                   border: '1px solid #E3E2DD',
                   borderRadius: '3px',
                 }}
@@ -169,10 +167,10 @@ export const ExperimentsSection: React.FC = () => {
           {/* Interactive Experimental Pipeline Diagram */}
           <div
             style={{
-              backgroundColor: '#FAF9F6',
+              backgroundColor: 'rgba(250, 249, 246, 0.62)',
               border: '1px solid #E3E2DD',
               borderRadius: '4px',
-              padding: '1.35rem',
+              padding: '1.25rem',
             }}
           >
             <div
@@ -255,7 +253,7 @@ export const ExperimentsSection: React.FC = () => {
 
             <div
               style={{
-                backgroundColor: '#FFFFFF',
+                backgroundColor: 'rgba(255, 255, 255, 0.72)',
                 border: '1px solid #E3E2DD',
                 borderRadius: '3px',
                 padding: '1rem 1.15rem',
@@ -284,7 +282,7 @@ export const ExperimentsSection: React.FC = () => {
             {/* Left: CV ROC-AUC Progression Visualization */}
             <div
               style={{
-                backgroundColor: '#FAF9F6',
+                backgroundColor: 'rgba(250, 249, 246, 0.62)',
                 border: '1px solid #E3E2DD',
                 borderRadius: '4px',
                 padding: '1.25rem',
@@ -319,7 +317,7 @@ export const ExperimentsSection: React.FC = () => {
                     <div
                       key={row.model}
                       style={{
-                        backgroundColor: '#FFFFFF',
+                        backgroundColor: 'rgba(255, 255, 255, 0.72)',
                         border: `1px solid ${isBest ? 'var(--accent-subtle-border)' : '#E3E2DD'}`,
                         borderRadius: '3px',
                         padding: '0.75rem 0.85rem',
@@ -381,7 +379,7 @@ export const ExperimentsSection: React.FC = () => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div
                 style={{
-                  backgroundColor: '#FAF9F6',
+                  backgroundColor: 'rgba(250, 249, 246, 0.62)',
                   border: '1px solid #E3E2DD',
                   borderRadius: '4px',
                   padding: '1.25rem',
@@ -398,7 +396,7 @@ export const ExperimentsSection: React.FC = () => {
                   <div
                     key={item.experiment}
                     style={{
-                      backgroundColor: '#FFFFFF',
+                      backgroundColor: 'rgba(255, 255, 255, 0.72)',
                       border: '1px solid #E3E2DD',
                       borderRadius: '3px',
                       padding: '0.8rem 0.9rem',
@@ -440,7 +438,7 @@ export const ExperimentsSection: React.FC = () => {
 
               <div
                 style={{
-                  backgroundColor: '#FAF9F6',
+                  backgroundColor: 'rgba(250, 249, 246, 0.62)',
                   border: '1px solid #E3E2DD',
                   borderRadius: '4px',
                   padding: '1.25rem',

@@ -37,12 +37,12 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
     >
       <div className="container">
         {/* Section Header */}
-        <div style={{ maxWidth: '820px', marginBottom: '3.75rem' }}>
+        <div style={{ maxWidth: '780px', marginBottom: '2.25rem' }}>
           <div className="reveal-on-scroll architectural-label">
             <span>02 // FEATURED ENGINEERING CASE STUDIES</span>
           </div>
 
-          <h2 className="reveal-on-scroll stagger-1 swiss-headline" style={{ marginBottom: '1.1rem' }}>
+          <h2 className="reveal-on-scroll stagger-1 swiss-headline" style={{ marginBottom: '0.85rem' }}>
             End-to-End ML Systems &amp;{' '}
             <span style={{ color: 'var(--accent)' }}>Full-Stack AI</span> Builds.
           </h2>
@@ -50,42 +50,39 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
           <p
             className="reveal-on-scroll stagger-2"
             style={{
-              fontSize: 'var(--text-lg)',
+              fontSize: 'var(--text-base)',
               color: 'var(--text-secondary)',
-              lineHeight: 1.68,
+              lineHeight: 1.62,
             }}
           >
-            Each project below documents the underlying problem, data and validation approach,
-            measured outcomes, and system architecture — accompanied by an interactive preview.
+            Compact engineering dossiers covering the problem, architecture, measured results,
+            and interactive preview for each system.
           </p>
         </div>
 
-        {/* 3 Case Study Cards */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '3.5rem' }}>
+        {/* 3 Compact Glass Project Tiles */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
           {FEATURED_PROJECTS.map((project, idx) => (
             <article
               key={project.id}
               className={`reveal-on-scroll stagger-${(idx % 3) + 1} architectural-card`}
               style={{
-                backgroundColor: '#FFFFFF',
-                border: '1px solid #E3E2DD',
-                borderRadius: '6px',
-                padding: 'clamp(1.5rem, 3.5vw, 2.75rem)',
+                padding: 'clamp(1.15rem, 2.2vw, 1.65rem)',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '1.85rem',
+                gap: '1.05rem',
               }}
             >
-              {/* Case Study Header Row */}
+              {/* Compact Header Row */}
               <div
                 style={{
                   display: 'flex',
                   alignItems: 'flex-start',
                   justifyContent: 'space-between',
                   flexWrap: 'wrap',
-                  gap: '1rem',
-                  paddingBottom: '1.25rem',
-                  borderBottom: '1px solid #E3E2DD',
+                  gap: '0.75rem',
+                  paddingBottom: '0.85rem',
+                  borderBottom: '1px solid rgba(227, 226, 221, 0.85)',
                 }}
               >
                 <div>
@@ -94,14 +91,14 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
                       display: 'flex',
                       alignItems: 'center',
                       flexWrap: 'wrap',
-                      gap: '0.65rem',
-                      marginBottom: '0.55rem',
+                      gap: '0.5rem',
+                      marginBottom: '0.35rem',
                     }}
                   >
                     <span
                       style={{
                         fontFamily: 'var(--font-mono)',
-                        fontSize: '0.74rem',
+                        fontSize: '0.7rem',
                         fontWeight: 700,
                         color: 'var(--accent)',
                         letterSpacing: '0.08em',
@@ -113,7 +110,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
                     <span
                       style={{
                         fontFamily: 'var(--font-mono)',
-                        fontSize: '0.72rem',
+                        fontSize: '0.68rem',
                         color: 'var(--text-muted)',
                         letterSpacing: '0.05em',
                       }}
@@ -123,14 +120,16 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
                     <span
                       style={{
                         fontFamily: 'var(--font-mono)',
-                        fontSize: '0.68rem',
+                        fontSize: '0.64rem',
                         fontWeight: 600,
                         color: project.achievementNote ? 'var(--accent)' : 'var(--text-secondary)',
-                        backgroundColor: project.achievementNote ? 'var(--accent-soft)' : '#FAF9F6',
+                        backgroundColor: project.achievementNote
+                          ? 'var(--accent-soft)'
+                          : 'rgba(250, 249, 246, 0.72)',
                         border: `1px solid ${
                           project.achievementNote ? 'var(--accent-subtle-border)' : '#E3E2DD'
                         }`,
-                        padding: '0.18rem 0.55rem',
+                        padding: '0.14rem 0.45rem',
                         borderRadius: '2px',
                       }}
                     >
@@ -138,48 +137,49 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
                     </span>
                   </div>
 
-                  <h3
-                    style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: 'clamp(1.6rem, 1.3rem + 1.1vw, 2.25rem)',
-                      fontWeight: 800,
-                      color: 'var(--text-primary)',
-                      letterSpacing: '-0.03em',
-                      lineHeight: 1.15,
-                      marginBottom: '0.3rem',
-                    }}
-                  >
-                    {project.title}
-                  </h3>
-
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-sans)',
-                      fontSize: '1.02rem',
-                      fontWeight: 500,
-                      color: 'var(--text-secondary)',
-                    }}
-                  >
-                    {project.subtitle}
-                  </p>
+                  <div style={{ display: 'flex', alignItems: 'baseline', flexWrap: 'wrap', gap: '0.55rem' }}>
+                    <h3
+                      style={{
+                        fontFamily: 'var(--font-display)',
+                        fontSize: 'clamp(1.28rem, 1.1rem + 0.75vw, 1.68rem)',
+                        fontWeight: 800,
+                        color: 'var(--text-primary)',
+                        letterSpacing: '-0.025em',
+                        lineHeight: 1.18,
+                      }}
+                    >
+                      {project.title}
+                    </h3>
+                    <span
+                      style={{
+                        fontFamily: 'var(--font-sans)',
+                        fontSize: '0.88rem',
+                        fontWeight: 500,
+                        color: 'var(--text-secondary)',
+                      }}
+                    >
+                      — {project.subtitle}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Action Links */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.65rem' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                   <a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-secondary"
                     style={{
-                      padding: '0.62rem 1.05rem',
+                      padding: '0.46rem 0.85rem',
                       fontFamily: 'var(--font-mono)',
-                      fontSize: '0.76rem',
+                      fontSize: '0.72rem',
+                      backgroundColor: 'rgba(255, 255, 255, 0.82)',
                     }}
                   >
-                    <Github size={14} />
+                    <Github size={13} />
                     <span>GitHub</span>
-                    <ArrowUpRight size={13} />
+                    <ArrowUpRight size={12} />
                   </a>
 
                   {project.liveUrl && (
@@ -189,12 +189,12 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
                       rel="noopener noreferrer"
                       className="btn-primary"
                       style={{
-                        padding: '0.62rem 1.05rem',
+                        padding: '0.46rem 0.85rem',
                         fontFamily: 'var(--font-mono)',
-                        fontSize: '0.76rem',
+                        fontSize: '0.72rem',
                       }}
                     >
-                      <ExternalLink size={14} />
+                      <ExternalLink size={13} />
                       <span>Live Demo</span>
                     </a>
                   )}
@@ -203,234 +203,131 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
                     onClick={() => onOpenProjectModal(project)}
                     className="btn-ghost"
                     style={{
-                      padding: '0.62rem 1rem',
-                      fontSize: '0.75rem',
+                      padding: '0.46rem 0.8rem',
+                      fontSize: '0.71rem',
                     }}
                   >
-                    <Layers size={14} style={{ color: 'var(--accent)' }} />
-                    <span>Case Study Details</span>
+                    <Layers size={13} style={{ color: 'var(--accent)' }} />
+                    <span>Full Case Study</span>
                   </button>
                 </div>
               </div>
 
-              {/* Description + Optional Achievement Banner */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-                <p style={{ fontSize: '0.98rem', color: 'var(--text-primary)', lineHeight: 1.68 }}>
-                  {project.description}
-                </p>
-
-                {project.achievementNote && (
-                  <div
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.55rem',
-                      padding: '0.65rem 1rem',
-                      backgroundColor: 'var(--accent-soft)',
-                      border: '1px solid var(--accent-subtle-border)',
-                      borderRadius: '3px',
-                      fontFamily: 'var(--font-sans)',
-                      fontSize: '0.88rem',
-                      fontWeight: 600,
-                      color: 'var(--text-primary)',
-                    }}
-                  >
-                    <CheckCircle2 size={16} style={{ color: 'var(--accent)', flexShrink: 0 }} />
-                    <span>{project.achievementNote}</span>
-                  </div>
-                )}
-              </div>
-
-              {/* Structured Case Study Grid: Problem / Built / Approach */}
+              {/* Compact 2-Column Body: Dossier Details (Left) + Interactive Preview (Right) */}
               <div
-                className="case-study-pillars"
+                className="compact-project-body"
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-                  gap: '1rem',
-                }}
-              >
-                <div
-                  style={{
-                    backgroundColor: '#FAF9F6',
-                    border: '1px solid #E3E2DD',
-                    borderRadius: '3px',
-                    padding: '1.15rem',
-                  }}
-                >
-                  <div
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.68rem',
-                      fontWeight: 700,
-                      color: 'var(--accent)',
-                      letterSpacing: '0.08em',
-                      marginBottom: '0.45rem',
-                    }}
-                  >
-                    01 // PROBLEM STATEMENT
-                  </div>
-                  <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                    {project.problemStatement}
-                  </p>
-                </div>
-
-                <div
-                  style={{
-                    backgroundColor: '#FAF9F6',
-                    border: '1px solid #E3E2DD',
-                    borderRadius: '3px',
-                    padding: '1.15rem',
-                  }}
-                >
-                  <div
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.68rem',
-                      fontWeight: 700,
-                      color: 'var(--text-primary)',
-                      letterSpacing: '0.08em',
-                      marginBottom: '0.45rem',
-                    }}
-                  >
-                    02 // WHAT I BUILT
-                  </div>
-                  <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                    {project.whatIBuilt}
-                  </p>
-                </div>
-
-                <div
-                  style={{
-                    backgroundColor: '#FAF9F6',
-                    border: '1px solid #E3E2DD',
-                    borderRadius: '3px',
-                    padding: '1.15rem',
-                  }}
-                >
-                  <div
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.68rem',
-                      fontWeight: 700,
-                      color: 'var(--text-primary)',
-                      letterSpacing: '0.08em',
-                      marginBottom: '0.45rem',
-                    }}
-                  >
-                    03 // TECHNICAL APPROACH
-                  </div>
-                  <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                    {project.technicalApproach}
-                  </p>
-                </div>
-              </div>
-
-              {/* Interactive Visual Direction Showcase */}
-              <div>{renderInteractivePreview(project.id)}</div>
-
-              {/* Bottom Strip: Measurable Results + Key Contributions + Stack */}
-              <div
-                className="case-study-footer-grid"
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'minmax(0, 1.35fr) minmax(0, 0.9fr)',
-                  gap: '1.5rem',
-                  paddingTop: '1rem',
-                  borderTop: '1px solid #E3E2DD',
+                  gridTemplateColumns: 'minmax(0, 1.02fr) minmax(0, 0.98fr)',
+                  gap: '1.15rem',
                   alignItems: 'start',
                 }}
               >
-                {/* Key Contributions (top 4 concise bullets + link to modal for full list) */}
-                <div>
-                  <div
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.7rem',
-                      fontWeight: 700,
-                      color: 'var(--text-muted)',
-                      letterSpacing: '0.08em',
-                      marginBottom: '0.7rem',
-                    }}
-                  >
-                    KEY ENGINEERING CONTRIBUTIONS
-                  </div>
-                  <ul
-                    style={{
-                      listStyle: 'none',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '0.45rem',
-                    }}
-                  >
-                    {project.keyContributions.slice(0, 4).map((item, cIdx) => (
-                      <li
-                        key={cIdx}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'flex-start',
-                          gap: '0.55rem',
-                          fontSize: '0.87rem',
-                          color: 'var(--text-secondary)',
-                          lineHeight: 1.55,
-                        }}
-                      >
-                        <span
-                          style={{
-                            width: '5px',
-                            height: '5px',
-                            borderRadius: '50%',
-                            backgroundColor: 'var(--accent)',
-                            marginTop: '0.52rem',
-                            flexShrink: 0,
-                          }}
-                        />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  {project.keyContributions.length > 4 && (
-                    <button
-                      onClick={() => onOpenProjectModal(project)}
+                {/* Left Column: Summary, Problem/Approach pills, Measured Results & Stack */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                  <p style={{ fontSize: '0.89rem', color: 'var(--text-primary)', lineHeight: 1.56 }}>
+                    {project.description}
+                  </p>
+
+                  {project.achievementNote && (
+                    <div
                       style={{
-                        marginTop: '0.65rem',
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.74rem',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.45rem',
+                        padding: '0.45rem 0.75rem',
+                        backgroundColor: 'var(--accent-soft)',
+                        border: '1px solid var(--accent-subtle-border)',
+                        borderRadius: '3px',
+                        fontFamily: 'var(--font-sans)',
+                        fontSize: '0.81rem',
                         fontWeight: 600,
-                        color: 'var(--accent)',
+                        color: 'var(--text-primary)',
                       }}
                     >
-                      + View all {project.keyContributions.length} contributions &amp; full case study →
-                    </button>
+                      <CheckCircle2 size={14} style={{ color: 'var(--accent)', flexShrink: 0 }} />
+                      <span>{project.achievementNote}</span>
+                    </div>
                   )}
-                </div>
 
-                {/* Measurable Results & Tech Stack */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+                  {/* Concise 3-block Engineering Summary */}
+                  <div
+                    className="case-study-pillars"
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+                      gap: '0.55rem',
+                    }}
+                  >
+                    {[
+                      { label: '01 // PROBLEM', text: project.problemStatement, accent: true },
+                      { label: '02 // BUILT', text: project.whatIBuilt, accent: false },
+                      { label: '03 // APPROACH', text: project.technicalApproach, accent: false },
+                    ].map((pillar) => (
+                      <div
+                        key={pillar.label}
+                        style={{
+                          backgroundColor: 'rgba(250, 249, 246, 0.65)',
+                          border: '1px solid rgba(227, 226, 221, 0.9)',
+                          borderRadius: '3px',
+                          padding: '0.68rem',
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontFamily: 'var(--font-mono)',
+                            fontSize: '0.62rem',
+                            fontWeight: 700,
+                            color: pillar.accent ? 'var(--accent)' : 'var(--text-primary)',
+                            letterSpacing: '0.07em',
+                            marginBottom: '0.28rem',
+                          }}
+                        >
+                          {pillar.label}
+                        </div>
+                        <p
+                          style={{
+                            fontSize: '0.76rem',
+                            color: 'var(--text-secondary)',
+                            lineHeight: 1.45,
+                            display: '-webkit-box',
+                            WebkitLineClamp: 4,
+                            WebkitBoxOrient: 'vertical',
+                            overflow: 'hidden',
+                          }}
+                          title={pillar.text}
+                        >
+                          {pillar.text}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Measured Results Row */}
                   <div
                     style={{
                       display: 'grid',
                       gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-                      gap: '0.65rem',
+                      gap: '0.55rem',
                     }}
                   >
                     {project.measurableResults.map((res, rIdx) => (
                       <div
                         key={rIdx}
                         style={{
-                          padding: '0.75rem 0.7rem',
-                          backgroundColor: '#FAF9F6',
-                          border: '1px solid #E3E2DD',
+                          padding: '0.55rem 0.6rem',
+                          backgroundColor: 'rgba(250, 249, 246, 0.68)',
+                          border: '1px solid rgba(227, 226, 221, 0.9)',
                           borderRadius: '3px',
                         }}
                       >
                         <div
                           style={{
                             fontFamily: 'var(--font-mono)',
-                            fontSize: '0.96rem',
+                            fontSize: '0.88rem',
                             fontWeight: 700,
                             color: 'var(--text-primary)',
-                            marginBottom: '0.18rem',
+                            marginBottom: '0.1rem',
                           }}
                         >
                           {res.value}
@@ -438,7 +335,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
                         <div
                           style={{
                             fontFamily: 'var(--font-mono)',
-                            fontSize: '0.64rem',
+                            fontSize: '0.6rem',
                             fontWeight: 600,
                             color: 'var(--text-secondary)',
                           }}
@@ -449,27 +346,60 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
                     ))}
                   </div>
 
-                  <div>
-                    <div
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.68rem',
-                        color: 'var(--text-muted)',
-                        letterSpacing: '0.08em',
-                        marginBottom: '0.5rem',
-                      }}
-                    >
-                      TECHNOLOGY STACK
-                    </div>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem' }}>
-                      {project.technologies.map((tech) => (
-                        <span key={tech} className="mono-tag">
+                  {/* Tech Stack + Full Case Study Trigger */}
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      flexWrap: 'wrap',
+                      gap: '0.5rem',
+                    }}
+                  >
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
+                      {project.technologies.slice(0, 6).map((tech) => (
+                        <span
+                          key={tech}
+                          className="mono-tag"
+                          style={{
+                            fontSize: '0.66rem',
+                            padding: '0.2rem 0.48rem',
+                            backgroundColor: 'rgba(255, 255, 255, 0.72)',
+                          }}
+                        >
                           {tech}
                         </span>
                       ))}
+                      {project.technologies.length > 6 && (
+                        <span
+                          className="mono-tag"
+                          style={{
+                            fontSize: '0.66rem',
+                            padding: '0.2rem 0.48rem',
+                            backgroundColor: 'rgba(255, 255, 255, 0.72)',
+                          }}
+                        >
+                          +{project.technologies.length - 6}
+                        </span>
+                      )}
                     </div>
+
+                    <button
+                      onClick={() => onOpenProjectModal(project)}
+                      style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.69rem',
+                        fontWeight: 600,
+                        color: 'var(--accent)',
+                      }}
+                    >
+                      {project.keyContributions.length} contributions &amp; full case study →
+                    </button>
                   </div>
                 </div>
+
+                {/* Right Column: Compact Interactive Visual Showcase */}
+                <div>{renderInteractivePreview(project.id)}</div>
               </div>
             </article>
           ))}
@@ -477,11 +407,13 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectM
       </div>
 
       <style>{`
-        @media (max-width: 960px) {
-          .case-study-pillars {
+        @media (max-width: 1024px) {
+          .compact-project-body {
             grid-template-columns: 1fr !important;
           }
-          .case-study-footer-grid {
+        }
+        @media (max-width: 720px) {
+          .case-study-pillars {
             grid-template-columns: 1fr !important;
           }
         }
