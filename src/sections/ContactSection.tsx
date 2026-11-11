@@ -148,7 +148,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
 
               <a
                 href={PROFILE.resumeUrl}
-                download="Satyam_Kumar_Resume.pdf"
+                download="Satyam_Kumar_AI_ML_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 id="download-resume-btn"

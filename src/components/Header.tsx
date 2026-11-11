@@ -190,7 +190,7 @@ export const Header: React.FC<HeaderProps> = ({
 
             <a
               href={PROFILE.resumeUrl}
-              download="Satyam_Kumar_Resume.pdf"
+              download="Satyam_Kumar_AI_ML_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -325,7 +325,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div style={{ marginTop: 'auto', paddingTop: '1.75rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             <a
               href={PROFILE.resumeUrl}
-              download="Satyam_Kumar_Resume.pdf"
+              download="Satyam_Kumar_AI_ML_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"

@@ -90,7 +90,7 @@ export const PROFILE = {
   email: 'sa.25.07.2006@gmail.com',
   github: 'https://github.com/satyam-257',
   linkedin: 'https://linkedin.com/in/satyam-kumar-006b52324',
-  resumeUrl: '/Satyam_Kumar_Resume.pdf',
+  resumeUrl: '/Satyam_Kumar_AI_ML_Resume.pdf',
 };
 
 export const HERO_METRICS = [

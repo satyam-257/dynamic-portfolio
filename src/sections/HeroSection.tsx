@@ -254,7 +254,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate, reducedMot
 
               <a
                 href={PROFILE.resumeUrl}
-                download="Satyam_Kumar_Resume.pdf"
+                download="Satyam_Kumar_AI_ML_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary"
