@@ -449,6 +449,17 @@ export const LogicCubeCanvas: React.FC<LogicCubeCanvasProps> = ({ reducedMotion 
     // 9. Animation Render Loop (Locked 60 FPS requestAnimationFrame Engineering Pass)
     let animationFrameId: number;
     const clock = new THREE.Clock();
+    let prevTime = 0;
+
+    // Continuous damped kinematic states (prevents snap-whipping on section boundaries)
+    const baseHeroPitch = 0.6155; // Exact 35.264° isometric pitch (Math.atan(1 / Math.SQRT2))
+    const baseHeroYaw = Math.PI / 4; // 45° isometric 3/4 yaw
+    const baseHeroRoll = -0.04;
+    let currentYaw = baseHeroYaw;
+    let currentPitch = baseHeroPitch;
+    let currentPosX = window.innerWidth <= 768 ? 0 : 2.3;
+    let currentState2 = 0;
+    let currentState3 = 0;
 
     const smoothstep = (min: number, max: number, value: number) => {
       const x = Math.max(0, Math.min(1, (value - min) / (max - min)));
@@ -458,15 +469,20 @@ export const LogicCubeCanvas: React.FC<LogicCubeCanvasProps> = ({ reducedMotion 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
       const elapsedTime = clock.getElapsedTime();
+      const dt = Math.min(0.05, Math.max(0.001, elapsedTime - prevTime));
+      prevTime = elapsedTime;
 
-      // Smooth lerp for buttery momentum in both forward and reverse scroll directions
-      const lerpSpeed = reducedMotion ? 1 : 0.082;
-      currentScrollProgress += (targetScrollProgress - currentScrollProgress) * lerpSpeed;
+      // Frame-rate-independent weighted damping (no harsh velocity spikes)
+      const scrollAlpha = reducedMotion ? 1 : 1 - Math.exp(-4.5 * dt);
+      const motionAlpha = reducedMotion ? 1 : 1 - Math.exp(-5.0 * dt);
+      const mouseAlpha = reducedMotion ? 1 : 1 - Math.exp(-6.0 * dt);
 
-      mouseX += (targetMouseX - mouseX) * 0.05;
-      mouseY += (targetMouseY - mouseY) * 0.05;
+      currentScrollProgress += (targetScrollProgress - currentScrollProgress) * scrollAlpha;
 
-      const floatOffsetY = reducedMotion ? 0 : Math.sin(elapsedTime * 1.2) * 0.035;
+      mouseX += (targetMouseX - mouseX) * mouseAlpha;
+      mouseY += (targetMouseY - mouseY) * mouseAlpha;
+
+      const floatOffsetY = reducedMotion ? 0 : Math.sin(elapsedTime * 1.1) * 0.035;
 
       // Screen breakpoint detection for mobile responsiveness (375px and 768px)
       const screenWidth = window.innerWidth;
@@ -491,99 +507,91 @@ export const LogicCubeCanvas: React.FC<LogicCubeCanvasProps> = ({ reducedMotion 
       }
 
       // =========================================================================
-      // SECTION 1 (HERO — 0% to 25% Scroll): Isometric 3/4 View, slow rotation & cursor tilt
+      // CONTINUOUS ROTATION CHOREOGRAPHY (ZERO BOUNDARY JUMPS)
+      // Bounded living sway in Hero blends smoothly into calm scroll-driven angle
       // =========================================================================
-      const baseHeroPitch = 0.6155; // Exact 35.264° isometric pitch (Math.atan(1 / Math.SQRT2))
-      const baseHeroYaw = Math.PI / 4; // 45° isometric 3/4 yaw
-      const baseHeroRoll = -0.04;
+      const heroBlendOut = 1 - smoothstep(0.14, 0.28, currentScrollProgress);
+      const heroIdleSway = (reducedMotion ? 0 : Math.sin(elapsedTime * 0.45) * 0.08) * heroBlendOut;
 
-      // Slow living rotation in Section 1 (Hero) that smoothly transitions as user scrolls into Section 2
-      const heroSlowRotate = (reducedMotion ? 0 : Math.sin(elapsedTime * 0.4) * 0.10 + (elapsedTime * 0.08)) *
-        (1 - smoothstep(0.20, 0.28, currentScrollProgress));
+      const projProgress = smoothstep(0.20, 0.58, currentScrollProgress);
+      const coreBlendIn = smoothstep(0.58, 0.72, currentScrollProgress);
+      const snapLockProgress = smoothstep(0.84, 0.96, currentScrollProgress);
 
-      // Controlled, deliberate yaw across the journey
-      let scrollYaw = baseHeroYaw + heroSlowRotate;
-      if (currentScrollProgress >= 0.22 && currentScrollProgress < 0.60) {
-        // Section 2 (Projects): gentle slow turn across the exploded view
-        const pProj = (currentScrollProgress - 0.22) / 0.38;
-        scrollYaw = baseHeroYaw + pProj * 0.30;
-      } else if (currentScrollProgress >= 0.60 && currentScrollProgress < 0.85) {
-        // Section 3 (State 3: Core Architecture): slow continuous rotation so internal core and axes are fully visible
-        const state3SlowRotation = reducedMotion ? 0 : (elapsedTime * 0.16);
-        scrollYaw = baseHeroYaw + 0.30 + state3SlowRotation;
-      } else if (currentScrollProgress >= 0.85) {
-        // Section 4 (State 4: Snap-Lock Assembly): smoothly snaps to authoritative locked isometric angle
-        const pState4 = smoothstep(0.85, 0.96, currentScrollProgress);
-        scrollYaw = THREE.MathUtils.lerp(baseHeroYaw + 0.12, baseHeroYaw, pState4);
-      }
+      const coreIdleSway =
+        (reducedMotion ? 0 : Math.sin(elapsedTime * 0.4) * 0.22) *
+        coreBlendIn *
+        (1 - snapLockProgress);
+
+      // Continuous targetYaw across the entire page without unbounded elapsedTime drift or jumps
+      const targetYaw =
+        baseHeroYaw +
+        heroIdleSway +
+        (projProgress * 0.26 + coreBlendIn * 0.12) * (1 - snapLockProgress) +
+        coreIdleSway;
 
       // Smoothly controlled pitch (tilt angle)
-      let scrollPitch = baseHeroPitch;
-      if (currentScrollProgress >= 0.22 && currentScrollProgress < 0.60) {
-        scrollPitch = THREE.MathUtils.lerp(baseHeroPitch, 0.48, smoothstep(0.22, 0.34, currentScrollProgress));
-      } else if (currentScrollProgress >= 0.60 && currentScrollProgress < 0.85) {
-        scrollPitch = THREE.MathUtils.lerp(0.48, 0.52, smoothstep(0.60, 0.72, currentScrollProgress));
-      } else if (currentScrollProgress >= 0.85) {
-        const pState4 = smoothstep(0.85, 0.96, currentScrollProgress);
-        scrollPitch = THREE.MathUtils.lerp(0.52, baseHeroPitch, pState4);
-      }
+      const targetPitch =
+        THREE.MathUtils.lerp(
+          baseHeroPitch,
+          THREE.MathUtils.lerp(0.50, 0.54, coreBlendIn),
+          projProgress
+        ) *
+          (1 - snapLockProgress) +
+        baseHeroPitch * snapLockProgress;
+
+      currentYaw += (targetYaw - currentYaw) * motionAlpha;
+      currentPitch += (targetPitch - currentPitch) * motionAlpha;
 
       // Smooth mouse hover tilt in response to cursor movement
       const hoverTiltX = isMobile ? 0 : -mouseY * 0.16;
       const hoverTiltY = isMobile ? 0 : mouseX * 0.16;
 
-      masterGroup.rotation.x = scrollPitch + hoverTiltX;
-      masterGroup.rotation.y = scrollYaw + hoverTiltY;
+      masterGroup.rotation.x = currentPitch + hoverTiltX;
+      masterGroup.rotation.y = currentYaw + hoverTiltY;
       masterGroup.rotation.z = baseHeroRoll;
 
       // =========================================================================
       // HORIZONTAL POSITION & GLIDE DYNAMICS
-      // Section 1: Cube sits on the right side in isometric 3/4 view
-      // Section 2: Smoothly glides to horizontal center of the viewport
-      // Section 3: Glides to right column beside the Technical Stack Ledger
-      // Mobile: Centered as subtle background element
       // =========================================================================
-      const heroRightOffset = (!isMobile) ? 2.3 : 0;
-      let targetPosX = 0;
-      if (currentScrollProgress < 0.22) {
-        targetPosX = heroRightOffset;
-      } else if (currentScrollProgress < 0.60) {
-        const glideToCenterProgress = smoothstep(0.20, 0.32, currentScrollProgress);
-        targetPosX = heroRightOffset * (1 - glideToCenterProgress);
-      } else if (currentScrollProgress < 0.85) {
-        const glideToRightProgress = smoothstep(0.58, 0.68, currentScrollProgress);
-        targetPosX = (!isMobile) ? (glideToRightProgress * 2.25) : 0;
-      } else {
-        const snapToCenter = smoothstep(0.85, 0.94, currentScrollProgress);
-        targetPosX = (!isMobile) ? (2.25 * (1 - snapToCenter)) : 0;
-      }
+      const heroRightOffset = !isMobile ? 2.3 : 0;
+      const glideToCenterProgress = smoothstep(0.18, 0.34, currentScrollProgress);
+      const glideToRightProgress = smoothstep(0.58, 0.70, currentScrollProgress);
+      const snapToCenter = smoothstep(0.84, 0.94, currentScrollProgress);
 
-      masterGroup.position.x = targetPosX + (isMobile ? mouseX * 0.04 : mouseX * 0.08);
+      const targetPosX =
+        heroRightOffset * (1 - glideToCenterProgress) +
+        (!isMobile ? glideToRightProgress * 2.25 * (1 - snapToCenter) : 0);
+
+      currentPosX += (targetPosX - currentPosX) * motionAlpha;
+      masterGroup.position.x = currentPosX + (isMobile ? mouseX * 0.04 : mouseX * 0.08);
 
       // =========================================================================
-      // SECTION 2 DYNAMICS: Exploded Mechanical Unfold (25% to 60% scroll)
-      // - Twist the top, middle, and bottom horizontal layers 45 degrees in alternating directions
-      // - Separate them vertically along an exposed brushed-titanium central axis rod
+      // SECTION 2 DYNAMICS: Exploded Mechanical Unfold (smooth & weighted)
       // =========================================================================
-      const unfoldIn = smoothstep(0.24, 0.35, currentScrollProgress);
-      const unfoldOut = smoothstep(0.58, 0.66, currentScrollProgress);
+      const unfoldIn = smoothstep(0.22, 0.38, currentScrollProgress);
+      const unfoldOut = smoothstep(0.58, 0.68, currentScrollProgress);
       const rawState2 = Math.max(0, unfoldIn - unfoldOut);
 
       // =========================================================================
-      // STATE 3 DYNAMICS: Internal Core Revelation & Technical Blueprint (60% to 85%)
+      // STATE 3 DYNAMICS: Internal Core Revelation & Technical Blueprint
       // =========================================================================
-      const state3In = smoothstep(0.58, 0.68, currentScrollProgress);
+      const state3In = smoothstep(0.58, 0.70, currentScrollProgress);
       const state3Out = smoothstep(0.84, 0.92, currentScrollProgress);
       const rawState3 = Math.max(0, state3In - state3Out);
 
       // =========================================================================
       // STATE 4: SNAP-LOCK ASSEMBLY SEQUENCE (85% to 100% scroll)
       // =========================================================================
-      const snapLockProgress = smoothstep(0.84, 0.96, currentScrollProgress);
       const snapSettle = Math.sin(snapLockProgress * Math.PI) * (1 - snapLockProgress) * 0.045;
 
-      const state2Amount = reducedMotion ? 0 : rawState2 * (1 - snapLockProgress);
-      const state3Amount = reducedMotion ? 0 : rawState3 * (1 - snapLockProgress);
+      const targetState2 = reducedMotion ? 0 : rawState2 * (1 - snapLockProgress);
+      const targetState3 = reducedMotion ? 0 : rawState3 * (1 - snapLockProgress);
+
+      currentState2 += (targetState2 - currentState2) * motionAlpha;
+      currentState3 += (targetState3 - currentState3) * motionAlpha;
+
+      const state2Amount = currentState2;
+      const state3Amount = currentState3;
 
       // 1. Vertical Separation along Exposed Central Brushed-Titanium Axis Rod
       const verticalSeparation = (state2Amount * 1.55) + (state3Amount * 0.65) + snapSettle;
