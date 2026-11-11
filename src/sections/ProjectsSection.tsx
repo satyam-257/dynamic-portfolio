@@ -1,24 +1,30 @@
 import React from 'react';
-import { PROJECTS, Project, PROFILE } from '../data/portfolioData';
-import { ArrowUpRight } from 'lucide-react';
+import { FEATURED_PROJECTS, ProjectCaseStudy } from '../data/portfolioData';
+import {
+  TrackXInteractivePreview,
+  ExperimentPilotInteractivePreview,
+  TraverlyInteractivePreview,
+} from '../components/ProjectInteractivePreviews';
+import { Github, ExternalLink, Layers, CheckCircle2, ArrowUpRight } from 'lucide-react';
 
 interface ProjectsSectionProps {
-  onOpenProjectModal: (project: Project) => void;
-  onNavigate: (sectionId: string) => void;
+  onOpenProjectModal: (project: ProjectCaseStudy) => void;
+  onNavigate?: (sectionId: string) => void;
 }
 
-export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
-  onOpenProjectModal,
-}) => {
-  // Extract the 3 prompt-specified featured builds aligned with the 3 mechanical slices
-  const antarikshProject = PROJECTS.find((p) => p.id === 'antariksh') || PROJECTS[0];
-  const tabularProject = PROJECTS.find((p) => p.id === 'tabular-ml') || PROJECTS[1];
-  const cppProject = PROJECTS.find((p) => p.id === 'cpp-systems') || PROJECTS[2];
-
-  // Additional production projects for archival registry
-  const archivalProjects = PROJECTS.filter(
-    (p) => p.id !== 'antariksh' && p.id !== 'tabular-ml' && p.id !== 'cpp-systems'
-  );
+export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenProjectModal }) => {
+  const renderInteractivePreview = (id: string) => {
+    switch (id) {
+      case 'trackx':
+        return <TrackXInteractivePreview />;
+      case 'experimentpilot':
+        return <ExperimentPilotInteractivePreview />;
+      case 'traverly':
+        return <TraverlyInteractivePreview />;
+      default:
+        return null;
+    }
+  };
 
   return (
     <section
@@ -27,49 +33,18 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
       style={{
         position: 'relative',
         borderTop: '1px solid var(--grid-hairline)',
-        paddingTop: '6rem',
-        paddingBottom: '8rem',
       }}
     >
-      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+      <div className="container">
         {/* Section Header */}
-        <div style={{ maxWidth: '820px', marginBottom: '5rem' }}>
-          <div
-            className="reveal-on-scroll"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.65rem',
-              fontFamily: 'var(--font-mono)',
-              fontSize: 'var(--text-xs)',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: 'var(--text-secondary)',
-              marginBottom: '1.25rem',
-              padding: '0.35rem 0.75rem',
-              backgroundColor: '#FFFFFF',
-              border: '1px solid #E3E2DD',
-              borderRadius: '2px',
-              boxShadow: 'var(--shadow-studio-sm)',
-            }}
-          >
-            <span
-              style={{
-                width: '6px',
-                height: '6px',
-                borderRadius: '50%',
-                backgroundColor: 'var(--accent)',
-              }}
-            />
-            <span>01 / EXPLODED-VIEW PROJECTS (25% TO 60% SCROLL)</span>
+        <div style={{ maxWidth: '820px', marginBottom: '3.75rem' }}>
+          <div className="reveal-on-scroll architectural-label">
+            <span>02 // FEATURED ENGINEERING CASE STUDIES</span>
           </div>
 
-          <h2
-            className="reveal-on-scroll stagger-1 swiss-headline"
-            style={{ marginBottom: '1.25rem', fontSize: 'var(--text-3xl)' }}
-          >
-            Mechanical Logic Slices &amp;{' '}
-            <span style={{ color: 'var(--accent)' }}>Deterministic</span> Systems.
+          <h2 className="reveal-on-scroll stagger-1 swiss-headline" style={{ marginBottom: '1.1rem' }}>
+            End-to-End ML Systems &amp;{' '}
+            <span style={{ color: 'var(--accent)' }}>Full-Stack AI</span> Builds.
           </h2>
 
           <p
@@ -77,951 +52,437 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             style={{
               fontSize: 'var(--text-lg)',
               color: 'var(--text-secondary)',
-              lineHeight: 1.7,
-              maxWidth: '720px',
+              lineHeight: 1.68,
             }}
           >
-            As the 3D Logic Cube executes its animated mechanical unfold in the center, three flagship
-            technical builds lock into place beside each floating mechanical slice.
+            Each project below documents the underlying problem, data and validation approach,
+            measured outcomes, and system architecture — accompanied by an interactive preview.
           </p>
         </div>
 
-        {/* =========================================================================
-            3-TIER SLICE-ALIGNED PHYSICAL PROJECT CARDS
-            Each card locks beside one of the 3 floating mechanical slices:
-            - Slice 01 (Top Slice / +45° Twist) -> Bharatiya Antariksh Hackathon Technical Build
-            - Slice 02 (Middle Slice / Titanium Core) -> Tabular ML & Out-of-Fold Feature Engineering (Kaggle)
-            - Slice 03 (Bottom Slice / -45° Twist) -> High-Performance C++ Algorithmic Systems
-           ========================================================================= */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '8.5rem',
-            position: 'relative',
-            paddingBottom: '4rem',
-          }}
-          className="slice-cards-container"
-        >
-          {/* -----------------------------------------------------------------------
-              TIER 1 (TOP SLICE): Bharatiya Antariksh Hackathon Technical Build
-              Positioned on the Left with Hairline Connecting Right to Top Slice
-             ----------------------------------------------------------------------- */}
-          {/* -----------------------------------------------------------------------
-              TIER 1 (TOP LAYER): Bharatiya Antariksh Hackathon Build
-              Connected to Top Layer (+45° alternating twist) via hairline & orange dot
-             ----------------------------------------------------------------------- */}
-          <div
-            className="reveal-on-scroll stagger-1 slice-card-row-1"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'minmax(0, 1.15fr) minmax(280px, 0.85fr)',
-              gap: '3rem',
-              alignItems: 'center',
-            }}
-          >
-            {/* Left: Physical Project Card 1 */}
-            <div
-              className="architectural-card"
+        {/* 3 Case Study Cards */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '3.5rem' }}>
+          {FEATURED_PROJECTS.map((project, idx) => (
+            <article
+              key={project.id}
+              className={`reveal-on-scroll stagger-${(idx % 3) + 1} architectural-card`}
               style={{
                 backgroundColor: '#FFFFFF',
                 border: '1px solid #E3E2DD',
-                padding: '2.5rem',
-                borderRadius: '3px',
-                boxShadow: 'var(--shadow-studio-md)',
-                position: 'relative',
+                borderRadius: '6px',
+                padding: 'clamp(1.5rem, 3.5vw, 2.75rem)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1.85rem',
               }}
             >
-              {/* Connecting Hairline Indicator (Links Card to Top Floating Slice) */}
+              {/* Case Study Header Row */}
               <div
                 style={{
                   display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.65rem',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.74rem',
-                  color: 'var(--text-muted)',
-                  marginBottom: '1.5rem',
-                  paddingBottom: '1rem',
-                  borderBottom: '1px solid #E3E2DD',
-                }}
-              >
-                <span
-                  style={{
-                    width: '7px',
-                    height: '7px',
-                    borderRadius: '50%',
-                    backgroundColor: 'var(--accent)',
-                    boxShadow: '0 0 6px rgba(255, 79, 0, 0.5)',
-                  }}
-                />
-                <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>
-                  SLICE 01 // TOP LAYER (+45° TWIST)
-                </span>
-                <span style={{ color: 'var(--grid-hairline)' }}>—</span>
-                <span style={{ color: 'var(--accent)', fontWeight: 600 }}>LOCKED</span>
-              </div>
-
-              {/* Card Header, Title & Tags */}
-              <div style={{ marginBottom: '1.25rem' }}>
-                <h3
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: 'clamp(1.5rem, 1.3rem + 1vw, 2.1rem)',
-                    fontWeight: 700,
-                    color: 'var(--text-primary)',
-                    letterSpacing: '-0.03em',
-                    lineHeight: 1.15,
-                    marginBottom: '0.85rem',
-                  }}
-                >
-                  Bharatiya Antariksh Hackathon Build
-                </h3>
-
-                {/* Monospace Tags: [Python] [Space-Tech] [Data Pipelines] */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1rem' }}>
-                  {['Python', 'Space-Tech', 'Data Pipelines'].map((tag) => (
-                    <span
-                      key={tag}
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.74rem',
-                        fontWeight: 600,
-                        padding: '0.2rem 0.6rem',
-                        backgroundColor: '#FAFAF7',
-                        border: '1px solid #E3E2DD',
-                        borderRadius: '2px',
-                        color: 'var(--text-secondary)',
-                      }}
-                    >
-                      [{tag}]
-                    </span>
-                  ))}
-                </div>
-
-                <p
-                  style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: 'var(--text-sm)',
-                    color: 'var(--text-secondary)',
-                    lineHeight: 1.65,
-                    marginBottom: '1.5rem',
-                  }}
-                >
-                  Engineered an end-to-end technical solution for space-science data processing and analytics under rapid hackathon constraints.
-                </p>
-              </div>
-
-              {/* Measured Impact Spec */}
-              <div
-                style={{
-                  padding: '1rem 1.25rem',
-                  backgroundColor: 'var(--bg-canvas)',
-                  borderLeft: '3px solid var(--accent)',
-                  borderRadius: '2px',
-                  marginBottom: '1.75rem',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.8rem',
-                  color: 'var(--text-secondary)',
-                  lineHeight: 1.5,
-                }}
-              >
-                <span style={{ fontWeight: 700, color: 'var(--text-primary)', display: 'block', marginBottom: '0.2rem' }}>
-                  MEASURED OUTCOME // ONBOARD VALIDATION
-                </span>
-                {antarikshProject.impactNote}
-              </div>
-
-              {/* Stats Benchmarks */}
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(3, 1fr)',
-                  gap: '1rem',
-                  paddingTop: '1rem',
-                  borderTop: '1px solid #E3E2DD',
-                  marginBottom: '1.75rem',
-                }}
-              >
-                {antarikshProject.stats?.map((stat, i) => (
-                  <div key={i}>
-                    <div
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '1.15rem',
-                        fontWeight: 700,
-                        color: 'var(--text-primary)',
-                      }}
-                    >
-                      {stat.value}
-                    </div>
-                    <div
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.68rem',
-                        color: 'var(--text-muted)',
-                      }}
-                    >
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Action Link: "View Repository ->" */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
+                  alignItems: 'flex-start',
                   justifyContent: 'space-between',
                   flexWrap: 'wrap',
                   gap: '1rem',
-                  paddingTop: '0.5rem',
-                }}
-              >
-                <a
-                  href={antarikshProject.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.45rem',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.84rem',
-                    fontWeight: 600,
-                    color: 'var(--text-primary)',
-                    textDecoration: 'none',
-                    padding: '0.55rem 1.1rem',
-                    backgroundColor: '#FAFAF7',
-                    border: '1px solid #E3E2DD',
-                    borderRadius: '2px',
-                    transition: 'all var(--transition-fast)',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--accent)';
-                    e.currentTarget.style.color = 'var(--accent)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = '#E3E2DD';
-                    e.currentTarget.style.color = 'var(--text-primary)';
-                  }}
-                >
-                  <span>View Repository -&gt;</span>
-                </a>
-
-                <button
-                  onClick={() => onOpenProjectModal(antarikshProject)}
-                  className="btn-secondary"
-                  style={{
-                    padding: '0.55rem 1.15rem',
-                    fontSize: '0.82rem',
-                    backgroundColor: '#FFFFFF',
-                    border: '1px solid #E3E2DD',
-                  }}
-                >
-                  <span>Architecture Spec</span>
-                  <ArrowUpRight size={13} />
-                </button>
-              </div>
-            </div>
-
-            {/* Right: Crisp Connecting Hairline pointing toward Center 3D Top Layer */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                position: 'relative',
-              }}
-              className="connecting-leader-col-1"
-            >
-              <div
-                style={{
-                  height: '1px',
-                  flex: 1,
-                  backgroundColor: '#E3E2DD',
-                  position: 'relative',
-                }}
-              >
-                {/* Small orange anchor dot */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    right: 0,
-                    top: '-3.5px',
-                    width: '8px',
-                    height: '8px',
-                    borderRadius: '50%',
-                    backgroundColor: 'var(--accent)',
-                    boxShadow: '0 0 8px rgba(255, 79, 0, 0.85)',
-                  }}
-                />
-              </div>
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.7rem',
-                  letterSpacing: '0.08em',
-                  color: 'var(--text-muted)',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                [ CONNECTING: TOP LAYER +45° ]
-              </span>
-            </div>
-          </div>
-
-          {/* -----------------------------------------------------------------------
-              TIER 2 (MIDDLE LAYER): Tabular ML & Feature Engineering Suite
-              Connected to Middle Layer (-45° alternating twist) via hairline & orange dot
-             ----------------------------------------------------------------------- */}
-          <div
-            className="reveal-on-scroll stagger-2 slice-card-row-2"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'minmax(280px, 0.85fr) minmax(0, 1.15fr)',
-              gap: '3rem',
-              alignItems: 'center',
-            }}
-          >
-            {/* Left: Crisp Connecting Hairline pointing from Center Middle Layer */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                justifyContent: 'flex-end',
-                position: 'relative',
-              }}
-              className="connecting-leader-col-2"
-            >
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.7rem',
-                  letterSpacing: '0.08em',
-                  color: 'var(--text-muted)',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                [ CONNECTING: MIDDLE LAYER -45° ]
-              </span>
-              <div
-                style={{
-                  height: '1px',
-                  flex: 1,
-                  backgroundColor: '#E3E2DD',
-                  position: 'relative',
-                }}
-              >
-                {/* Small orange anchor dot at center origin */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    left: 0,
-                    top: '-3.5px',
-                    width: '8px',
-                    height: '8px',
-                    borderRadius: '50%',
-                    backgroundColor: 'var(--accent)',
-                    boxShadow: '0 0 8px rgba(255, 79, 0, 0.85)',
-                  }}
-                />
-              </div>
-            </div>
-
-            {/* Right: Physical Project Card 2 */}
-            <div
-              className="architectural-card"
-              style={{
-                backgroundColor: '#FFFFFF',
-                border: '1px solid #E3E2DD',
-                padding: '2.5rem',
-                borderRadius: '3px',
-                boxShadow: 'var(--shadow-studio-md)',
-                position: 'relative',
-              }}
-            >
-              {/* Connecting Hairline Indicator */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.65rem',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.74rem',
-                  color: 'var(--text-muted)',
-                  marginBottom: '1.5rem',
-                  paddingBottom: '1rem',
+                  paddingBottom: '1.25rem',
                   borderBottom: '1px solid #E3E2DD',
                 }}
               >
-                <span
-                  style={{
-                    width: '7px',
-                    height: '7px',
-                    borderRadius: '50%',
-                    backgroundColor: 'var(--accent)',
-                    boxShadow: '0 0 6px rgba(255, 79, 0, 0.5)',
-                  }}
-                />
-                <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>
-                  SLICE 02 // MIDDLE LAYER (-45° TWIST)
-                </span>
-                <span style={{ color: 'var(--grid-hairline)' }}>—</span>
-                <span style={{ color: 'var(--accent)', fontWeight: 600 }}>LOCKED</span>
-              </div>
-
-              {/* Card Header, Title & Tags */}
-              <div style={{ marginBottom: '1.25rem' }}>
-                <h3
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: 'clamp(1.5rem, 1.3rem + 1vw, 2.1rem)',
-                    fontWeight: 700,
-                    color: 'var(--text-primary)',
-                    letterSpacing: '-0.03em',
-                    lineHeight: 1.15,
-                    marginBottom: '0.85rem',
-                  }}
-                >
-                  Tabular ML &amp; Feature Engineering Suite
-                </h3>
-
-                {/* Monospace Tags: [Kaggle] [Random Forests] [Out-of-Fold Encoding] */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1rem' }}>
-                  {['Kaggle', 'Random Forests', 'Out-of-Fold Encoding'].map((tag) => (
+                <div>
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      flexWrap: 'wrap',
+                      gap: '0.65rem',
+                      marginBottom: '0.55rem',
+                    }}
+                  >
                     <span
-                      key={tag}
                       style={{
                         fontFamily: 'var(--font-mono)',
                         fontSize: '0.74rem',
-                        fontWeight: 600,
-                        padding: '0.2rem 0.6rem',
-                        backgroundColor: '#FAFAF7',
-                        border: '1px solid #E3E2DD',
-                        borderRadius: '2px',
-                        color: 'var(--text-secondary)',
-                      }}
-                    >
-                      [{tag}]
-                    </span>
-                  ))}
-                </div>
-
-                <p
-                  style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: 'var(--text-sm)',
-                    color: 'var(--text-secondary)',
-                    lineHeight: 1.65,
-                    marginBottom: '1.5rem',
-                  }}
-                >
-                  Built competitive machine learning pipelines utilizing advanced out-of-fold target encoding, decision trees, and rigorous cross-validation on large-scale tabular datasets.
-                </p>
-              </div>
-
-              {/* Measured Impact Spec */}
-              <div
-                style={{
-                  padding: '1rem 1.25rem',
-                  backgroundColor: 'var(--bg-canvas)',
-                  borderLeft: '3px solid var(--accent)',
-                  borderRadius: '2px',
-                  marginBottom: '1.75rem',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.8rem',
-                  color: 'var(--text-secondary)',
-                  lineHeight: 1.5,
-                }}
-              >
-                <span style={{ fontWeight: 700, color: 'var(--text-primary)', display: 'block', marginBottom: '0.2rem' }}>
-                  MEASURED OUTCOME // OUT-OF-FOLD GENERALIZATION
-                </span>
-                {tabularProject.impactNote}
-              </div>
-
-              {/* Stats Benchmarks */}
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(3, 1fr)',
-                  gap: '1rem',
-                  paddingTop: '1rem',
-                  borderTop: '1px solid #E3E2DD',
-                  marginBottom: '1.75rem',
-                }}
-              >
-                {tabularProject.stats?.map((stat, i) => (
-                  <div key={i}>
-                    <div
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '1.15rem',
                         fontWeight: 700,
-                        color: 'var(--text-primary)',
+                        color: 'var(--accent)',
+                        letterSpacing: '0.08em',
                       }}
                     >
-                      {stat.value}
-                    </div>
-                    <div
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.68rem',
-                        color: 'var(--text-muted)',
-                      }}
-                    >
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Action Link: "Kaggle Profile & Notebooks ->" */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  flexWrap: 'wrap',
-                  gap: '1rem',
-                  paddingTop: '0.5rem',
-                }}
-              >
-                <a
-                  href={PROFILE.kaggle}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.45rem',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.84rem',
-                    fontWeight: 600,
-                    color: 'var(--text-primary)',
-                    textDecoration: 'none',
-                    padding: '0.55rem 1.1rem',
-                    backgroundColor: '#FAFAF7',
-                    border: '1px solid #E3E2DD',
-                    borderRadius: '2px',
-                    transition: 'all var(--transition-fast)',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--accent)';
-                    e.currentTarget.style.color = 'var(--accent)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = '#E3E2DD';
-                    e.currentTarget.style.color = 'var(--text-primary)';
-                  }}
-                >
-                  <span>Kaggle Profile &amp; Notebooks -&gt;</span>
-                </a>
-
-                <button
-                  onClick={() => onOpenProjectModal(tabularProject)}
-                  className="btn-secondary"
-                  style={{
-                    padding: '0.55rem 1.15rem',
-                    fontSize: '0.82rem',
-                    backgroundColor: '#FFFFFF',
-                    border: '1px solid #E3E2DD',
-                  }}
-                >
-                  <span>Validation Spec</span>
-                  <ArrowUpRight size={13} />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* -----------------------------------------------------------------------
-              TIER 3 (BOTTOM LAYER): High-Performance C++ Algorithmic Core
-              Connected to Bottom Layer (+45° alternating twist) via hairline & orange dot
-             ----------------------------------------------------------------------- */}
-          <div
-            className="reveal-on-scroll stagger-3 slice-card-row-3"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'minmax(0, 1.15fr) minmax(280px, 0.85fr)',
-              gap: '3rem',
-              alignItems: 'center',
-            }}
-          >
-            {/* Left: Physical Project Card 3 */}
-            <div
-              className="architectural-card"
-              style={{
-                backgroundColor: '#FFFFFF',
-                border: '1px solid #E3E2DD',
-                padding: '2.5rem',
-                borderRadius: '3px',
-                boxShadow: 'var(--shadow-studio-md)',
-                position: 'relative',
-              }}
-            >
-              {/* Connecting Hairline Indicator */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.65rem',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.74rem',
-                  color: 'var(--text-muted)',
-                  marginBottom: '1.5rem',
-                  paddingBottom: '1rem',
-                  borderBottom: '1px solid #E3E2DD',
-                }}
-              >
-                <span
-                  style={{
-                    width: '7px',
-                    height: '7px',
-                    borderRadius: '50%',
-                    backgroundColor: 'var(--accent)',
-                    boxShadow: '0 0 6px rgba(255, 79, 0, 0.5)',
-                  }}
-                />
-                <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>
-                  SLICE 03 // BOTTOM LAYER (+45° TWIST)
-                </span>
-                <span style={{ color: 'var(--grid-hairline)' }}>—</span>
-                <span style={{ color: 'var(--accent)', fontWeight: 600 }}>LOCKED</span>
-              </div>
-
-              {/* Card Header, Title & Tags */}
-              <div style={{ marginBottom: '1.25rem' }}>
-                <h3
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: 'clamp(1.5rem, 1.3rem + 1vw, 2.1rem)',
-                    fontWeight: 700,
-                    color: 'var(--text-primary)',
-                    letterSpacing: '-0.03em',
-                    lineHeight: 1.15,
-                    marginBottom: '0.85rem',
-                  }}
-                >
-                  High-Performance C++ Algorithmic Core
-                </h3>
-
-                {/* Monospace Tags: [C++ STL] [Dynamic Programming] [Data Structures] */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1rem' }}>
-                  {['C++ STL', 'Dynamic Programming', 'Data Structures'].map((tag) => (
+                      {project.number}
+                    </span>
+                    <span style={{ color: '#D9D8D3' }}>/</span>
                     <span
-                      key={tag}
                       style={{
                         fontFamily: 'var(--font-mono)',
-                        fontSize: '0.74rem',
-                        fontWeight: 600,
-                        padding: '0.2rem 0.6rem',
-                        backgroundColor: '#FAFAF7',
-                        border: '1px solid #E3E2DD',
-                        borderRadius: '2px',
-                        color: 'var(--text-secondary)',
+                        fontSize: '0.72rem',
+                        color: 'var(--text-muted)',
+                        letterSpacing: '0.05em',
                       }}
                     >
-                      [{tag}]
+                      {project.category.toUpperCase()}
                     </span>
-                  ))}
-                </div>
-
-                <p
-                  style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: 'var(--text-sm)',
-                    color: 'var(--text-secondary)',
-                    lineHeight: 1.65,
-                    marginBottom: '1.5rem',
-                  }}
-                >
-                  Architected optimized solutions for complex graph, sliding window, and dynamic programming problems using low-overhead C++ standard library containers.
-                </p>
-              </div>
-
-              {/* Measured Impact Spec */}
-              <div
-                style={{
-                  padding: '1rem 1.25rem',
-                  backgroundColor: 'var(--bg-canvas)',
-                  borderLeft: '3px solid var(--accent)',
-                  borderRadius: '2px',
-                  marginBottom: '1.75rem',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.8rem',
-                  color: 'var(--text-secondary)',
-                  lineHeight: 1.5,
-                }}
-              >
-                <span style={{ fontWeight: 700, color: 'var(--text-primary)', display: 'block', marginBottom: '0.2rem' }}>
-                  MEASURED OUTCOME // DETERMINISTIC LATENCY
-                </span>
-                {cppProject.impactNote}
-              </div>
-
-              {/* Stats Benchmarks */}
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(3, 1fr)',
-                  gap: '1rem',
-                  paddingTop: '1rem',
-                  borderTop: '1px solid #E3E2DD',
-                  marginBottom: '1.75rem',
-                }}
-              >
-                {cppProject.stats?.map((stat, i) => (
-                  <div key={i}>
-                    <div
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '1.15rem',
-                        fontWeight: 700,
-                        color: 'var(--text-primary)',
-                      }}
-                    >
-                      {stat.value}
-                    </div>
-                    <div
+                    <span
                       style={{
                         fontFamily: 'var(--font-mono)',
                         fontSize: '0.68rem',
-                        color: 'var(--text-muted)',
+                        fontWeight: 600,
+                        color: project.achievementNote ? 'var(--accent)' : 'var(--text-secondary)',
+                        backgroundColor: project.achievementNote ? 'var(--accent-soft)' : '#FAF9F6',
+                        border: `1px solid ${
+                          project.achievementNote ? 'var(--accent-subtle-border)' : '#E3E2DD'
+                        }`,
+                        padding: '0.18rem 0.55rem',
+                        borderRadius: '2px',
                       }}
                     >
-                      {stat.label}
-                    </div>
+                      {project.badge}
+                    </span>
                   </div>
-                ))}
+
+                  <h3
+                    style={{
+                      fontFamily: 'var(--font-display)',
+                      fontSize: 'clamp(1.6rem, 1.3rem + 1.1vw, 2.25rem)',
+                      fontWeight: 800,
+                      color: 'var(--text-primary)',
+                      letterSpacing: '-0.03em',
+                      lineHeight: 1.15,
+                      marginBottom: '0.3rem',
+                    }}
+                  >
+                    {project.title}
+                  </h3>
+
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: '1.02rem',
+                      fontWeight: 500,
+                      color: 'var(--text-secondary)',
+                    }}
+                  >
+                    {project.subtitle}
+                  </p>
+                </div>
+
+                {/* Action Links */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.65rem' }}>
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary"
+                    style={{
+                      padding: '0.62rem 1.05rem',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.76rem',
+                    }}
+                  >
+                    <Github size={14} />
+                    <span>GitHub</span>
+                    <ArrowUpRight size={13} />
+                  </a>
+
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary"
+                      style={{
+                        padding: '0.62rem 1.05rem',
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.76rem',
+                      }}
+                    >
+                      <ExternalLink size={14} />
+                      <span>Live Demo</span>
+                    </a>
+                  )}
+
+                  <button
+                    onClick={() => onOpenProjectModal(project)}
+                    className="btn-ghost"
+                    style={{
+                      padding: '0.62rem 1rem',
+                      fontSize: '0.75rem',
+                    }}
+                  >
+                    <Layers size={14} style={{ color: 'var(--accent)' }} />
+                    <span>Case Study Details</span>
+                  </button>
+                </div>
               </div>
 
-              {/* Action Link: "LeetCode & CodeChef ->" */}
+              {/* Description + Optional Achievement Banner */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                <p style={{ fontSize: '0.98rem', color: 'var(--text-primary)', lineHeight: 1.68 }}>
+                  {project.description}
+                </p>
+
+                {project.achievementNote && (
+                  <div
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.55rem',
+                      padding: '0.65rem 1rem',
+                      backgroundColor: 'var(--accent-soft)',
+                      border: '1px solid var(--accent-subtle-border)',
+                      borderRadius: '3px',
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: '0.88rem',
+                      fontWeight: 600,
+                      color: 'var(--text-primary)',
+                    }}
+                  >
+                    <CheckCircle2 size={16} style={{ color: 'var(--accent)', flexShrink: 0 }} />
+                    <span>{project.achievementNote}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Structured Case Study Grid: Problem / Built / Approach */}
               <div
+                className="case-study-pillars"
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  flexWrap: 'wrap',
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
                   gap: '1rem',
-                  paddingTop: '0.5rem',
                 }}
               >
-                <a
-                  href="https://leetcode.com/u/satyam-257/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.45rem',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.84rem',
-                    fontWeight: 600,
-                    color: 'var(--text-primary)',
-                    textDecoration: 'none',
-                    padding: '0.55rem 1.1rem',
-                    backgroundColor: '#FAFAF7',
-                    border: '1px solid #E3E2DD',
-                    borderRadius: '2px',
-                    transition: 'all var(--transition-fast)',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--accent)';
-                    e.currentTarget.style.color = 'var(--accent)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = '#E3E2DD';
-                    e.currentTarget.style.color = 'var(--text-primary)';
-                  }}
-                >
-                  <span>LeetCode &amp; CodeChef -&gt;</span>
-                </a>
-
-                <button
-                  onClick={() => onOpenProjectModal(cppProject)}
-                  className="btn-secondary"
-                  style={{
-                    padding: '0.55rem 1.15rem',
-                    fontSize: '0.82rem',
-                    backgroundColor: '#FFFFFF',
-                    border: '1px solid #E3E2DD',
-                  }}
-                >
-                  <span>Benchmark Spec</span>
-                  <ArrowUpRight size={13} />
-                </button>
-              </div>
-            </div>
-
-            {/* Right: Crisp Connecting Hairline pointing toward Center 3D Bottom Layer */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                position: 'relative',
-              }}
-              className="connecting-leader-col-3"
-            >
-              <div
-                style={{
-                  height: '1px',
-                  flex: 1,
-                  backgroundColor: '#E3E2DD',
-                  position: 'relative',
-                }}
-              >
-                {/* Small orange anchor dot */}
                 <div
                   style={{
-                    position: 'absolute',
-                    right: 0,
-                    top: '-3.5px',
-                    width: '8px',
-                    height: '8px',
-                    borderRadius: '50%',
-                    backgroundColor: 'var(--accent)',
-                    boxShadow: '0 0 8px rgba(255, 79, 0, 0.85)',
-                  }}
-                />
-              </div>
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.7rem',
-                  letterSpacing: '0.08em',
-                  color: 'var(--text-muted)',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                [ CONNECTING: BOTTOM LAYER +45° ]
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Archival Systems Registry (TrackX, TrailLens, Traverly) */}
-        {archivalProjects.length > 0 && (
-          <div style={{ marginTop: '7rem', paddingTop: '3rem', borderTop: '1px solid var(--grid-hairline)' }}>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                marginBottom: '2rem',
-              }}
-            >
-              <div>
-                <span
-                  style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.74rem',
-                    color: 'var(--accent)',
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                    fontWeight: 600,
-                  }}
-                >
-                  ARCHIVAL PRODUCTION REGISTRY
-                </span>
-                <h4
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '1.35rem',
-                    color: 'var(--text-primary)',
-                    fontWeight: 700,
-                    marginTop: '0.25rem',
-                  }}
-                >
-                  Additional Shipped Platforms
-                </h4>
-              </div>
-            </div>
-
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                gap: '1.5rem',
-              }}
-            >
-              {archivalProjects.map((p) => (
-                <div
-                  key={p.id}
-                  onClick={() => onOpenProjectModal(p)}
-                  className="architectural-card-flat"
-                  style={{
-                    padding: '1.5rem',
-                    backgroundColor: '#FFFFFF',
-                    cursor: 'pointer',
+                    backgroundColor: '#FAF9F6',
+                    border: '1px solid #E3E2DD',
+                    borderRadius: '3px',
+                    padding: '1.15rem',
                   }}
                 >
                   <div
                     style={{
                       fontFamily: 'var(--font-mono)',
                       fontSize: '0.68rem',
-                      color: 'var(--text-muted)',
-                      marginBottom: '0.5rem',
-                    }}
-                  >
-                    {p.badge}
-                  </div>
-                  <h5
-                    style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: '1.1rem',
                       fontWeight: 700,
-                      color: 'var(--text-primary)',
-                      marginBottom: '0.4rem',
+                      color: 'var(--accent)',
+                      letterSpacing: '0.08em',
+                      marginBottom: '0.45rem',
                     }}
                   >
-                    {p.title}
-                  </h5>
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-sans)',
-                      fontSize: '0.82rem',
-                      color: 'var(--text-secondary)',
-                      lineHeight: 1.5,
-                      marginBottom: '1rem',
-                    }}
-                  >
-                    {p.subtitle}
+                    01 // PROBLEM STATEMENT
+                  </div>
+                  <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                    {project.problemStatement}
                   </p>
+                </div>
+
+                <div
+                  style={{
+                    backgroundColor: '#FAF9F6',
+                    border: '1px solid #E3E2DD',
+                    borderRadius: '3px',
+                    padding: '1.15rem',
+                  }}
+                >
                   <div
                     style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.4rem',
                       fontFamily: 'var(--font-mono)',
-                      fontSize: '0.75rem',
-                      color: 'var(--accent)',
-                      fontWeight: 600,
+                      fontSize: '0.68rem',
+                      fontWeight: 700,
+                      color: 'var(--text-primary)',
+                      letterSpacing: '0.08em',
+                      marginBottom: '0.45rem',
                     }}
                   >
-                    <span>Inspect System</span>
-                    <ArrowUpRight size={12} />
+                    02 // WHAT I BUILT
+                  </div>
+                  <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                    {project.whatIBuilt}
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    backgroundColor: '#FAF9F6',
+                    border: '1px solid #E3E2DD',
+                    borderRadius: '3px',
+                    padding: '1.15rem',
+                  }}
+                >
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.68rem',
+                      fontWeight: 700,
+                      color: 'var(--text-primary)',
+                      letterSpacing: '0.08em',
+                      marginBottom: '0.45rem',
+                    }}
+                  >
+                    03 // TECHNICAL APPROACH
+                  </div>
+                  <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                    {project.technicalApproach}
+                  </p>
+                </div>
+              </div>
+
+              {/* Interactive Visual Direction Showcase */}
+              <div>{renderInteractivePreview(project.id)}</div>
+
+              {/* Bottom Strip: Measurable Results + Key Contributions + Stack */}
+              <div
+                className="case-study-footer-grid"
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'minmax(0, 1.35fr) minmax(0, 0.9fr)',
+                  gap: '1.5rem',
+                  paddingTop: '1rem',
+                  borderTop: '1px solid #E3E2DD',
+                  alignItems: 'start',
+                }}
+              >
+                {/* Key Contributions (top 4 concise bullets + link to modal for full list) */}
+                <div>
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.7rem',
+                      fontWeight: 700,
+                      color: 'var(--text-muted)',
+                      letterSpacing: '0.08em',
+                      marginBottom: '0.7rem',
+                    }}
+                  >
+                    KEY ENGINEERING CONTRIBUTIONS
+                  </div>
+                  <ul
+                    style={{
+                      listStyle: 'none',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '0.45rem',
+                    }}
+                  >
+                    {project.keyContributions.slice(0, 4).map((item, cIdx) => (
+                      <li
+                        key={cIdx}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'flex-start',
+                          gap: '0.55rem',
+                          fontSize: '0.87rem',
+                          color: 'var(--text-secondary)',
+                          lineHeight: 1.55,
+                        }}
+                      >
+                        <span
+                          style={{
+                            width: '5px',
+                            height: '5px',
+                            borderRadius: '50%',
+                            backgroundColor: 'var(--accent)',
+                            marginTop: '0.52rem',
+                            flexShrink: 0,
+                          }}
+                        />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  {project.keyContributions.length > 4 && (
+                    <button
+                      onClick={() => onOpenProjectModal(project)}
+                      style={{
+                        marginTop: '0.65rem',
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.74rem',
+                        fontWeight: 600,
+                        color: 'var(--accent)',
+                      }}
+                    >
+                      + View all {project.keyContributions.length} contributions &amp; full case study →
+                    </button>
+                  )}
+                </div>
+
+                {/* Measurable Results & Tech Stack */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+                  <div
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+                      gap: '0.65rem',
+                    }}
+                  >
+                    {project.measurableResults.map((res, rIdx) => (
+                      <div
+                        key={rIdx}
+                        style={{
+                          padding: '0.75rem 0.7rem',
+                          backgroundColor: '#FAF9F6',
+                          border: '1px solid #E3E2DD',
+                          borderRadius: '3px',
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontFamily: 'var(--font-mono)',
+                            fontSize: '0.96rem',
+                            fontWeight: 700,
+                            color: 'var(--text-primary)',
+                            marginBottom: '0.18rem',
+                          }}
+                        >
+                          {res.value}
+                        </div>
+                        <div
+                          style={{
+                            fontFamily: 'var(--font-mono)',
+                            fontSize: '0.64rem',
+                            fontWeight: 600,
+                            color: 'var(--text-secondary)',
+                          }}
+                        >
+                          {res.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div>
+                    <div
+                      style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.68rem',
+                        color: 'var(--text-muted)',
+                        letterSpacing: '0.08em',
+                        marginBottom: '0.5rem',
+                      }}
+                    >
+                      TECHNOLOGY STACK
+                    </div>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem' }}>
+                      {project.technologies.map((tech) => (
+                        <span key={tech} className="mono-tag">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        )}
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
 
-      {/* Responsive Styles for Slice Cards */}
       <style>{`
-        @media (max-width: 900px) {
-          .slice-card-row-1, .slice-card-row-2, .slice-card-row-3 {
+        @media (max-width: 960px) {
+          .case-study-pillars {
             grid-template-columns: 1fr !important;
-            gap: 1.5rem !important;
           }
-          .connecting-leader-col-1, .connecting-leader-col-2, .connecting-leader-col-3 {
-            display: none !important;
+          .case-study-footer-grid {
+            grid-template-columns: 1fr !important;
           }
         }
       `}</style>

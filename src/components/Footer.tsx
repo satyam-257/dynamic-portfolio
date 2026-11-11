@@ -1,6 +1,6 @@
 import React from 'react';
 import { PROFILE } from '../data/portfolioData';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ArrowUp } from 'lucide-react';
 
 interface FooterProps {
   onNavigate?: (sectionId: string) => void;
@@ -12,11 +12,10 @@ export const Footer: React.FC<FooterProps> = ({ reducedMotion }) => {
     window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
   };
 
-  const socialLinks = [
-    { label: 'GitHub', href: PROFILE.github || 'https://github.com/satyam-257' },
-    { label: 'Kaggle', href: PROFILE.kaggle || 'https://kaggle.com/satyam257' },
-    { label: 'LeetCode', href: PROFILE.leetcode || 'https://leetcode.com/u/satyam-257/' },
-    { label: 'LinkedIn', href: PROFILE.linkedin || 'https://linkedin.com/in/satyam-257' },
+  const links = [
+    { label: 'GitHub', href: PROFILE.github },
+    { label: 'LinkedIn', href: PROFILE.linkedin },
+    { label: 'Email', href: `mailto:${PROFILE.email}` },
   ];
 
   return (
@@ -26,7 +25,7 @@ export const Footer: React.FC<FooterProps> = ({ reducedMotion }) => {
         borderTop: '1px solid #E3E2DD',
         position: 'relative',
         zIndex: 10,
-        padding: '1.6rem 0',
+        padding: '1.65rem 0',
       }}
     >
       <div
@@ -39,16 +38,14 @@ export const Footer: React.FC<FooterProps> = ({ reducedMotion }) => {
           gap: '1.25rem',
         }}
       >
-        {/* Left: "SATYAM KUMAR © 2026 — B.TECH CSE (DATA SCIENCE)" */}
         <div
           style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.78rem',
+            fontSize: '0.76rem',
             color: 'var(--text-secondary)',
-            letterSpacing: '0.04em',
             display: 'flex',
             alignItems: 'center',
-            gap: '0.5rem',
+            gap: '0.55rem',
           }}
         >
           <span
@@ -58,85 +55,58 @@ export const Footer: React.FC<FooterProps> = ({ reducedMotion }) => {
               borderRadius: '50%',
               backgroundColor: 'var(--accent)',
               display: 'inline-block',
-              boxShadow: '0 0 6px rgba(255, 79, 0, 0.45)',
             }}
           />
-          <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>
-            SATYAM KUMAR &copy; 2026 &mdash; B.TECH CSE (DATA SCIENCE)
+          <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>
+            SATYAM KUMAR &copy; 2026
           </span>
+          <span style={{ color: '#D9D8D3' }}>—</span>
+          <span>B.TECH CSE (DATA SCIENCE) · KOLKATA</span>
         </div>
 
-        {/* Center: Direct external links with subtle 45-degree arrow icons (↗) */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1.5rem',
-            flexWrap: 'wrap',
-          }}
-        >
-          {socialLinks.map((link) => (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.35rem', flexWrap: 'wrap' }}>
+          {links.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.78rem',
+                fontSize: '0.76rem',
                 color: 'var(--text-secondary)',
-                textDecoration: 'none',
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.25rem',
-                transition: 'color var(--transition-fast)',
-                letterSpacing: '0.02em',
               }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.color = 'var(--text-primary)';
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.color = 'var(--text-secondary)';
-              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-primary)')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
             >
-              <span>[{link.label}]</span>
+              <span>{link.label}</span>
               <ArrowUpRight size={12} style={{ color: 'var(--accent)' }} />
             </a>
           ))}
         </div>
 
-        {/* Right: Functional "BACK TO TOP [↑]" monospace button */}
         <button
           onClick={scrollToTop}
           style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.78rem',
+            fontSize: '0.75rem',
             fontWeight: 600,
             color: 'var(--text-primary)',
             backgroundColor: '#FFFFFF',
             border: '1px solid #E3E2DD',
             borderRadius: '2px',
-            padding: '0.45rem 0.95rem',
-            cursor: 'pointer',
+            padding: '0.42rem 0.85rem',
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '0.4rem',
-            letterSpacing: '0.05em',
-            transition: 'all var(--transition-fast)',
-            boxShadow: 'var(--shadow-studio-sm)',
+            gap: '0.35rem',
           }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.borderColor = 'var(--accent)';
-            (e.currentTarget as HTMLElement).style.color = 'var(--accent)';
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.borderColor = '#E3E2DD';
-            (e.currentTarget as HTMLElement).style.color = 'var(--text-primary)';
-          }}
-          title="Return to top & reverse 3D Logic Cube transformations"
-          aria-label="Back to top"
+          aria-label="Scroll back to top"
         >
-          <span>BACK TO TOP [↑]</span>
+          <span>BACK TO TOP</span>
+          <ArrowUp size={12} style={{ color: 'var(--accent)' }} />
         </button>
       </div>
     </footer>

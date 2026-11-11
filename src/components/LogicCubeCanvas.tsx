@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 interface LogicCubeCanvasProps {
@@ -7,8 +7,6 @@ interface LogicCubeCanvasProps {
 
 export const LogicCubeCanvas: React.FC<LogicCubeCanvasProps> = ({ reducedMotion = false }) => {
   const mountRef = useRef<HTMLDivElement>(null);
-  const [rotXDegrees, setRotXDegrees] = useState<number>(0);
-  const [cubeState, setCubeState] = useState<string>('SOLVED');
 
   useEffect(() => {
     const container = mountRef.current;
@@ -426,23 +424,6 @@ export const LogicCubeCanvas: React.FC<LogicCubeCanvasProps> = ({ reducedMotion 
       );
       const rawProgress = Math.min(1, Math.max(0, scrollY / maxScroll));
       targetScrollProgress = rawProgress;
-
-      // Coordinate tracker ROT_X angle: 0° to 360°
-      const rotX = Math.round(rawProgress * 360);
-      setRotXDegrees(rotX);
-
-      // Exact State 1, 2, 3, and 4 (Snap-Lock Assembly)
-      if (rawProgress < 0.25) {
-        setCubeState('SOLVED');
-      } else if (rawProgress < 0.33) {
-        setCubeState('UNFOLDING');
-      } else if (rawProgress <= 0.60) {
-        setCubeState('EXPLODED');
-      } else if (rawProgress < 0.85) {
-        setCubeState('CORE_ARCHITECTURE');
-      } else {
-        setCubeState('LOCKED_READY');
-      }
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -495,14 +476,19 @@ export const LogicCubeCanvas: React.FC<LogicCubeCanvasProps> = ({ reducedMotion 
       // On tablet (768px) and mobile (375px) breakpoints: scale the 3D Logic Cube to 65% size
       const baseScale = screenWidth <= 375 ? 0.60 : isTabletOrMobile ? 0.65 : 0.95;
 
-      // Mobile/tablet subtle opacity reduction during text-heavy sections (0.22 to 0.85 scroll)
-      // to ensure project cards and skill pills are 100% crisp and legible without touch-scroll lag
+      // Opacity choreography: crisp showcase in Hero (on desktop), restrained ambient backdrop
+      // across dense ML case studies and mobile viewports so technical diagrams stay 100% legible.
       if (container) {
-        if (isTabletOrMobile && currentScrollProgress >= 0.22 && currentScrollProgress < 0.85) {
-          container.style.opacity = '0.36';
+        if (isTabletOrMobile) {
+          container.style.opacity = currentScrollProgress < 0.14 ? '0.22' : '0.07';
+        } else if (currentScrollProgress < 0.14) {
+          container.style.opacity = '0.92';
+        } else if (currentScrollProgress >= 0.88) {
+          container.style.opacity = '0.28';
         } else {
-          container.style.opacity = '1.0';
+          container.style.opacity = '0.09';
         }
+        container.style.transition = 'opacity 0.35s ease';
       }
 
       // =========================================================================
@@ -720,66 +706,7 @@ export const LogicCubeCanvas: React.FC<LogicCubeCanvasProps> = ({ reducedMotion 
         overflow: 'hidden',
       }}
       aria-hidden="true"
-    >
-      {/* Tactile Industrial Studio Coordinate Badge (Bottom-Right) */}
-      <div
-        style={{
-          position: 'fixed',
-          bottom: '1.75rem',
-          right: '2rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.65rem',
-          fontFamily: 'var(--font-mono)',
-          fontSize: '0.74rem',
-          color: 'var(--text-secondary)',
-          backgroundColor: 'rgba(255, 255, 255, 0.88)',
-          backdropFilter: 'blur(10px)',
-          border: '1px solid var(--grid-hairline)',
-          borderRadius: '3px',
-          padding: '0.35rem 0.75rem',
-          letterSpacing: '0.08em',
-          boxShadow: 'var(--shadow-studio-sm)',
-          transition: 'all var(--transition-fast)',
-          pointerEvents: 'auto',
-          userSelect: 'none',
-          zIndex: 10,
-        }}
-      >
-        <span
-          style={{
-            width: '6px',
-            height: '6px',
-            borderRadius: '50%',
-            backgroundColor: 'var(--accent)',
-            display: 'inline-block',
-            boxShadow: '0 0 8px rgba(255, 79, 0, 0.6)',
-          }}
-        />
-        <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>MECHANICAL LOGIC CUBE</span>
-        <span style={{ color: 'var(--grid-hairline)' }}>|</span>
-        <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 600 }}>
-          {cubeState === 'CORE_ARCHITECTURE' ? (
-            <>
-              ROT_X: 180° / STATE:{' '}
-              <span style={{ color: 'var(--accent)' }}>CORE_ARCHITECTURE</span>
-            </>
-          ) : cubeState === 'LOCKED_READY' ? (
-            <>
-              ROT_X: 360° / STATE:{' '}
-              <span style={{ color: 'var(--accent)' }}>LOCKED_READY</span>
-            </>
-          ) : (
-            <>
-              ROT_X: {rotXDegrees}° / STATE:{' '}
-              <span style={{ color: cubeState === 'SOLVED' ? 'var(--text-primary)' : 'var(--accent)' }}>
-                {cubeState}
-              </span>
-            </>
-          )}
-        </span>
-      </div>
-    </div>
+    />
   );
 };
 

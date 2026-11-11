@@ -5,8 +5,11 @@ import {
   Mail,
   Send,
   Check,
-  Lock,
   Download,
+  Github,
+  Linkedin,
+  ArrowUpRight,
+  MapPin,
 } from 'lucide-react';
 
 interface ContactSectionProps {
@@ -19,7 +22,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    topic: 'Engineering Inquiry',
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,7 +30,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(PROFILE.email);
     setCopied(true);
-    onShowToast(`Copied ${PROFILE.email} to clipboard // Ready to dispatch.`);
+    onShowToast(`Copied ${PROFILE.email} to clipboard.`);
     setTimeout(() => setCopied(false), 2600);
   };
 
@@ -43,8 +45,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
-      onShowToast('Message transmitted successfully.');
-    }, 750);
+      onShowToast('Inquiry prepared — you can also email sa.25.07.2006@gmail.com directly.');
+    }, 550);
   };
 
   return (
@@ -54,439 +56,298 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
       style={{
         position: 'relative',
         borderTop: '1px solid var(--grid-hairline)',
-        paddingTop: 'clamp(5rem, 8vw, 7.5rem)',
-        paddingBottom: '5rem',
+        paddingBottom: '5.5rem',
       }}
     >
       <div className="container">
-        {/* ===================================================================
-            SECTION 4: PRECISION SNAP-LOCK & DOCK CRADLE
-            The solved 3D Logic Cube locks cleanly into this top aperture,
-            scaled down by 30% as an architectural precision emblem!
-            =================================================================== */}
         <div
+          className="contact-layout-grid"
           style={{
-            maxWidth: '880px',
-            margin: '0 auto 2.75rem auto',
-            textAlign: 'center',
-            position: 'relative',
+            display: 'grid',
+            gridTemplateColumns: 'minmax(0, 1.15fr) minmax(0, 0.85fr)',
+            gap: '2.25rem',
+            alignItems: 'start',
           }}
-          className="reveal-on-scroll"
         >
-          {/* Spatial clearing for the docked 3D cube emblem */}
+          {/* Left: High-Impact Contact CTA Card */}
           <div
+            className="reveal-on-scroll architectural-card"
             style={{
-              height: 'clamp(110px, 14vw, 150px)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'relative',
-              marginBottom: '1rem',
-            }}
-            aria-hidden="true"
-          >
-            {/* Architectural Reticle Hairlines */}
-            <div
-              style={{
-                position: 'absolute',
-                width: '140px',
-                height: '1px',
-                backgroundColor: 'var(--grid-hairline)',
-              }}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                width: '1px',
-                height: '70px',
-                backgroundColor: 'var(--grid-hairline)',
-              }}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                width: '6px',
-                height: '6px',
-                borderRadius: '50%',
-                backgroundColor: 'var(--accent)',
-                opacity: 0.6,
-              }}
-            />
-          </div>
-
-          {/* Precision Dock Telemetry Badge */}
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.65rem',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.74rem',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: 'var(--text-secondary)',
-              padding: '0.4rem 0.95rem',
               backgroundColor: '#FFFFFF',
               border: '1px solid #E3E2DD',
-              borderRadius: '2px',
-              boxShadow: 'var(--shadow-studio-sm)',
-            }}
-          >
-            <Lock size={12} style={{ color: 'var(--accent)' }} />
-            <span>04: DOCKED STATE // SNAP-LOCK ASSEMBLY</span>
-            <span style={{ color: '#E3E2DD' }}>|</span>
-            <span style={{ color: 'var(--accent)', fontWeight: 600 }}>ROT_X: 360° / STATE: LOCKED_READY</span>
-          </div>
-        </div>
-
-        {/* ===================================================================
-            HIGH-CONVERSION RECRUITER CTA CARD
-            Directly beneath the docked 3D cube, architectural matte-white card
-            (#FFFFFF with 1px #E3E2DD border and subtle studio drop shadow)
-            =================================================================== */}
-        <div
-          className="reveal-on-scroll stagger-1 architectural-card"
-          style={{
-            maxWidth: '920px',
-            margin: '0 auto 4.5rem auto',
-            padding: 'clamp(2.75rem, 6vw, 4.25rem) clamp(2rem, 5vw, 3.75rem)',
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E3E2DD',
-            borderRadius: '6px',
-            boxShadow: '0 20px 48px -12px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.03)',
-            position: 'relative',
-            zIndex: 2,
-            textAlign: 'center',
-          }}
-        >
-          {/* Monospace Eyebrow: "// READY FOR DEPLOYMENT" */}
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.78rem',
-              color: 'var(--accent)',
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              fontWeight: 600,
-              marginBottom: '1.25rem',
-            }}
-          >
-            <span>// READY FOR DEPLOYMENT</span>
-          </div>
-
-          {/* Headline: "Structured Logic. Production-Grade Code." */}
-          <h2
-            className="swiss-display"
-            style={{
-              fontSize: 'clamp(2.3rem, 4.6vw, 3.6rem)',
-              fontWeight: 800,
-              lineHeight: 1.08,
-              letterSpacing: '-0.04em',
-              color: 'var(--text-primary)',
-              marginBottom: '1.25rem',
-            }}
-          >
-            Structured Logic. Production-Grade Code.
-          </h2>
-
-          {/* Subtext: "Available for Software Engineering, Data Science, and Machine Learning roles & internships." */}
-          <p
-            style={{
-              fontSize: 'clamp(1rem, 1.6vw, 1.15rem)',
-              color: 'var(--text-secondary)',
-              lineHeight: 1.65,
-              maxWidth: '640px',
-              margin: '0 auto 2.5rem auto',
-            }}
-          >
-            Available for Software Engineering, Data Science, and Machine Learning roles &amp; internships.
-          </p>
-
-          {/* Action Cluster */}
-          <div
-            style={{
+              borderRadius: '6px',
+              padding: 'clamp(2rem, 4.5vw, 3.25rem)',
               display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexWrap: 'wrap',
-              gap: '1.25rem',
-              marginBottom: '2.75rem',
+              flexDirection: 'column',
+              gap: '1.5rem',
             }}
           >
-            {/* Primary Action: Solid carbon-black button ("Copy Email Address") */}
-            <button
-              onClick={handleCopyEmail}
-              id="copy-email-primary-btn"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                backgroundColor: '#121212',
-                color: '#FFFFFF',
-                border: '1px solid #121212',
-                padding: '0.95rem 1.95rem',
-                borderRadius: '3px',
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.92rem',
-                fontWeight: 600,
-                letterSpacing: '-0.01em',
-                cursor: 'pointer',
-                transition: 'all var(--transition-fast)',
-                boxShadow: '0 4px 14px rgba(18, 18, 18, 0.18)',
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.backgroundColor = '#222222';
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.backgroundColor = '#121212';
-              }}
-              title="Click to copy email address"
-            >
-              {copied ? (
-                <>
-                  <span
-                    style={{
-                      width: '8px',
-                      height: '8px',
-                      borderRadius: '50%',
-                      backgroundColor: '#FF4F00',
-                      display: 'inline-block',
-                      boxShadow: '0 0 8px #FF4F00',
-                    }}
-                  />
-                  <span>Copied to Clipboard [✓]</span>
-                </>
-              ) : (
-                <>
-                  <Copy size={16} />
-                  <span>Copy Email Address</span>
-                </>
-              )}
-            </button>
+            <div>
+              <div className="architectural-label" style={{ marginBottom: '0.75rem' }}>
+                <span>06 // CONTACT &amp; INTERNSHIPS</span>
+              </div>
 
-            {/* Secondary Action: Clean bordered button ("Download Resume PDF ->") */}
-            <a
-              href={PROFILE.resumeUrl || '/Satyam_Kumar_Resume.pdf'}
-              target="_blank"
-              rel="noopener noreferrer"
-              id="download-resume-btn"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.55rem',
-                backgroundColor: '#FFFFFF',
-                color: 'var(--text-primary)',
-                border: '1px solid #E3E2DD',
-                padding: '0.95rem 1.85rem',
-                borderRadius: '3px',
-                fontFamily: 'var(--font-sans)',
-                fontSize: '0.92rem',
-                fontWeight: 600,
-                letterSpacing: '-0.01em',
-                textDecoration: 'none',
-                cursor: 'pointer',
-                transition: 'all var(--transition-fast)',
-                boxShadow: 'var(--shadow-studio-sm)',
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = 'var(--text-primary)';
-                (e.currentTarget as HTMLElement).style.backgroundColor = '#FAFAFA';
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = '#E3E2DD';
-                (e.currentTarget as HTMLElement).style.backgroundColor = '#FFFFFF';
-              }}
-            >
-              <Download size={15} />
-              <span>Download Resume PDF -&gt;</span>
-            </a>
-          </div>
-
-          {/* Micro Specification Bar beneath the buttons */}
-          <div
-            style={{
-              paddingTop: '2rem',
-              borderTop: '1px solid #E3E2DD',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
-              gap: '1.25rem',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.78rem',
-              color: 'var(--text-secondary)',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span style={{ color: 'var(--text-muted)' }}>DIRECT INBOX:</span>
-              <a
-                href={`mailto:${PROFILE.email}`}
+              <h2
+                className="swiss-headline"
                 style={{
-                  color: 'var(--text-primary)',
-                  fontWeight: 600,
-                  textDecoration: 'none',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.35rem',
+                  fontSize: 'clamp(2rem, 1.65rem + 1.6vw, 2.95rem)',
+                  marginBottom: '1rem',
                 }}
               >
-                <Mail size={13} style={{ color: 'var(--accent)' }} />
-                <span>{PROFILE.email}</span>
+                Have an interesting problem to solve?
+              </h2>
+
+              <p
+                style={{
+                  fontSize: '1.02rem',
+                  color: 'var(--text-secondary)',
+                  lineHeight: 1.68,
+                  maxWidth: '580px',
+                }}
+              >
+                I&apos;m always interested in discussing machine learning, AI engineering, research
+                ideas, collaborations, and internship opportunities.
+              </p>
+            </div>
+
+            {/* Primary Actions: Email Copy + Direct Email + Resume */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.85rem' }}>
+              <button
+                onClick={handleCopyEmail}
+                id="copy-email-primary-btn"
+                className="btn-primary"
+                style={{
+                  padding: '0.9rem 1.5rem',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.82rem',
+                }}
+              >
+                {copied ? (
+                  <>
+                    <Check size={15} />
+                    <span>Copied: {PROFILE.email}</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy size={15} />
+                    <span>Copy Email Address</span>
+                  </>
+                )}
+              </button>
+
+              <a
+                href={`mailto:${PROFILE.email}`}
+                className="btn-secondary"
+                style={{
+                  padding: '0.9rem 1.4rem',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.82rem',
+                }}
+              >
+                <Mail size={15} style={{ color: 'var(--accent)' }} />
+                <span>Send Email</span>
+              </a>
+
+              <a
+                href={PROFILE.resumeUrl}
+                download="Satyam_Kumar_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                id="download-resume-btn"
+                className="btn-ghost"
+                style={{
+                  padding: '0.9rem 1.35rem',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.82rem',
+                }}
+              >
+                <Download size={15} />
+                <span>Download Resume</span>
               </a>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-              <span
+            {/* Verified External Profile Channels */}
+            <div
+              style={{
+                paddingTop: '1.5rem',
+                borderTop: '1px solid #E3E2DD',
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
+                gap: '0.85rem',
+              }}
+            >
+              <a
+                href={PROFILE.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="architectural-card-flat"
                 style={{
-                  width: '6px',
-                  height: '6px',
-                  borderRadius: '50%',
-                  backgroundColor: 'var(--accent)',
-                  boxShadow: '0 0 6px rgba(255, 79, 0, 0.6)',
+                  padding: '1rem 1.15rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  backgroundColor: '#FAF9F6',
                 }}
-              />
-              <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>
-                ROT_X: 360° / STATE: LOCKED_READY
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
+                  <Github size={18} style={{ color: 'var(--text-primary)' }} />
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: '0.9rem' }}>GitHub</div>
+                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                      github.com/satyam-257
+                    </div>
+                  </div>
+                </div>
+                <ArrowUpRight size={15} style={{ color: 'var(--accent)' }} />
+              </a>
+
+              <a
+                href={PROFILE.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="architectural-card-flat"
+                style={{
+                  padding: '1rem 1.15rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  backgroundColor: '#FAF9F6',
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
+                  <Linkedin size={18} style={{ color: 'var(--text-primary)' }} />
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: '0.9rem' }}>LinkedIn</div>
+                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                      satyam-kumar-006b52324
+                    </div>
+                  </div>
+                </div>
+                <ArrowUpRight size={15} style={{ color: 'var(--accent)' }} />
+              </a>
+            </div>
+
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '0.75rem',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.74rem',
+                color: 'var(--text-muted)',
+              }}
+            >
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                <MapPin size={13} style={{ color: 'var(--accent)' }} />
+                {PROFILE.location}
               </span>
+              <span>DIRECT EMAIL: {PROFILE.email}</span>
             </div>
           </div>
-        </div>
 
-        {/* ===================================================================
-            OPTIONAL DIRECT TRANSMISSION DISPATCH PANEL
-            For recruiters or engineers who prefer sending a technical dispatch
-            =================================================================== */}
-        <div
-          style={{
-            maxWidth: '680px',
-            margin: '0 auto',
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E3E2DD',
-            borderRadius: '4px',
-            padding: '2.25rem 2rem',
-            boxShadow: 'var(--shadow-studio-sm)',
-          }}
-          className="reveal-on-scroll stagger-2"
-        >
+          {/* Right: Direct Message Compose Panel */}
           <div
+            className="reveal-on-scroll stagger-1 architectural-card-flat"
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              marginBottom: '1.5rem',
-              paddingBottom: '0.75rem',
-              borderBottom: '1px solid #E3E2DD',
+              backgroundColor: '#FFFFFF',
+              border: '1px solid #E3E2DD',
+              borderRadius: '6px',
+              padding: 'clamp(1.5rem, 3vw, 2.25rem)',
             }}
           >
             <div
               style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.72rem',
-                color: 'var(--text-muted)',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                fontWeight: 600,
-              }}
-            >
-              // FAST TRANSMISSION DISPATCH
-            </div>
-            <div
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.72rem',
+                fontWeight: 700,
                 color: 'var(--accent)',
-                letterSpacing: '0.04em',
+                letterSpacing: '0.08em',
+                marginBottom: '0.4rem',
               }}
             >
-              STANDALONE DISPATCH
+              // QUICK MESSAGE
             </div>
-          </div>
-
-          {submitted ? (
-            <div
+            <h3
               style={{
-                padding: '2rem 1.5rem',
-                borderRadius: '2px',
-                backgroundColor: 'var(--bg-canvas)',
-                border: '1px solid #E3E2DD',
-                textAlign: 'center',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '0.85rem',
+                fontFamily: 'var(--font-display)',
+                fontSize: '1.3rem',
+                fontWeight: 700,
+                marginBottom: '1.25rem',
               }}
             >
+              Start a Conversation
+            </h3>
+
+            {submitted ? (
               <div
                 style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '50%',
-                  backgroundColor: 'var(--accent-soft)',
+                  padding: '2rem 1.25rem',
+                  borderRadius: '4px',
+                  backgroundColor: '#FAF9F6',
+                  border: '1px solid #E3E2DD',
+                  textAlign: 'center',
                   display: 'flex',
+                  flexDirection: 'column',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'var(--accent)',
+                  gap: '0.85rem',
                 }}
               >
-                <Check size={20} />
+                <div
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    backgroundColor: 'var(--accent-soft)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'var(--accent)',
+                  }}
+                >
+                  <Check size={20} />
+                </div>
+                <h4 style={{ fontSize: '1.1rem', fontWeight: 700 }}>Message Ready</h4>
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                  Thanks for reaching out. You can also send directly via{' '}
+                  <a
+                    href={`mailto:${PROFILE.email}?subject=${encodeURIComponent(
+                      `Portfolio Inquiry from ${formData.name}`
+                    )}&body=${encodeURIComponent(formData.message)}`}
+                    style={{ color: 'var(--accent)', fontWeight: 600, textDecoration: 'underline' }}
+                  >
+                    your email client
+                  </a>{' '}
+                  for instant delivery.
+                </p>
+                <button
+                  onClick={() => {
+                    setSubmitted(false);
+                    setFormData({ name: '', email: '', message: '' });
+                  }}
+                  className="btn-secondary"
+                  style={{ fontSize: '0.78rem', padding: '0.5rem 0.95rem' }}
+                >
+                  Reset Form
+                </button>
               </div>
-              <h4
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '1.15rem',
-                  color: 'var(--text-primary)',
-                  fontWeight: 700,
-                }}
-              >
-                Transmission Dispatched
-              </h4>
-              <p
-                style={{
-                  color: 'var(--text-secondary)',
-                  fontSize: '0.86rem',
-                  lineHeight: 1.6,
-                }}
-              >
-                Your message has been delivered to Satyam Kumar. Expect a prompt response.
-              </p>
-              <button
-                onClick={() => {
-                  setSubmitted(false);
-                  setFormData({ name: '', email: '', topic: 'Engineering Inquiry', message: '' });
-                }}
-                className="btn-secondary"
-                style={{ fontSize: '0.80rem', marginTop: '0.5rem', padding: '0.45rem 0.95rem' }}
-              >
-                Send Another Note
-              </button>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-                  gap: '1rem',
-                }}
-              >
+            ) : (
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <div>
                   <label
+                    htmlFor="contact-name"
                     style={{
                       display: 'block',
                       fontFamily: 'var(--font-mono)',
-                      fontSize: '0.72rem',
-                      color: 'var(--text-secondary)',
-                      letterSpacing: '0.06em',
-                      textTransform: 'uppercase',
-                      marginBottom: '0.4rem',
+                      fontSize: '0.7rem',
                       fontWeight: 600,
+                      color: 'var(--text-secondary)',
+                      marginBottom: '0.35rem',
+                      textTransform: 'uppercase',
                     }}
-                    htmlFor="contact-name"
                   >
-                    Name / Team *
+                    Name / Organization *
                   </label>
                   <input
                     id="contact-name"
@@ -494,36 +355,34 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Recruiter / Engineer name"
+                    placeholder="Your name or team"
                     style={{
                       width: '100%',
-                      padding: '0.7rem 0.85rem',
+                      padding: '0.72rem 0.85rem',
                       borderRadius: '2px',
-                      backgroundColor: 'var(--bg-canvas)',
+                      backgroundColor: '#FAF9F6',
                       border: '1px solid #E3E2DD',
                       color: 'var(--text-primary)',
                       fontFamily: 'var(--font-sans)',
                       fontSize: '0.88rem',
-                      outline: 'none',
                     }}
                   />
                 </div>
 
                 <div>
                   <label
+                    htmlFor="contact-email"
                     style={{
                       display: 'block',
                       fontFamily: 'var(--font-mono)',
-                      fontSize: '0.72rem',
-                      color: 'var(--text-secondary)',
-                      letterSpacing: '0.06em',
-                      textTransform: 'uppercase',
-                      marginBottom: '0.4rem',
+                      fontSize: '0.7rem',
                       fontWeight: 600,
+                      color: 'var(--text-secondary)',
+                      marginBottom: '0.35rem',
+                      textTransform: 'uppercase',
                     }}
-                    htmlFor="contact-email"
                   >
-                    Return Email *
+                    Email Address *
                   </label>
                   <input
                     id="contact-email"
@@ -531,90 +390,84 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="your.email@company.com"
+                    placeholder="you@company.com"
                     style={{
                       width: '100%',
-                      padding: '0.7rem 0.85rem',
+                      padding: '0.72rem 0.85rem',
                       borderRadius: '2px',
-                      backgroundColor: 'var(--bg-canvas)',
+                      backgroundColor: '#FAF9F6',
                       border: '1px solid #E3E2DD',
                       color: 'var(--text-primary)',
                       fontFamily: 'var(--font-sans)',
                       fontSize: '0.88rem',
-                      outline: 'none',
                     }}
                   />
                 </div>
-              </div>
 
-              <div>
-                <label
-                  style={{
-                    display: 'block',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.72rem',
-                    color: 'var(--text-secondary)',
-                    letterSpacing: '0.06em',
-                    textTransform: 'uppercase',
-                    marginBottom: '0.4rem',
-                    fontWeight: 600,
-                  }}
-                  htmlFor="contact-message"
-                >
-                  Message Scope *
-                </label>
-                <textarea
-                  id="contact-message"
-                  required
-                  rows={3}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Role details, technical stack, or project inquiry..."
+                <div>
+                  <label
+                    htmlFor="contact-message"
+                    style={{
+                      display: 'block',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.7rem',
+                      fontWeight: 600,
+                      color: 'var(--text-secondary)',
+                      marginBottom: '0.35rem',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    Message *
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    required
+                    rows={4}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    placeholder="Internship opportunity, ML collaboration, or technical discussion..."
+                    style={{
+                      width: '100%',
+                      padding: '0.72rem 0.85rem',
+                      borderRadius: '2px',
+                      backgroundColor: '#FAF9F6',
+                      border: '1px solid #E3E2DD',
+                      color: 'var(--text-primary)',
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: '0.88rem',
+                      resize: 'vertical',
+                    }}
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="btn-primary"
+                  id="contact-submit-btn"
                   style={{
                     width: '100%',
-                    padding: '0.7rem 0.85rem',
-                    borderRadius: '2px',
-                    backgroundColor: 'var(--bg-canvas)',
-                    border: '1px solid #E3E2DD',
-                    color: 'var(--text-primary)',
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: '0.88rem',
-                    outline: 'none',
-                    resize: 'vertical',
+                    justifyContent: 'center',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.8rem',
                   }}
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '0.5rem',
-                  backgroundColor: '#121212',
-                  color: '#FFFFFF',
-                  border: '1px solid #121212',
-                  padding: '0.75rem 1.25rem',
-                  borderRadius: '2px',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.82rem',
-                  fontWeight: 600,
-                  letterSpacing: '0.04em',
-                  cursor: isSubmitting ? 'not-allowed' : 'pointer',
-                  opacity: isSubmitting ? 0.7 : 1,
-                  transition: 'background var(--transition-fast)',
-                }}
-                id="contact-submit-btn"
-              >
-                <Send size={13} />
-                <span>{isSubmitting ? 'Transmitting Dispatch...' : 'Dispatch Message [->]'}</span>
-              </button>
-            </form>
-          )}
+                >
+                  <Send size={13} />
+                  <span>{isSubmitting ? 'Preparing...' : 'Send Message'}</span>
+                </button>
+              </form>
+            )}
+          </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .contact-layout-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

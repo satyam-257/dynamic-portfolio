@@ -1,282 +1,321 @@
 import React from 'react';
-import { PHILOSOPHY_PILLARS, PROFILE } from '../data/portfolioData';
-import { ArrowRight } from 'lucide-react';
+import { PROFILE, EDUCATION } from '../data/portfolioData';
+import { GraduationCap, Compass, Terminal, MapPin } from 'lucide-react';
 
-interface AboutSectionProps {
-  onNavigate: (sectionId: string) => void;
-}
-
-export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
+export const AboutSection: React.FC = () => {
   return (
     <section
       id="about"
       className="section-spacing"
       style={{
         position: 'relative',
-        borderTop: '1px solid var(--border-hairline)',
+        borderTop: '1px solid var(--grid-hairline)',
       }}
     >
       <div className="container">
         {/* Section Header */}
-        <div style={{ maxWidth: '820px', marginBottom: '4.5rem' }}>
-          <div className="reveal-on-scroll section-label">
-            <span>01 / ABOUT</span>
+        <div style={{ maxWidth: '840px', marginBottom: '3.25rem' }}>
+          <div className="reveal-on-scroll architectural-label">
+            <span>01 // ABOUT &amp; ENGINEERING PHILOSOPHY</span>
           </div>
 
-          <h2
-            className="reveal-on-scroll stagger-1 editorial-headline"
-            style={{ marginBottom: '1.5rem' }}
-          >
-            Clarity Through{' '}
-            <span style={{ color: 'var(--silver-muted)', fontWeight: 600 }}>
-              Engineering
-            </span>{' '}
-            Discipline.
+          <h2 className="reveal-on-scroll stagger-1 swiss-headline" style={{ marginBottom: '1rem' }}>
+            {PROFILE.positioningStatement}
           </h2>
-
-          <p
-            className="reveal-on-scroll stagger-2"
-            style={{
-              fontSize: 'var(--text-lg)',
-              color: 'var(--silver-muted)',
-              lineHeight: 1.7,
-            }}
-          >
-            Software is more than code written to satisfy isolated functional requirements.
-            It is a continuous machine operating under memory, network, and human attention constraints.
-          </p>
         </div>
 
-        {/* 2-Column Split: Editorial Narrative + 4 Philosophy Pillars */}
+        {/* Main 2-Column Editorial Layout: Narrative + Philosophy (Left) & Education Timeline (Right) */}
         <div
+          className="about-editorial-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'minmax(0, 1.15fr) minmax(0, 0.85fr)',
-            gap: 'clamp(2.5rem, 5vw, 4.5rem)',
+            gridTemplateColumns: 'minmax(0, 1.2fr) minmax(0, 0.95fr)',
+            gap: '2.25rem',
             alignItems: 'start',
-            marginBottom: '5rem',
           }}
-          className="about-editorial-grid"
         >
-          {/* Left Column: Narrative Prose */}
-          <div
-            className="reveal-on-scroll stagger-2 matte-card"
-            style={{
-              padding: '2.5rem',
-              backgroundColor: 'var(--bg-surface)',
-            }}
-          >
+          {/* Left: Personal Narrative + Engineering Philosophy */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             <div
+              className="reveal-on-scroll stagger-1 architectural-card"
               style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.74rem',
-                color: 'var(--silver-muted)',
-                letterSpacing: '0.08em',
-                marginBottom: '1.75rem',
-                paddingBottom: '1rem',
-                borderBottom: '1px solid var(--border-hairline)',
-                textTransform: 'uppercase',
+                backgroundColor: '#FFFFFF',
+                border: '1px solid #E3E2DD',
+                borderRadius: '4px',
+                padding: '2.25rem',
               }}
             >
-              Background &amp; Philosophy
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              <p style={{ color: '#FFFFFF', fontSize: '1.05rem', lineHeight: 1.75 }}>
-                I am a software engineer focused on building clean web architectures, machine learning
-                telemetry systems, and edge computer vision companions.
-              </p>
-
-              <p style={{ color: 'var(--silver-muted)', fontSize: '0.96rem', lineHeight: 1.75 }}>
-                During development of <strong style={{ color: '#FFFFFF' }}>TrackX</strong>, I investigated
-                why static passenger timetables fail under dynamic railway conditions. By training an
-                XGBoost regressor on empirical delay deviations rather than absolute journey times, we
-                achieved a 42% reduction in intermediate ETA error.
-              </p>
-
-              <p style={{ color: 'var(--silver-muted)', fontSize: '0.96rem', lineHeight: 1.75 }}>
-                Similarly with <strong style={{ color: '#FFFFFF' }}>TrailLens</strong>, I prioritized
-                intentionality: an ultra-compact 5.45 MB PyTorch model that operates 100% offline,
-                providing private, sub-25ms classification so the user can quickly identify a specimen
-                and return to the physical world.
-              </p>
-
               <div
                 style={{
-                  marginTop: '1rem',
-                  padding: '1.25rem 1.5rem',
-                  borderRadius: '4px',
-                  backgroundColor: 'var(--accent-soft)',
-                  borderLeft: '2px solid var(--accent)',
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.72rem',
-                    color: 'var(--accent)',
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                    marginBottom: '0.35rem',
-                  }}
-                >
-                  Core Principle
-                </div>
-                <div
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '1.08rem',
-                    fontWeight: 600,
-                    color: '#FFFFFF',
-                  }}
-                >
-                  &ldquo;Make it work. Make it right. Measure the difference.&rdquo;
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: 4 Architectural Pillars */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            {PHILOSOPHY_PILLARS.map((pillar, idx) => (
-              <div
-                key={pillar.id}
-                className={`reveal-on-scroll stagger-${idx + 1} matte-card`}
-                style={{
-                  padding: '1.75rem',
-                  backgroundColor: 'var(--bg-surface)',
                   display: 'flex',
-                  flexDirection: 'column',
-                  gap: '0.5rem',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                  gap: '0.75rem',
+                  marginBottom: '1.25rem',
+                  paddingBottom: '0.9rem',
+                  borderBottom: '1px solid #E3E2DD',
                 }}
               >
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                  }}
-                >
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: '1.15rem',
-                      fontWeight: 700,
-                      color: '#FFFFFF',
-                      letterSpacing: '-0.02em',
-                    }}
-                  >
-                    {pillar.title}
-                  </span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
+                  <Terminal size={15} style={{ color: 'var(--accent)' }} />
                   <span
                     style={{
                       fontFamily: 'var(--font-mono)',
-                      fontSize: '0.70rem',
-                      color: 'var(--silver-faint)',
+                      fontSize: '0.74rem',
+                      fontWeight: 700,
                       letterSpacing: '0.08em',
+                      color: 'var(--text-primary)',
                     }}
                   >
-                    {pillar.tag}
+                    PROFILE &amp; FOCUS
                   </span>
                 </div>
-
-                <div
+                <span
                   style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: '0.82rem',
-                    color: 'var(--accent)',
-                    fontWeight: 500,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.35rem',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.72rem',
+                    color: 'var(--text-muted)',
                   }}
                 >
-                  {pillar.subtitle}
-                </div>
-
-                <p
-                  style={{
-                    fontSize: '0.88rem',
-                    color: 'var(--silver-muted)',
-                    lineHeight: 1.6,
-                    marginTop: '0.25rem',
-                  }}
-                >
-                  {pillar.description}
-                </p>
+                  <MapPin size={12} style={{ color: 'var(--accent)' }} />
+                  {PROFILE.location}
+                </span>
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Empirical Metrics Bar */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '1.5rem',
-          }}
-        >
-          {PROFILE.metrics.map((m, idx) => (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {PROFILE.aboutParagraphs.map((para, idx) => (
+                  <p
+                    key={idx}
+                    style={{
+                      fontSize: '0.98rem',
+                      color: idx === 0 ? 'var(--text-primary)' : 'var(--text-secondary)',
+                      fontWeight: idx === 0 ? 500 : 400,
+                      lineHeight: 1.72,
+                    }}
+                  >
+                    {para}
+                  </p>
+                ))}
+              </div>
+            </div>
+
+            {/* How I Approach Engineering */}
             <div
-              key={idx}
-              className={`reveal-on-scroll stagger-${idx + 1} matte-card`}
+              className="reveal-on-scroll stagger-2 architectural-card-flat"
               style={{
-                padding: '2rem 1.75rem',
-                backgroundColor: 'var(--bg-surface)',
+                backgroundColor: '#FFFFFF',
+                border: '1px solid #E3E2DD',
+                borderRadius: '4px',
+                padding: '2rem 2.25rem',
               }}
             >
               <div
                 style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '2.4rem',
-                  fontWeight: 700,
-                  color: '#FFFFFF',
-                  letterSpacing: '-0.03em',
-                  lineHeight: 1.05,
-                  marginBottom: '0.5rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.55rem',
+                  marginBottom: '1.1rem',
                 }}
               >
-                {m.value}
+                <Compass size={16} style={{ color: 'var(--accent)' }} />
+                <h3
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.18rem',
+                    fontWeight: 700,
+                    color: 'var(--text-primary)',
+                  }}
+                >
+                  How I Approach Engineering
+                </h3>
               </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
+                {PROFILE.philosophyParagraphs.map((para, idx) => (
+                  <p
+                    key={idx}
+                    style={{
+                      fontSize: '0.94rem',
+                      color: 'var(--text-secondary)',
+                      lineHeight: 1.7,
+                    }}
+                  >
+                    {para}
+                  </p>
+                ))}
+              </div>
+
               <div
                 style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '0.88rem',
-                  fontWeight: 600,
-                  color: 'var(--silver-medium)',
-                  marginBottom: '0.2rem',
+                  marginTop: '1.35rem',
+                  paddingTop: '1rem',
+                  borderTop: '1px solid #E3E2DD',
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: '0.6rem',
                 }}
               >
-                {m.label}
-              </div>
-              <div
-                style={{
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '0.78rem',
-                  color: 'var(--silver-faint)',
-                }}
-              >
-                {m.detail}
+                {[
+                  'Leakage-Aware Validation',
+                  'End-to-End ML Pipelines',
+                  '150+ LeetCode Problems',
+                  'Full-Stack AI Delivery',
+                ].map((pill) => (
+                  <span key={pill} className="mono-tag">
+                    {pill}
+                  </span>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
+          </div>
 
-        {/* Transition Link */}
-        <div
-          className="reveal-on-scroll stagger-3"
-          style={{
-            marginTop: '4rem',
-            display: 'flex',
-            justifyContent: 'flex-end',
-          }}
-        >
-          <button
-            onClick={() => onNavigate('stack')}
-            className="btn-secondary"
-            id="about-to-stack-btn"
+          {/* Right: Structured Education Timeline */}
+          <div
+            className="reveal-on-scroll stagger-2 architectural-card"
+            style={{
+              backgroundColor: '#FFFFFF',
+              border: '1px solid #E3E2DD',
+              borderRadius: '4px',
+              padding: '2.25rem',
+            }}
           >
-            <span>Next: Technical Stack</span>
-            <ArrowRight size={14} />
-          </button>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginBottom: '1.75rem',
+                paddingBottom: '0.9rem',
+                borderBottom: '1px solid #E3E2DD',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
+                <GraduationCap size={17} style={{ color: 'var(--accent)' }} />
+                <h3
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.18rem',
+                    fontWeight: 700,
+                    color: 'var(--text-primary)',
+                  }}
+                >
+                  Education
+                </h3>
+              </div>
+              <span
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.7rem',
+                  color: 'var(--text-muted)',
+                  letterSpacing: '0.06em',
+                }}
+              >
+                ACADEMIC TIMELINE
+              </span>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem', position: 'relative' }}>
+              {EDUCATION.map((edu, idx) => (
+                <div
+                  key={edu.id}
+                  style={{
+                    position: 'relative',
+                    paddingLeft: '1.5rem',
+                    borderLeft: '2px solid #E3E2DD',
+                  }}
+                >
+                  {/* Timeline Node */}
+                  <span
+                    style={{
+                      position: 'absolute',
+                      left: '-6px',
+                      top: '0.35rem',
+                      width: '10px',
+                      height: '10px',
+                      borderRadius: '50%',
+                      backgroundColor: idx === 0 ? 'var(--accent)' : '#FFFFFF',
+                      border: `2px solid ${idx === 0 ? 'var(--accent)' : '#121212'}`,
+                    }}
+                  />
+
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      flexWrap: 'wrap',
+                      gap: '0.5rem',
+                      marginBottom: '0.4rem',
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.74rem',
+                        fontWeight: 600,
+                        color: 'var(--accent)',
+                      }}
+                    >
+                      {edu.period}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.74rem',
+                        fontWeight: 700,
+                        color: 'var(--text-primary)',
+                        backgroundColor: 'var(--bg-canvas)',
+                        border: '1px solid #E3E2DD',
+                        padding: '0.18rem 0.55rem',
+                        borderRadius: '2px',
+                      }}
+                    >
+                      {edu.score}
+                    </span>
+                  </div>
+
+                  <h4
+                    style={{
+                      fontFamily: 'var(--font-display)',
+                      fontSize: '1.05rem',
+                      fontWeight: 700,
+                      color: 'var(--text-primary)',
+                      lineHeight: 1.35,
+                      marginBottom: '0.3rem',
+                    }}
+                  >
+                    {edu.degree}
+                  </h4>
+
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: '0.88rem',
+                      fontWeight: 600,
+                      color: 'var(--text-secondary)',
+                      marginBottom: '0.45rem',
+                    }}
+                  >
+                    {edu.institution} · {edu.location}
+                  </div>
+
+                  <p
+                    style={{
+                      fontSize: '0.86rem',
+                      color: 'var(--text-muted)',
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {edu.details}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -284,11 +323,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
         @media (max-width: 900px) {
           .about-editorial-grid {
             grid-template-columns: 1fr !important;
-            gap: 2.5rem !important;
           }
         }
       `}</style>
     </section>
   );
 };
+
 export default AboutSection;

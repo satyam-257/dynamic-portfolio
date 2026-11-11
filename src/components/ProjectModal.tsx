@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { Project } from '../data/portfolioData';
+import { ProjectCaseStudy } from '../data/portfolioData';
 import { Github, ExternalLink, X, Check } from 'lucide-react';
 
 interface ProjectModalProps {
-  project: Project | null;
+  project: ProjectCaseStudy | null;
   onClose: () => void;
 }
 
@@ -39,19 +39,20 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '1.5rem',
+        padding: '1.25rem',
       }}
       onClick={onClose}
       aria-modal="true"
       role="dialog"
+      aria-label={`${project.title} Engineering Case Study`}
     >
       <div
         style={{
           backgroundColor: '#FFFFFF',
-          maxWidth: '840px',
+          maxWidth: '880px',
           width: '100%',
           maxHeight: '90vh',
-          borderRadius: '4px',
+          borderRadius: '6px',
           border: '1px solid var(--grid-hairline)',
           boxShadow: 'var(--shadow-studio-elevated)',
           overflowY: 'auto',
@@ -61,7 +62,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Sticky Header Bar */}
+        {/* Sticky Modal Header */}
         <div
           style={{
             position: 'sticky',
@@ -71,11 +72,11 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '1.25rem 2rem',
+            padding: '1.15rem 1.75rem',
             zIndex: 10,
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
             <span
               style={{
                 fontFamily: 'var(--font-mono)',
@@ -85,20 +86,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 border: '1px solid var(--accent-subtle-border)',
                 padding: '0.2rem 0.6rem',
                 borderRadius: '2px',
-                fontWeight: 600,
-                letterSpacing: '0.04em',
+                fontWeight: 700,
               }}
             >
-              {project.badge}
+              {project.number}
             </span>
-            <span
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.76rem',
-                color: 'var(--text-muted)',
-              }}
-            >
-              / ARCHITECTURAL SPECIFICATION
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: 'var(--text-muted)' }}>
+              {project.badge}
             </span>
           </div>
 
@@ -114,26 +108,24 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
-              transition: 'all var(--transition-fast)',
             }}
-            aria-label="Close modal"
+            aria-label="Close case study modal"
           >
             <X size={18} />
           </button>
         </div>
 
-        {/* Modal Body */}
-        <div style={{ padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-          {/* Header Title Area */}
+        {/* Body */}
+        <div style={{ padding: '2rem 1.75rem', display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
           <div>
             <div
               style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.76rem',
+                fontSize: '0.74rem',
                 color: 'var(--text-muted)',
-                letterSpacing: '0.08em',
-                marginBottom: '0.4rem',
                 textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                marginBottom: '0.35rem',
               }}
             >
               {project.category}
@@ -141,255 +133,140 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             <h2
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: 'var(--text-3xl)',
-                fontWeight: 700,
+                fontSize: 'clamp(1.75rem, 1.4rem + 1.2vw, 2.35rem)',
+                fontWeight: 800,
                 color: 'var(--text-primary)',
-                letterSpacing: '-0.03em',
-                lineHeight: 1.15,
-                marginBottom: '0.5rem',
+                marginBottom: '0.4rem',
               }}
             >
               {project.title}
             </h2>
-            <p
-              style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: 'var(--text-base)',
-                color: 'var(--text-secondary)',
-                fontWeight: 500,
-              }}
-            >
+            <p style={{ fontSize: '1.02rem', color: 'var(--text-secondary)', fontWeight: 500 }}>
               {project.subtitle}
             </p>
           </div>
 
-          {/* Project Preview Image */}
+          {/* Measurable Results Strip */}
           <div
             style={{
-              borderRadius: '2px',
-              overflow: 'hidden',
-              border: '1px solid var(--grid-hairline)',
-              maxHeight: '320px',
-              backgroundColor: 'var(--bg-canvas)',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))',
+              gap: '0.85rem',
             }}
           >
-            <img
-              src={project.imageUrl}
-              alt={project.title}
-              style={{
-                width: '100%',
-                height: '100%',
-                maxHeight: '320px',
-                objectFit: 'cover',
-                display: 'block',
-              }}
-            />
-          </div>
-
-          {/* Stats Grid */}
-          {project.stats && (
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))',
-                gap: '1rem',
-              }}
-            >
-              {project.stats.map((stat, i) => (
-                <div
-                  key={i}
-                  style={{
-                    padding: '1.25rem',
-                    borderRadius: '2px',
-                    backgroundColor: 'var(--bg-canvas)',
-                    border: '1px solid var(--grid-hairline)',
-                  }}
-                >
-                  <div
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.72rem',
-                      color: 'var(--text-muted)',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.06em',
-                      marginBottom: '0.35rem',
-                    }}
-                  >
-                    {stat.label}
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '1.45rem',
-                      fontWeight: 700,
-                      color: 'var(--text-primary)',
-                    }}
-                  >
-                    {stat.value}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Overview Section */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <h3
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'var(--text-lg)',
-                color: 'var(--text-primary)',
-                fontWeight: 700,
-                letterSpacing: '-0.02em',
-              }}
-            >
-              System Description
-            </h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.96rem', lineHeight: 1.75 }}>
-              {project.description}
-            </p>
-
-            {/* Impact Box */}
-            <div
-              style={{
-                padding: '1.25rem 1.5rem',
-                borderRadius: '2px',
-                backgroundColor: 'var(--bg-canvas)',
-                borderLeft: '3px solid var(--accent)',
-                borderTop: '1px solid var(--grid-hairline)',
-                borderRight: '1px solid var(--grid-hairline)',
-                borderBottom: '1px solid var(--grid-hairline)',
-              }}
-            >
+            {project.measurableResults.map((stat, i) => (
               <div
+                key={i}
                 style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.70rem',
-                  letterSpacing: '0.08em',
-                  color: 'var(--accent)',
-                  fontWeight: 600,
-                  textTransform: 'uppercase',
-                  marginBottom: '0.35rem',
+                  padding: '1rem 1.15rem',
+                  borderRadius: '3px',
+                  backgroundColor: '#FAF9F6',
+                  border: '1px solid var(--grid-hairline)',
                 }}
               >
-                Benchmark Verification
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.35rem', fontWeight: 700 }}>
+                  {stat.value}
+                </div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '0.86rem', fontWeight: 700, marginTop: '0.15rem' }}>
+                  {stat.label}
+                </div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
+                  {stat.context}
+                </div>
               </div>
-              <p style={{ color: 'var(--text-primary)', fontSize: '0.92rem', lineHeight: 1.6, fontWeight: 500 }}>
-                {project.impactNote}
-              </p>
+            ))}
+          </div>
+
+          {/* Problem / Built / Approach */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ padding: '1rem 1.2rem', backgroundColor: '#FAF9F6', borderLeft: '3px solid var(--accent)', borderRadius: '2px' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', fontWeight: 700, color: 'var(--accent)', marginBottom: '0.3rem' }}>
+                PROBLEM STATEMENT
+              </div>
+              <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)' }}>{project.problemStatement}</p>
+            </div>
+
+            <div style={{ padding: '1rem 1.2rem', backgroundColor: '#FAF9F6', border: '1px solid #E3E2DD', borderRadius: '2px' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.3rem' }}>
+                WHAT I BUILT
+              </div>
+              <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)' }}>{project.whatIBuilt}</p>
+            </div>
+
+            <div style={{ padding: '1rem 1.2rem', backgroundColor: '#FAF9F6', border: '1px solid #E3E2DD', borderRadius: '2px' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.3rem' }}>
+                TECHNICAL APPROACH
+              </div>
+              <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)' }}>{project.technicalApproach}</p>
             </div>
           </div>
 
-          {/* Technical Highlights */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <h3
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'var(--text-lg)',
-                color: 'var(--text-primary)',
-                fontWeight: 700,
-                letterSpacing: '-0.02em',
-              }}
-            >
-              Key Architecture Highlights
+          {/* Full Key Contributions */}
+          <div>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.75rem' }}>
+              Key Contributions ({project.keyContributions.length})
             </h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              {project.highlights.map((h, i) => (
-                <div
-                  key={i}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: '0.75rem',
-                    padding: '0.85rem 1.1rem',
-                    borderRadius: '2px',
-                    backgroundColor: 'var(--bg-canvas)',
-                    border: '1px solid var(--grid-hairline)',
-                  }}
-                >
-                  <Check
-                    size={15}
-                    style={{ color: 'var(--accent)', flexShrink: 0, marginTop: '0.2rem' }}
-                  />
-                  <span style={{ color: 'var(--text-primary)', fontSize: '0.90rem', lineHeight: 1.6 }}>
-                    {h}
-                  </span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+              {project.keyContributions.map((item, idx) => (
+                <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem' }}>
+                  <Check size={16} style={{ color: 'var(--accent)', marginTop: '0.2rem', flexShrink: 0 }} />
+                  <span style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>{item}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Technologies Used */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-            <h3
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.76rem',
-                letterSpacing: '0.08em',
-                color: 'var(--text-muted)',
-                textTransform: 'uppercase',
-              }}
-            >
-              Technology Stack
-            </h3>
+          {/* Technologies */}
+          <div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
+              TECHNOLOGY STACK
+            </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-              {project.technologies.map((tech) => (
-                <span key={tech} className="mono-tag">
-                  {tech}
+              {project.technologies.map((t) => (
+                <span key={t} className="mono-tag">
+                  {t}
                 </span>
               ))}
             </div>
           </div>
 
-          {/* Action Footer */}
+          {/* External Links */}
           <div
             style={{
-              paddingTop: '1.75rem',
-              borderTop: '1px solid var(--grid-hairline)',
               display: 'flex',
               flexWrap: 'wrap',
-              gap: '1rem',
-              alignItems: 'center',
-              justifyContent: 'space-between',
+              gap: '0.85rem',
+              paddingTop: '1.25rem',
+              borderTop: '1px solid #E3E2DD',
             }}
           >
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary"
+              style={{ flex: 1, minWidth: '180px', justifyContent: 'center' }}
+            >
+              <Github size={16} />
+              <span>View GitHub Repository</span>
+            </a>
+            {project.liveUrl && (
               <a
-                href={project.githubUrl}
+                href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-secondary"
-                style={{ fontSize: '0.84rem', padding: '0.65rem 1.25rem' }}
+                className="btn-primary"
+                style={{ flex: 1, minWidth: '180px', justifyContent: 'center' }}
               >
-                <Github size={15} />
-                <span>GitHub Repository</span>
+                <ExternalLink size={16} />
+                <span>Open Verified Live Demo</span>
               </a>
-
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary"
-                  style={{ fontSize: '0.84rem', padding: '0.65rem 1.25rem' }}
-                >
-                  <ExternalLink size={14} />
-                  <span>Launch Platform</span>
-                </a>
-              )}
-            </div>
-
-            <button
-              onClick={onClose}
-              className="btn-ghost"
-              style={{ padding: '0.65rem 1.25rem' }}
-            >
-              Close
-            </button>
+            )}
           </div>
         </div>
       </div>
     </div>
   );
 };
+
 export default ProjectModal;

@@ -2,598 +2,564 @@ export interface NavLink {
   id: string;
   label: string;
   index: string;
-  isExternal?: boolean;
-  href?: string;
 }
 
-export interface Project {
+export interface ProjectCaseStudy {
   id: string;
+  number: string;
   title: string;
   subtitle: string;
   category: string;
   badge: string;
+  problemStatement: string;
+  whatIBuilt: string;
+  technicalApproach: string;
   description: string;
-  impactNote: string;
+  measurableResults: {
+    value: string;
+    label: string;
+    context: string;
+  }[];
+  keyContributions: string[];
   technologies: string[];
   githubUrl: string;
   liveUrl?: string;
-  imageUrl: string;
-  authenticAsset?: string;
-  highlights: string[];
-  stats?: { label: string; value: string }[];
+  achievementNote?: string;
+  previewImage?: string;
 }
 
-export interface StackCategory {
-  title: string;
-  description: string;
-  skills: {
-    name: string;
-    level: string;
-    experience: string;
-    description: string;
-    tags: string[];
-  }[];
-}
-
-export interface ArchitecturalMetric {
-  value: string;
-  label: string;
-  category: string;
-  detail: string;
-  benchmark: string;
-}
-
-export interface Chapter {
+export interface SkillCategory {
   id: string;
-  number: string;
   title: string;
-  navLabel: string;
   subtitle: string;
-  headline: string;
-  supportingText: string;
-  watchStage: {
-    name: string;
-    description: string;
-    image: string;
-    focusPart: string;
-    zoomLevel: number;
-  };
+  skills: string[];
+}
+
+export interface AchievementItem {
+  id: string;
+  tag: string;
+  title: string;
+  organization: string;
+  year: string;
+  metric?: string;
+  description: string;
+}
+
+export interface EducationItem {
+  id: string;
+  period: string;
+  degree: string;
+  institution: string;
+  location: string;
+  score: string;
+  details: string;
 }
 
 export const NAV_LINKS: NavLink[] = [
-  { id: 'intro', label: 'Intro', index: '01' },
-  { id: 'projects', label: 'Projects', index: '02' },
-  { id: 'stack', label: 'Stack', index: '03' },
-  { id: 'contact', label: 'Contact', index: '04' },
+  { id: 'home', label: 'Home', index: '01' },
+  { id: 'about', label: 'About', index: '02' },
+  { id: 'projects', label: 'Projects', index: '03' },
+  { id: 'experiments', label: 'Experiments', index: '04' },
+  { id: 'skills', label: 'Skills', index: '05' },
+  { id: 'achievements', label: 'Achievements', index: '06' },
+  { id: 'contact', label: 'Contact', index: '07' },
 ];
 
 export const PROFILE = {
   name: 'Satyam Kumar',
-  role: 'Software Engineer & Systems Architecture',
-  title: 'Software Engineer & Systems Architecture',
-  roles: ['Software Engineer', 'AI / ML Explorer', 'Systems Builder'],
-  eyebrow: 'ARCHITECTURAL SYSTEMS // DAYLIGHT EDITION',
-  headline: 'Engineering High-Performance Software & Machine Intelligence.',
-  heroHeadline: 'BUILT TO EXPLORE.',
-  heroSubtitle: 'I build software, experiment with intelligence, and turn ideas into working systems.',
-  subtitle:
-    'Tactile engineering, low-latency machine learning pipelines, and resilient full-stack web platforms built with Swiss precision and architectural discipline.',
-  motto: 'BUILT TO EXPLORE.',
-  closingHeadline: 'THE WORK EVOLVES.',
-  closingText: 'Continuously refining systems and exploring new paradigms.',
-  github: 'https://github.com/satyam-257',
-  kaggle: 'https://kaggle.com/satyam257',
-  leetcode: 'https://leetcode.com/u/satyam-257/',
-  linkedin: 'https://linkedin.com/in/satyam-257',
-  email: 'satyam.dev@gmail.com',
-  resumeUrl: '/Satyam_Kumar_Resume.pdf',
-  location: 'Remote / India',
-  metrics: [
-    { label: 'Edge Inference Latency', value: '22.4 ms', detail: 'On-device CPU evaluation' },
-    { label: 'Model Footprint', value: '5.45 MB', detail: 'Quantized PyTorch weights' },
-    { label: 'ETA Deviation Reduction', value: '-42%', detail: 'XGBoost regression model' },
-    { label: 'Deployed Systems', value: '4+ Live', detail: 'Production web & ML platforms' },
+  location: 'Kolkata, West Bengal, India',
+  identity: 'ML Engineer | AI Engineer | Data Science',
+  educationSummary:
+    'B.Tech Computer Science and Engineering (Data Science), Netaji Subhash Engineering College, Kolkata, 2024–2028, CGPA 7.6',
+  positioningStatement:
+    'I build machine learning systems that turn complex data into measurable results.',
+  heroIntro: "HELLO, I'M SATYAM KUMAR",
+  heroHeadline: 'Building Intelligent Systems. Engineering Real-World Impact.',
+  heroSupport:
+    'From predictive machine learning pipelines to full-stack AI products, I turn complex problems into measurable engineering solutions.',
+  aboutParagraphs: [
+    "I'm Satyam Kumar, a Computer Science and Data Science student passionate about building intelligent systems end to end.",
+    'My work spans machine learning pipelines, leakage-aware model validation, predictive analytics, model evaluation platforms, and full-stack AI applications.',
+    'I enjoy going beyond training a model. I focus on understanding data, designing reliable experiments, measuring performance, and turning machine learning ideas into usable products.',
   ],
+  philosophyParagraphs: [
+    'I enjoy the process behind building intelligent systems: understanding the problem, exploring the data, experimenting with models, questioning results, and improving the solution.',
+    'I believe a good ML model is more than a high score. It needs reliable validation, meaningful evaluation, and a clear path towards practical application.',
+    'Outside ML, I enjoy competitive programming and building full-stack products — sharpening algorithmic thinking across 150+ solved LeetCode problems and 100+ CodeChef problems.',
+  ],
+  email: 'sa.25.07.2006@gmail.com',
+  github: 'https://github.com/satyam-257',
+  linkedin: 'https://linkedin.com/in/satyam-kumar-006b52324',
+  resumeUrl: '/Satyam_Kumar_Resume.pdf',
 };
 
-export const ARCHITECTURAL_METRICS: ArchitecturalMetric[] = [
+export const HERO_METRICS = [
   {
-    value: '22.4 ms',
-    label: 'Edge Inference Latency',
-    category: 'On-Device Computer Vision',
-    detail: 'CPU-evaluated edge inference executed on commodity client hardware without cloud round-trip delay.',
-    benchmark: 'Quantized PyTorch mobile evaluation on standard ARM/x86 architectures',
+    id: 'leetcode',
+    value: 150,
+    suffix: '+',
+    displayValue: '150+',
+    label: 'LeetCode Problems Solved',
+    context: 'Algorithmic problem solving in C++ & Python',
   },
   {
-    value: '5.45 MB',
-    label: 'Quantized Model Weight',
-    category: 'PyTorch Architecture',
-    detail: 'Ultra-compact convolutional network footprint enabling instant startup and 100% offline autonomy.',
-    benchmark: '92% compression vs unquantized baseline weights with verified fidelity',
+    id: 'cv-auc',
+    value: 0.968,
+    decimals: 3,
+    displayValue: '0.968',
+    label: 'CV ROC-AUC | Smartphone Addiction ML',
+    context: '10-fold CV vs 0.957 raw baseline (not public LB)',
   },
   {
-    value: '-42%',
-    label: 'Delay Deviation Error',
-    category: 'XGBoost Telemetry',
-    detail: 'Intermediate station arrival prediction accuracy improvement over standard timetable offsets.',
-    benchmark: 'Evaluated against live signaling interlock logs across 1,200+ test segments',
-  },
-  {
-    value: '4+ Live',
-    label: 'Production Systems',
-    category: 'Systems Architecture',
-    detail: 'Architected and shipped end-to-end applications spanning edge AI, travel platforms, and WhatsApp assistants.',
-    benchmark: 'FastAPI microservices, Next.js 15, React 18, Supabase, PostgreSQL',
-  },
-];
-
-export const STACK_DATA: StackCategory[] = [
-  {
-    title: 'Core Languages',
-    description: 'Foundational languages for type-safe system design, mathematical computing, and low-latency execution.',
-    skills: [
-      {
-        name: 'TypeScript',
-        level: 'Advanced',
-        experience: 'Production Core',
-        description: 'Strict type contracts, scalable component architecture, generics, and isomorphic web applications.',
-        tags: ['Strict Mode', 'Next.js', 'React', 'Design Systems'],
-      },
-      {
-        name: 'Python',
-        level: 'Advanced',
-        experience: 'ML & Microservices',
-        description: 'Scientific computing, PyTorch model pipelines, gradient boosting regression, and asynchronous FastAPI services.',
-        tags: ['PyTorch', 'FastAPI', 'NumPy', 'AsyncIO'],
-      },
-      {
-        name: 'JavaScript (ES6+)',
-        level: 'Advanced',
-        experience: 'Full Stack',
-        description: 'Asynchronous event loops, V8 engine optimization, browser runtime lifecycles, and DOM APIs.',
-        tags: ['Modern ES', 'Web APIs', 'Performance', 'Bundlers'],
-      },
-      {
-        name: 'SQL & Relational DBs',
-        level: 'Proficient',
-        experience: 'Data Persistence',
-        description: 'Relational data modeling, indexing strategies, PostgreSQL transactions, and cloud database webhooks.',
-        tags: ['PostgreSQL', 'Supabase', 'Relational Design'],
-      },
-    ],
-  },
-  {
-    title: 'Machine Learning & Edge AI',
-    description: 'Empirical model engineering from offline on-device classification to real-time delay telemetry.',
-    skills: [
-      {
-        name: 'PyTorch & Edge CV',
-        level: 'Advanced',
-        experience: 'Edge Inference',
-        description: 'Quantized computer vision architectures achieving 22.4ms CPU inference with a 5.45 MB memory footprint.',
-        tags: ['Model Quantization', 'Mobile Vision', 'Edge AI', 'Offline'],
-      },
-      {
-        name: 'XGBoost & Scikit-Learn',
-        level: 'Advanced',
-        experience: 'Telemetry Regression',
-        description: 'Gradient boosted decision trees predicting live railway arrival deviations rather than naive timetables.',
-        tags: ['Feature Engineering', 'Time Series', 'Ensembles'],
-      },
-      {
-        name: 'FastAPI High-Throughput APIs',
-        level: 'Advanced',
-        experience: 'API Services',
-        description: 'Asynchronous Python microservices serving machine learning inference outputs to client frontends.',
-        tags: ['Pydantic v2', 'Uvicorn', 'REST', 'Swagger'],
-      },
-      {
-        name: 'OpenAI GPT-4o Integration',
-        level: 'Proficient',
-        experience: 'Conversational',
-        description: 'Stateful conversation orchestration, structured JSON outputs, function calling, and token budget management.',
-        tags: ['WhatsApp AI', 'Function Calling', 'State Persistence'],
-      },
-    ],
-  },
-  {
-    title: 'Frontend & System UI',
-    description: 'High-polish, zero-jank interfaces built with Swiss design discipline and reactive architecture.',
-    skills: [
-      {
-        name: 'React 18 & Concurrent Mode',
-        level: 'Advanced',
-        experience: 'Flagship UI',
-        description: 'Custom hooks, transitions, decoupled state management, and accessible component libraries.',
-        tags: ['Custom Hooks', 'Micro-Interactions', 'A11y', 'Virtualization'],
-      },
-      {
-        name: 'Next.js 15 & Modern SSR',
-        level: 'Proficient',
-        experience: 'Full Stack',
-        description: 'Server components, server actions, route handlers, dynamic metadata generation, and edge caching.',
-        tags: ['App Router', 'Server Actions', 'SSR', 'SEO'],
-      },
-      {
-        name: 'Tactile Daylight CSS',
-        level: 'Advanced',
-        experience: 'Design Systems',
-        description: 'Design tokens, clamp fluid typography, realistic studio lighting shadows, and exposed hairline grids.',
-        tags: ['Tokens', 'CSS Grid', 'Typography', 'Daylight System'],
-      },
-      {
-        name: 'Vite Build Pipeline',
-        level: 'Advanced',
-        experience: 'Tooling',
-        description: 'Fast HMR, tree-shaking, production bundle optimization, and Rollup plugin ecosystem.',
-        tags: ['Rollup', 'Fast Refresh', 'ESM', 'Optimization'],
-      },
-    ],
-  },
-  {
-    title: 'Cloud & Infrastructure',
-    description: 'Reliable cloud data layers, webhook receivers, and automated continuous deployment.',
-    skills: [
-      {
-        name: 'Supabase & PostgreSQL',
-        level: 'Proficient',
-        experience: 'Cloud DB',
-        description: 'Row-level security policies, realtime table listeners, managed auth flows, and automated triggers.',
-        tags: ['Realtime', 'RLS', 'PostgreSQL', 'Auth'],
-      },
-      {
-        name: 'Meta Cloud API & Twilio',
-        level: 'Proficient',
-        experience: 'Messaging',
-        description: 'Enterprise WhatsApp webhook receivers, message templates, rate-limiting, and stateful sessions.',
-        tags: ['Webhooks', 'WhatsApp', 'Twilio', 'Messaging'],
-      },
-      {
-        name: 'Git & Deployment Pipelines',
-        level: 'Advanced',
-        experience: 'DevOps',
-        description: 'Branching workflows, preview deployments, semantic versioning, and continuous delivery.',
-        tags: ['Git', 'Vercel', 'Release Flow', 'CI/CD'],
-      },
-    ],
-  },
-];
-
-export const PROJECTS: Project[] = [
-  {
-    id: 'antariksh',
-    title: 'Bharatiya Antariksh Hackathon Technical Build',
-    subtitle: 'Space-Grade Telemetry & Edge AI Satellite Payload Pipeline',
-    category: 'Edge Computing & C++',
-    badge: 'Antariksh Hackathon',
-    description:
-      'High-reliability telemetry pipeline engineered for onboard satellite payload evaluation, real-time edge computer vision inference, and fault-tolerant sensor ingestion under extreme compute and power constraints. Built with deterministic memory boundaries and zero heap allocations in the critical telemetry ingest loop.',
-    impactNote:
-      'Engineered sub-20ms onboard computer vision inference on constrained ARM Cortex payload cores with deterministic memory boundaries.',
-    technologies: ['C++20', 'PyTorch Mobile', 'Edge CV', 'ZeroMQ', 'Embedded Linux', 'CMake'],
-    githubUrl: 'https://github.com/satyam-257/antariksh-telemetry',
-    imageUrl: '/images/pack/traillens_landscape.jpg',
-    highlights: [
-      'Sub-20ms edge inference executed directly on onboard payload processor',
-      'Zero-allocation deterministic ring buffers for telemetry frame ingestion',
-      'Fault-tolerant payload status synchronization over intermittent RF links',
-      'Space-grade memory safety and real-time sensor fusion architecture',
-    ],
-    stats: [
-      { label: 'Payload Latency', value: '< 20 ms' },
-      { label: 'Memory Allocation', value: '0 Heap / Loop' },
-      { label: 'Standard', value: 'C++20 Embedded' },
-    ],
-  },
-  {
-    id: 'tabular-ml',
-    title: 'Tabular ML & Out-of-Fold Feature Engineering (Kaggle)',
-    subtitle: 'High-Rank Gradient Boosted Ensembles & Signal Extraction',
-    category: 'Data Science & Machine Learning',
-    badge: 'Kaggle Competitive ML',
-    description:
-      'A disciplined competitive tabular machine learning system featuring rigorous out-of-fold target encoding, high-order feature interaction graphs, adversarial validation, and calibrated blending of XGBoost, LightGBM, and CatBoost models with Bayesian hyperparameter optimization.',
-    impactNote:
-      'Eliminated data leakage across stratified multi-folds while reducing log-loss variance by 34% through automated feature interaction screening.',
-    technologies: ['Python', 'XGBoost', 'LightGBM', 'Scikit-Learn', 'Optuna', 'NumPy', 'Pandas'],
-    githubUrl: 'https://github.com/satyam-257/tabular-feature-engineering',
-    imageUrl: '/images/pack/trackx_railway.jpg',
-    highlights: [
-      'Stratified 10-fold cross-validation with strict out-of-fold target transformation',
-      'Automated polynomial and high-order interaction discovery with variance thresholding',
-      'Adversarial validation ensuring zero train-test distribution shift',
-      'Multi-model weighted rank blending delivering top-tier leader-board stability',
-    ],
-    stats: [
-      { label: 'Leakage Rate', value: '0.00%' },
-      { label: 'CV Correlation', value: '0.982' },
-      { label: 'Ensemble Models', value: 'XGB + LGBM + Cat' },
-    ],
-  },
-  {
-    id: 'cpp-systems',
-    title: 'High-Performance C++ Algorithmic Systems',
-    subtitle: 'Deterministic Low-Latency Execution & Lock-Free Data Structures',
-    category: 'Systems Architecture & C++',
-    badge: 'Modern C++20',
-    description:
-      'Cache-conscious architectural execution engine designed in modern C++20 with ring-buffer lock-free message queues, SIMD vectorization (AVX2), custom cache-line aligned arena allocators, and memory-mapped IPC for deterministic sub-microsecond throughput.',
-    impactNote:
-      'Achieved sub-microsecond P99 message dispatch latency with zero garbage collection overhead and deterministic CPU cache alignment.',
-    technologies: ['C++20', 'SIMD / AVX2', 'Lock-Free Queues', 'Linux Epoll', 'Memory-Mapped I/O', 'GDB'],
-    githubUrl: 'https://github.com/satyam-257/cpp-algorithmic-systems',
-    imageUrl: '/images/pack/traverly_city.jpg',
-    highlights: [
-      'Lock-free single-producer single-consumer (SPSC) ring buffer queues',
-      'AVX2 SIMD vectorization for bulk numerical calculations',
-      'Cache-line aligned custom arena memory management avoiding malloc contention',
-      'Deterministic sub-microsecond event loops using Linux epoll and timerfd',
-    ],
-    stats: [
-      { label: 'Dispatch Latency', value: '< 850 ns' },
-      { label: 'Throughput', value: '12M msgs/sec' },
-      { label: 'Memory Standard', value: '64B Cache-Aligned' },
-    ],
-  },
-  {
-    id: 'trackx',
-    title: 'TrackX (RailVue AI)',
-    subtitle: 'Dynamic Train ETA Telemetry & Deviation Prediction',
-    category: 'Machine Learning & Infrastructure',
-    badge: 'XGBoost ML',
-    description:
-      'An intelligent railway operations and ETA prediction platform designed for Indian Railways. Instead of static timetable offsets that propagate compounding delays, TrackX continuously recomputes arrival times at intermediate stations using real-time telemetry, track congestion density, signaling interlocks, and XGBoost gradient boosting regression models.',
-    impactNote:
-      'Predicts deviations from the published timetable rather than raw trip durations, cutting prediction error by 42% over standard timetable offsets.',
-    technologies: ['Python', 'FastAPI', 'XGBoost', 'React 18', 'TypeScript', 'Tailwind CSS'],
-    githubUrl: 'https://github.com/satyam-257/rail_collector',
-    liveUrl: 'https://rail-collector.vercel.app',
-    imageUrl: '/images/pack/trackx_railway.jpg',
-    authenticAsset: '/images/railvue-logo.png',
-    highlights: [
-      'Dynamic intermediate station ETA recalculation factoring live telemetry',
-      'XGBoost regression trained on historical timetable deviation features',
-      'Full-stack telemetry dashboard built with React and FastAPI backend',
-      'Interactive route visualization with track congestion and delay hot-spots',
-    ],
-    stats: [
-      { label: 'ETA Deviation Error', value: '-42%' },
-      { label: 'Backend Latency', value: '< 65 ms' },
-      { label: 'Algorithm', value: 'XGBoost Regressor' },
-    ],
-  },
-  {
-    id: 'traillens',
-    title: 'TrailLens',
-    subtitle: '100% Offline Edge Computer Vision Companion',
-    category: 'Edge Computer Vision',
-    badge: 'Edge AI / Offline',
-    description:
-      'An intentional edge AI field companion that identifies bird species with complete privacy and zero internet requirement. Designed with a philosophy of reconnecting with the physical world: identify quickly, discover one fascinating field mark, then put the screen away and keep exploring.',
-    impactNote:
-      'Employs an ultra-compact 5.45 MB PyTorch model achieving 22.4 ms CPU latency for instant, private offline inference on commodity devices.',
-    technologies: ['PyTorch', 'Python', 'Mobile Edge CV', 'TypeScript', 'Vite'],
-    githubUrl: 'https://github.com/satyam-257/TrailLens',
-    imageUrl: '/images/pack/traillens_landscape.jpg',
-    authenticAsset: '/images/traillens_hero.png',
-    highlights: [
-      '100% offline edge inference — zero cloud telemetry and zero data leakage',
-      '5.45 MB model footprint optimized for fast CPU evaluation on commodity hardware',
-      'Mindful user experience engineered to minimize screen time outdoors',
-      'Sub-25ms classification pipeline with high-confidence field mark callouts',
-    ],
-    stats: [
-      { label: 'Model Size', value: '5.45 MB' },
-      { label: 'Inference Latency', value: '22.4 ms' },
-      { label: 'Privacy', value: '100% Offline' },
-    ],
-  },
-  {
-    id: 'traverly',
-    title: 'Traverly',
-    subtitle: 'Intelligent Multi-City Transit & Itinerary Platform',
-    category: 'Full Stack Web Platform',
-    badge: 'Supabase Cloud',
-    description:
-      "A tailored travel discovery and itinerary planning application created for India's domestic travelers. Offers curated multi-city routes, regional state guides, cultural insights, transit coordination, and real-time cloud itinerary persistence.",
-    impactNote:
-      'Modular architecture powered by Vite, React, TypeScript, and Supabase cloud data synchronization with instant client caching.',
-    technologies: ['Vite', 'React', 'TypeScript', 'Supabase', 'Tailwind CSS'],
-    githubUrl: 'https://github.com/satyam-257/Traverly---you-travel-partner',
-    liveUrl: 'https://traverly-flame.vercel.app',
-    imageUrl: '/images/pack/traverly_coast.jpg',
-    authenticAsset: '/images/traverly_train.jpg',
-    highlights: [
-      'Custom itineraries for domestic Indian rail, coastal, and highway travel',
-      'State-by-state travel guides from Kerala backwaters to Rajasthan heritage',
-      'Clean modular component architecture with Supabase database backing',
-      'Interactive transit waypoints and local accommodation recommendations',
-    ],
-    stats: [
-      { label: 'Data Store', value: 'Supabase DB' },
-      { label: 'Architecture', value: 'Modular React 18' },
-      { label: 'Deployment', value: 'Vercel Cloud' },
-    ],
-  },
-  {
-    id: 'farmbank',
-    title: 'FarmBank',
-    subtitle: 'Conversational WhatsApp AI Assistant & Admin Suite',
-    category: 'Conversational AI & Enterprise',
-    badge: 'WhatsApp AI',
-    description:
-      'A full-stack WhatsApp AI conversational assistant and administrative platform built as a lightweight, scalable alternative to heavy commercial messaging systems. Connects Next.js 15 with OpenAI GPT-4o-mini, Supabase persistence, and Twilio/Meta WhatsApp Cloud APIs.',
-    impactNote:
-      'Dual-layer system supporting automated conversational workflows, context memory, and an administrative dashboard for analytics and live intervention.',
-    technologies: ['Next.js 15', 'TypeScript', 'Supabase', 'OpenAI GPT-4o-mini', 'Meta Cloud API'],
-    githubUrl: 'https://github.com/satyam-257/FarmBank',
-    imageUrl: '/images/pack/farmbank_fields.jpg',
-    authenticAsset: '/images/pack/farmbank_greenhouse.jpg',
-    highlights: [
-      'Context-aware GPT-4o-mini dialogue with memory persistence across user turns',
-      'Provider abstraction layer supporting Twilio and Meta Cloud WhatsApp APIs',
-      'Centralized administrative dashboard for conversation analytics and logs',
-      'Automated agricultural advisory and fintech micro-transaction routing',
-    ],
-    stats: [
-      { label: 'LLM Engine', value: 'GPT-4o-mini' },
-      { label: 'Framework', value: 'Next.js 15' },
-      { label: 'Integration', value: 'Meta / Twilio' },
-    ],
-  },
-];
-
-export const PHILOSOPHY_PILLARS = [
-  {
-    id: '01',
-    title: 'System-First Thinking',
-    subtitle: 'From Architecture to Syntax',
-    description:
-      'Treating applications as unified machines where frontend responsiveness, microservice latency, and data persistence operate in seamless alignment.',
-    tag: 'ARCHITECTURE',
-  },
-  {
-    id: '02',
-    title: 'Empirical Precision',
-    subtitle: 'Benchmarked, Not Guessed',
-    description:
-      'From 22.4ms edge vision latency to 42% train delay error reduction, real-world measurement always guides algorithmic and architectural choices.',
-    tag: 'BENCHMARKS',
-  },
-  {
-    id: '03',
-    title: 'Edge Autonomy',
-    subtitle: 'Privacy & Speed By Default',
-    description:
-      'Designing intelligent software that runs directly on commodity client hardware with complete user privacy and zero external server dependencies.',
-    tag: 'OFFLINE FIRST',
-  },
-  {
-    id: '04',
-    title: 'Restrained Craft',
-    subtitle: 'Clarity Over Decoration',
-    description:
-      'Focusing on clean Swiss typography, tactile studio surfaces, and intuitive interactions that respect the user without visual noise.',
-    tag: 'CRAFT',
-  },
-];
-
-// Backward-compatible exports
-export const CHAPTERS: Chapter[] = [
-  {
-    id: 'origin',
-    number: '01',
-    title: 'Origin',
-    navLabel: 'Origin',
-    subtitle: 'Curiosity starts somewhere.',
-    headline: 'BUILT TO EXPLORE.',
-    supportingText: 'I build software, experiment with intelligence, and turn ideas into working systems.',
-    watchStage: {
-      name: 'Complete System',
-      description: 'System in equilibrium.',
-      image: '/images/pack/watch_hero.jpg',
-      focusPart: 'Caliber',
-      zoomLevel: 1.0,
-    },
-  },
-  {
-    id: 'foundation',
-    number: '02',
-    title: 'Foundation',
-    navLabel: 'Foundation',
-    subtitle: 'Learning the parts to understand the system.',
-    headline: 'LEARN THE PARTS.',
-    supportingText: 'Constructing modular web applications.',
-    watchStage: {
-      name: 'Baseplate',
-      description: 'Baseplate examination.',
-      image: '/images/pack/watch_disassembled.jpg',
-      focusPart: 'Baseplate',
-      zoomLevel: 1.35,
-    },
-  },
-  {
-    id: 'experiment',
-    number: '03',
-    title: 'Experiment',
-    navLabel: 'Experiment',
-    subtitle: 'Learning through data and iteration.',
-    headline: 'TEST. MEASURE. REPEAT.',
-    supportingText: 'Machine learning experimentation.',
-    watchStage: {
-      name: 'Escapement',
-      description: 'Oscillating balance.',
-      image: '/images/pack/watch_movement_macro.jpg',
-      focusPart: 'Balance',
-      zoomLevel: 1.7,
-    },
+    id: 'trackx-mae',
+    value: 42,
+    suffix: '%',
+    displayValue: '42%',
+    label: 'Lower MAE | TrackX ETA Model',
+    context: 'vs timetable baseline on 515-snapshot prototype eval',
   },
   {
     id: 'projects',
-    number: '04',
-    title: 'Projects',
-    navLabel: 'Projects',
-    subtitle: 'Working systems as evidence.',
-    headline: 'WORKING SYSTEMS.',
-    supportingText: 'A collection of verified projects.',
-    watchStage: {
-      name: 'Workbench',
-      description: 'Working context.',
-      image: '/images/pack/watch_on_desk.jpg',
-      focusPart: 'Timepiece',
-      zoomLevel: 1.2,
-    },
+    value: 3,
+    suffix: '',
+    displayValue: '3',
+    label: 'Major Engineering Projects',
+    context: 'End-to-end ML pipelines & full-stack AI systems',
+  },
+];
+
+export const FEATURED_PROJECTS: ProjectCaseStudy[] = [
+  {
+    id: 'trackx',
+    number: 'PROJECT 01',
+    title: 'TrackX',
+    subtitle: 'Dynamic Train ETA Prediction System for Indian Railways',
+    category: 'ML Systems & Predictive Telemetry',
+    badge: 'PROTOTYPE // 515-SNAPSHOT EVAL',
+    problemStatement:
+      'Static railway timetables propagate cascading upstream delays to downstream intermediate stations, producing high arrival-time errors during route congestion and adverse weather.',
+    whatIBuilt:
+      'An end-to-end five-source data ingestion pipeline, leakage-free XGBoost delay-deviation modeling suite, FastAPI inference endpoints, and an interactive React/TypeScript network dashboard.',
+    technicalApproach:
+      'Modelled arrival ETA as a predicted deviation from scheduled arrival time rather than raw trip duration. Engineered delay-history features strictly within training splits to prevent temporal leakage, benchmarked XGBoost against Random Forest and a delay-risk classifier on a journey-aware held-out evaluation of 515 snapshots, and exposed feature attribution & congestion APIs via FastAPI.',
+    description:
+      'An intelligent railway ETA prediction system designed to estimate train arrival times using historical delay patterns, route information, station data, and weather conditions.',
+    measurableResults: [
+      {
+        value: '10.37 min',
+        label: 'Model MAE',
+        context: 'Held-out prototype eval (515 snapshots)',
+      },
+      {
+        value: '17.97 min',
+        label: 'Timetable Baseline MAE',
+        context: 'Published schedule offset reference',
+      },
+      {
+        value: '~42%',
+        label: 'Lower MAE',
+        context: 'Improvement vs timetable baseline',
+      },
+    ],
+    keyContributions: [
+      'Built a five-source data pipeline involving historical delays, route/station GeoJSON, station master data, Open-Meteo weather, and a RailRadar client.',
+      'Engineered leakage-free delay features computed only within training splits.',
+      'Modelled ETA as a deviation from scheduled arrival time.',
+      'Achieved 10.37-minute MAE compared with 17.97 minutes for the timetable baseline.',
+      'Improved MAE by approximately 42% on a journey-aware held-out evaluation containing 515 snapshots.',
+      'Compared XGBoost with Random Forest and a delay-risk classifier.',
+      'Developed FastAPI endpoints for ETA, feature attribution, and congestion.',
+      'Built a React/TypeScript dashboard featuring network maps, live tracking, and model-comparison visualizations.',
+    ],
+    technologies: [
+      'Python',
+      'FastAPI',
+      'XGBoost',
+      'scikit-learn',
+      'Open-Meteo',
+      'React',
+      'TypeScript',
+    ],
+    githubUrl: 'https://github.com/satyam-257/rail_collector',
+    liveUrl: 'https://rail-collector.vercel.app',
+    previewImage: '/images/pack/trackx_railway.jpg',
   },
   {
-    id: 'evolve',
-    number: '05',
-    title: 'Evolve',
-    navLabel: 'Evolve',
-    subtitle: 'Continuous refinement.',
-    headline: 'STILL BECOMING.',
-    supportingText: 'Always exploring.',
-    watchStage: {
-      name: 'Dial',
-      description: 'Bevels.',
-      image: '/images/pack/watch_dial_detail.jpg',
-      focusPart: 'Dial',
-      zoomLevel: 1.45,
-    },
+    id: 'experimentpilot',
+    number: 'PROJECT 02',
+    title: 'ExperimentPilot',
+    subtitle: 'ML Experiment Tracking & Model-Behavior Analysis Platform',
+    category: 'MLOps, Calibration & Model Evaluation',
+    badge: 'MODEL VERIFICATION & GUARDRAILS',
+    problemStatement:
+      'Self-reported ML metrics frequently hide calibration drift, dataset mismatches across runs, and silent failure modes on minority classes or sample subgroups.',
+    whatIBuilt:
+      'A model-agnostic ML experiment management and verification workbench backed by FastAPI and SQLite, paired with a React + TypeScript analysis UI and hybrid deterministic + LLM insight synthesis.',
+    technicalApproach:
+      'Decoupled author-reported metrics from independently recomputed verification scores derived directly from sample-level predictions (Accuracy, Precision, Recall, Macro-F1, Confusion Matrices, Regression MAE/MSE/RMSE/R², and 10-bin Expected Calibration Error). Built scientific guardrails to block invalid comparisons across mismatched datasets, splits, or task types, alongside an offline rule-based insight engine with optional Gemini/OpenAI synthesis.',
+    description:
+      'An experiment analysis platform that makes machine learning experiments more transparent, comparable, and trustworthy.',
+    measurableResults: [
+      {
+        value: '10-Bin ECE',
+        label: 'Calibration Analysis',
+        context: 'Independent reliability curves from raw probs',
+      },
+      {
+        value: 'Guardrailed',
+        label: 'Split & Task Checks',
+        context: 'Blocks mismatched dataset/split comparisons',
+      },
+      {
+        value: '9/9 Suites',
+        label: 'Backend Verification',
+        context: 'Persistence, metrics, guardrails & LLM fallback',
+      },
+    ],
+    keyContributions: [
+      'Built a model-agnostic platform to log and compare ML experiment runs.',
+      'Independently recomputes accuracy, precision, recall, macro-F1, confusion matrices, and regression metrics from sample-level predictions.',
+      'Implemented 10-bin Expected Calibration Error.',
+      'Separated independently verified metrics from author-reported results.',
+      'Added experiment comparison guardrails for mismatched datasets, splits, and task types.',
+      'Built hyperparameter comparison and false-positive/false-negative exploration.',
+      'Developed an offline rule-based insight engine with optional Gemini/OpenAI synthesis.',
+      'Implemented FastAPI and SQLite backend infrastructure with tests and deployment configuration.',
+    ],
+    technologies: [
+      'Python',
+      'FastAPI',
+      'SQLite',
+      'Pydantic',
+      'React',
+      'TypeScript',
+      'Vite',
+      'Gemini API',
+      'OpenAI API',
+    ],
+    githubUrl: 'https://github.com/satyam-257/ExperimentPilotAI',
+    previewImage: '/images/pack/ml_lab_monitor.jpg',
   },
   {
-    id: 'connect',
-    number: '06',
-    title: 'Connect',
-    navLabel: 'Connect',
-    subtitle: "Let's build what's next.",
-    headline: 'STILL BECOMING.',
-    supportingText: 'The work evolves.',
-    watchStage: {
-      name: 'Master',
-      description: 'Master balance.',
-      image: '/images/pack/watch_hero.jpg',
-      focusPart: 'Master',
-      zoomLevel: 1.05,
-    },
+    id: 'traverly',
+    number: 'PROJECT 03',
+    title: 'Traverly',
+    subtitle: 'Domestic Travel Planning Platform',
+    category: 'Full-Stack AI & Cost Modeling',
+    badge: 'AMAZON AI SUMMIT 2026 SELECTION',
+    achievementNote:
+      'Selected for Amazon AI Summit 2026 as one of a limited set of student-built AI projects.',
+    problemStatement:
+      'Domestic travelers lack unified tools that connect multi-city destination discovery, realistic Indian regional cost datasets, and day-by-day budgeting across transit modes.',
+    whatIBuilt:
+      'A full-stack domestic travel planning application integrating Supabase auth/storage, a FastAPI multi-factor cost estimation microservice, fuzzy destination matching, and itemized itinerary planning.',
+    technicalApproach:
+      'Constructed a FastAPI budget estimation service powered by Indian city-cost datasets with fuzzy string destination matching. Modelled total and per-category trip costs across travel style, seasonality, party size, and transportation mode, storing user itineraries cleanly in Supabase with automated GitHub Actions CI/CD.',
+    description:
+      'A full-stack domestic travel planning platform designed to simplify trip planning, budgeting, transportation, and travel connections.',
+    measurableResults: [
+      {
+        value: 'Amazon AI',
+        label: 'Summit 2026 Selection',
+        context: 'Selected among limited student AI builds',
+      },
+      {
+        value: '4-Factor',
+        label: 'Cost Estimation Model',
+        context: 'Style, season, party size & transit mode',
+      },
+      {
+        value: 'CI/CD',
+        label: 'Automated Delivery',
+        context: 'GitHub Actions + Supabase + Vercel',
+      },
+    ],
+    keyContributions: [
+      'Built trip-planning and budget-estimation functionality.',
+      'Integrated Supabase authentication and database services.',
+      'Implemented a FastAPI budget estimation service using Indian city-cost datasets.',
+      'Developed fuzzy destination matching and a multi-factor cost estimation model.',
+      'Included travel style, season, party size, and transportation as estimation factors.',
+      'Generated itemized trip estimates and day-by-day recommendations.',
+      'Configured GitHub Actions deployment.',
+    ],
+    technologies: [
+      'React',
+      'TypeScript',
+      'Vite',
+      'Tailwind',
+      'Supabase',
+      'FastAPI',
+      'Pandas',
+    ],
+    githubUrl: 'https://github.com/satyam-257/Traverly---you-travel-partner',
+    liveUrl: 'https://traverly-flame.vercel.app',
+    previewImage: '/images/pack/traverly_coast.jpg',
   },
 ];
 
-export const FOUNDATION_SKILLS = [
-  { category: 'Core Languages', items: ['TypeScript', 'Python', 'JavaScript', 'HTML5 & CSS', 'SQL'] },
-  { category: 'Frontend', items: ['React 18', 'Next.js 15', 'Vite', 'Component Systems'] },
-  { category: 'Backend', items: ['FastAPI', 'Node.js', 'Supabase', 'PostgreSQL'] },
-  { category: 'Craft', items: ['Clean Architecture', 'Modular Thinking', 'Git', 'CI/CD'] },
+export const KAGGLE_CASE_STUDY = {
+  eyebrow: 'BEYOND PROJECTS: MACHINE LEARNING EXPERIMENTS',
+  title: 'Predicting Smartphone Addiction | Kaggle Playground Series S6E8',
+  badge: '10-FOLD STRATIFIED CV // BINARY CLASSIFICATION',
+  description:
+    'An intensive binary classification experiment focused on feature engineering, leakage-aware validation, model specialization, and ensemble optimization.',
+  validationDisclaimer:
+    'All metrics below reflect local 10-fold stratified cross-validation (CV ROC-AUC), not a public leaderboard rank or competition placement.',
+  headlineStats: [
+    { label: 'Engineered Features', value: '172', detail: 'Digit, trig, cohort & missingness' },
+    { label: 'CV ROC-AUC (Ensemble)', value: '0.968', detail: 'vs 0.957 raw CatBoost baseline' },
+    { label: 'Validation Scheme', value: '10-Fold OOF', detail: 'm-estimate target encoding' },
+    { label: 'Logged Experiments', value: '28 Runs', detail: 'Systematic keep / reject ablations' },
+  ],
+  pipelineStages: [
+    {
+      step: '01',
+      title: 'Feature Engineering (172 Features)',
+      detail:
+        'Extracted digit decomposition, cyclical trigonometric transforms, high-order domain interactions, cohort-level aggregates, and missingness indicators.',
+    },
+    {
+      step: '02',
+      title: 'Leakage-Free 10-Fold OOF Encoding',
+      detail:
+        'Implemented strictly inside-fold out-of-fold target encoding using m-estimate smoothing, verified via target-encoding leakage checks and adversarial validation.',
+    },
+    {
+      step: '03',
+      title: 'Diverse GBDT & Specialist Models',
+      detail:
+        'Trained LightGBM, XGBoost, CatBoost, and an XGBoost specialist model tuned systematically with Optuna across 28 logged keep/reject ablation runs.',
+    },
+    {
+      step: '04',
+      title: 'Percentile-Rank Nelder-Mead Blend',
+      detail:
+        'Combined out-of-fold probability ranks across diverse model families using Nelder-Mead simplex weight optimization to push CV ROC-AUC from 0.957 to 0.968.',
+    },
+  ],
+  modelProgression: [
+    {
+      model: 'Raw-Feature CatBoost (Baseline)',
+      score: 0.957,
+      delta: 'Baseline',
+      notes: 'Unmodified raw tabular columns, 10-fold stratified CV',
+      status: 'BASELINE',
+    },
+    {
+      model: 'CatBoost + 172 Engineered Features',
+      score: 0.963,
+      delta: '+0.006',
+      notes: 'OOF m-estimate TE, digit, trig & cohort aggregates',
+      status: 'KEEP',
+    },
+    {
+      model: 'LightGBM (Optuna Tuned)',
+      score: 0.965,
+      delta: '+0.008',
+      notes: 'Leaf-wise tree diversity & regularized feature subsampling',
+      status: 'KEEP',
+    },
+    {
+      model: 'XGBoost + XGB Specialist Model',
+      score: 0.966,
+      delta: '+0.009',
+      notes: 'Depth-wise splits + cohort-focused specialist weighting',
+      status: 'KEEP',
+    },
+    {
+      model: 'Percentile-Rank Nelder-Mead Ensemble',
+      score: 0.968,
+      delta: '+0.011',
+      notes: 'Calibrated rank blend of LGBM + XGB + XGB-Spec + CatBoost',
+      status: 'BEST CV',
+    },
+  ],
+  ablationHighlights: [
+    {
+      experiment: 'Adversarial Validation & TE Leakage Audit',
+      verdict: 'DIAGNOSTIC',
+      finding:
+        'Audited CV-to-leaderboard divergence by testing train/test separability and verifying zero target leakage across OOF m-estimate folds.',
+    },
+    {
+      experiment: 'Raw TE vs Inside-Fold m-Estimate Smoothing',
+      verdict: 'KEEP',
+      finding:
+        'Inside-fold smoothing prevented high-cardinality overfitting and stabilized validation AUC variance across all 10 stratified folds.',
+    },
+    {
+      experiment: 'Unconstrained Probability Averaging vs Rank Blending',
+      verdict: 'REJECT -> REPLACE',
+      finding:
+        'Replaced raw logit averaging with percentile-rank Nelder-Mead weight optimization to align disparate tree calibration scales.',
+    },
+  ],
+  contributions: [
+    'Engineered 172 features.',
+    'Implemented leakage-free 10-fold out-of-fold target encoding using m-estimate smoothing.',
+    'Developed digit, trigonometric, interaction, cohort-aggregate, and missingness features.',
+    'Trained LightGBM, XGBoost, and CatBoost models.',
+    'Built an XGBoost specialist model.',
+    'Used Optuna for hyperparameter optimization.',
+    'Blended percentile-ranked OOF predictions using Nelder-Mead weight optimization.',
+    'Achieved 0.968 CV ROC-AUC compared with 0.957 for the raw-feature CatBoost baseline.',
+    'Logged 28 experiments with keep/reject ablations.',
+    'Investigated CV-to-leaderboard differences through adversarial validation and target-encoding leakage analysis.',
+  ],
+};
+
+export const SKILL_CATEGORIES: SkillCategory[] = [
+  {
+    id: 'languages',
+    title: 'Programming Languages',
+    subtitle: 'Typed application code, low-overhead algorithms & relational queries',
+    skills: ['Python', 'C++', 'C', 'SQL', 'TypeScript'],
+  },
+  {
+    id: 'ml',
+    title: 'Machine Learning',
+    subtitle: 'Gradient boosted ensembles, classical models & Bayesian tuning',
+    skills: [
+      'Scikit-learn',
+      'XGBoost',
+      'LightGBM',
+      'CatBoost',
+      'Optuna',
+      'SciPy',
+      'Random Forest',
+      'K-Means',
+    ],
+  },
+  {
+    id: 'ml-engineering',
+    title: 'ML Engineering Techniques',
+    subtitle: 'Leakage prevention, validation rigor & calibration diagnostics',
+    skills: [
+      'Feature Engineering',
+      'Out-of-Fold Target Encoding',
+      'Stratified K-Fold Cross Validation',
+      'Ensemble Learning and Stacking',
+      'Hyperparameter Optimization',
+      'Data Leakage Auditing',
+      'Model Evaluation and Calibration',
+    ],
+  },
+  {
+    id: 'deep-learning',
+    title: 'Deep Learning',
+    subtitle: 'Neural architectures, lightweight fine-tuning & portable inference',
+    skills: [
+      'PyTorch',
+      'TorchScript',
+      'Transfer Learning',
+      'MobileNetV3-Small Fine-tuning',
+    ],
+  },
+  {
+    id: 'ds-genai',
+    title: 'Data Science & GenAI',
+    subtitle: 'Data manipulation, statistical visualization, LLM APIs & serving',
+    skills: [
+      'Pandas',
+      'NumPy',
+      'Matplotlib',
+      'Seaborn',
+      'OpenAI API',
+      'Gemini API',
+      'FastAPI',
+      'REST APIs',
+    ],
+  },
+  {
+    id: 'tools',
+    title: 'Development Tools',
+    subtitle: 'Experiment environments, full-stack web delivery & CI/CD',
+    skills: [
+      'Git and GitHub',
+      'GitHub Actions',
+      'Jupyter Notebook',
+      'Google Colab',
+      'Kaggle',
+      'React',
+      'Vite',
+      'Supabase',
+    ],
+  },
 ];
 
-export const EXPERIMENT_METRICS = [
-  { label: 'Model Optimization', value: '5.45 MB', note: 'TrailLens offline edge CV footprint' },
-  { label: 'Inference Latency', value: '22.4 ms', note: 'CPU benchmarked on-device' },
-  { label: 'Delay Variance', value: '-42%', note: 'XGBoost ETA error reduction vs timetables' },
-  { label: 'Architecture', value: 'Edge + Cloud', note: 'Hybrid on-device & distributed systems' },
+export const ACHIEVEMENTS: AchievementItem[] = [
+  {
+    id: 'amazon-ai-summit',
+    tag: 'PROJECT SELECTION',
+    title: 'Amazon AI Summit 2026 Selection',
+    organization: 'Amazon AI Summit 2026 (Traverly)',
+    year: '2026',
+    metric: 'Selected Student AI Build',
+    description:
+      'Traverly was selected for Amazon AI Summit 2026 among a limited set of student-built AI projects showcasing practical multi-factor cost modeling and planning.',
+  },
+  {
+    id: 'kshitij-ca',
+    tag: 'CAMPUS LEADERSHIP',
+    title: 'Campus Ambassador — KSHITIJ 2025',
+    organization: 'IIT Kharagpur',
+    year: '2025',
+    metric: '30+ Participants Recruited',
+    description:
+      'Served as Campus Ambassador for KSHITIJ, IIT Kharagpur’s annual techno-management fest, driving campus outreach and recruiting 30+ student participants.',
+  },
+  {
+    id: 'leetcode',
+    tag: 'ALGORITHMIC DSA',
+    title: '150+ Problems Solved on LeetCode',
+    organization: 'LeetCode',
+    year: 'Ongoing',
+    metric: '150+ Solved',
+    description:
+      'Consistent problem-solving practice across dynamic programming, graphs, trees, sliding window, and greedy algorithms to keep implementation fundamentals sharp.',
+  },
+  {
+    id: 'codechef',
+    tag: 'COMPETITIVE PROGRAMMING',
+    title: '100+ Problems Solved on CodeChef',
+    organization: 'CodeChef',
+    year: 'Ongoing',
+    metric: '100+ Solved',
+    description:
+      'Solved 100+ timed algorithmic challenges focusing on time/space complexity discipline and clean C++ STL problem execution.',
+  },
+  {
+    id: 'kaggle-ml',
+    tag: 'TABULAR ML VALIDATION',
+    title: '0.968 CV ROC-AUC Experiment Pipeline',
+    organization: 'Kaggle Playground Series S6E8',
+    year: '2026',
+    metric: '0.968 CV vs 0.957 Baseline',
+    description:
+      'Developed leakage-free 10-fold out-of-fold target encoding, 172 engineered features, Optuna tuning, and Nelder-Mead rank blending across 28 ablation runs.',
+  },
 ];
 
-export const MECHANICAL_PARTS = [
-  { name: '01 / Energy', concept: 'Curiosity', role: 'Drives the system forward.' },
-  { name: '02 / Logic', concept: 'Mathematics', role: 'Transmits energy cleanly.' },
-  { name: '03 / Control', concept: 'Regulation', role: 'Converts raw compute into precise utility.' },
+export const EDUCATION: EducationItem[] = [
+  {
+    id: 'nsec',
+    period: '2024 – 2028',
+    degree: 'B.Tech, Computer Science and Engineering (Data Science)',
+    institution: 'Netaji Subhash Engineering College',
+    location: 'Kolkata, West Bengal',
+    score: 'CGPA 7.6',
+    details:
+      'Coursework and applied engineering spanning Data Structures & Algorithms, Machine Learning, DBMS, Statistical Modeling, and Full-Stack Systems.',
+  },
+  {
+    id: 'gossner',
+    period: '2021 – 2023',
+    degree: 'Intermediate, BSEB (Physics, Chemistry, Mathematics)',
+    institution: 'Gossner College',
+    location: 'Ranchi, Jharkhand',
+    score: '76%',
+    details:
+      'Strong quantitative foundation in calculus, linear algebra, probability, and analytical problem solving.',
+  },
 ];
